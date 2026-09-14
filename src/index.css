@@ -14264,3 +14264,238 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
   font-size: 0.82rem;
   color: var(--indigo);
 }
+
+/* ════════════════════════════════════════════════════════════
+   L'ACCUEIL — LA QUESTION QUI TRIE
+
+   Une seule chose est demandée au visiteur : qui il est. Tout le reste du
+   site en découle, et il n'entre jamais dans un métier qui ne le concerne
+   pas. La page n'a donc rien à vendre et tout à ranger.
+   ════════════════════════════════════════════════════════════ */
+
+.qui-hero {
+  position: relative;
+  min-height: min(100svh, 900px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--indigo-deep);
+  color: var(--cream);
+  overflow: hidden;
+  padding: clamp(8rem, 16vh, 12rem) 0 clamp(6rem, 12vh, 9rem);
+}
+/* Le fond : la trame de la marque, à peine posée. Elle donne l'échelle
+   sans jamais disputer la place à la question. */
+.qui-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to right, var(--cream) 0 1px, transparent 1px 62px),
+    repeating-linear-gradient(to bottom, var(--cream) 0 1px, transparent 1px 62px);
+  mask-image: radial-gradient(120% 90% at 50% 40%, #000 20%, transparent 78%);
+}
+.qui-hero__inner { position: relative; z-index: 2; }
+.qui-hero__eyebrow { color: rgba(240, 238, 232, 0.6); }
+
+.qui-hero__t {
+  margin: clamp(1.4rem, 3vh, 2.4rem) 0 0;
+  font-size: clamp(3.2rem, 11vw, 10rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+/* Le premier mot se forme par la trame réseau, comme sur tout le site :
+   le fantôme porte le texte réel pour les moteurs et les lecteurs
+   d'écran, le SVG le remplace à l'œil. Même montage que l'en-tête des
+   pages intérieures — le fantôme est absolu et transparent, c'est le SVG
+   qui occupe la place. */
+.qui-hero__mot { position: relative; display: inline-block; white-space: nowrap; }
+.qui-hero__ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: transparent;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.qui-hero__net {
+  position: relative;
+  /* Le viewBox de la trame porte 38 unités de marge pour 100 de hauteur
+     de capitale : à taille égale, le mot en réseau paraît deux fois plus
+     petit que le mot composé. D'où le heightEm forcé côté composant, et
+     le calage de ligne de base ici. */
+  vertical-align: -0.13em;
+  margin-right: 0.08em;
+}
+/* .nw-node et .nw-link sont fixés sur l'indigo : sur fond indigo profond
+   le mot disparaissait. On les repasse en crème ici, et seulement ici. */
+.qui-hero__net .nw-node { fill: var(--cream); }
+.qui-hero__net .nw-link { stroke: var(--cream); }
+.qui-hero__lead {
+  margin-top: clamp(1.8rem, 4vh, 3rem);
+  max-width: 58ch;
+  color: rgba(240, 238, 232, 0.82);
+}
+
+.qui-hero__hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.6rem, 4vh, 3rem);
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 232, 0.55);
+}
+.qui-hero__hint i {
+  display: block;
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(to bottom, rgba(240, 238, 232, 0.6), transparent);
+}
+
+/* ---------- les trois portes ---------- */
+
+.qui-porte { padding: clamp(4.5rem, 10vw, 9rem) 0; }
+/* Une porte sur deux change de fond : les trois profils se distinguent
+   au premier coup d'œil, sans qu'on ait à les encadrer. */
+.qui-porte:nth-child(2) { background: var(--cream-shade); }
+.qui-porte__inner {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .qui-porte__inner { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); }
+  .qui-porte:nth-child(2) .qui-porte__fig { order: 2; }
+}
+
+.qui-porte__fig {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  color: var(--indigo);
+}
+.qui-porte__num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: clamp(4rem, 9vw, 7.5rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: var(--indigo);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.qui-porte__taille {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+.qui-porte__q {
+  margin-top: 0.8rem;
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+.qui-porte__situ {
+  margin-top: 1.3rem;
+  max-width: 60ch;
+  font-size: var(--fs-lead);
+  line-height: 1.62;
+  color: var(--muted);
+}
+
+.qui-offres { margin-top: clamp(2rem, 4vw, 3rem); }
+.qui-offres__lab {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+/* Deux offres au maximum, et elles portent leur durée : c'est la première
+   question qu'on se pose, autant y répondre avant qu'elle soit posée. */
+.qui-offre {
+  position: relative;
+  display: block;
+  padding: 1.4rem 3.2rem 1.5rem 0;
+  border-top: 1px solid var(--hairline);
+  color: inherit;
+  text-decoration: none;
+}
+.qui-offre:last-of-type { border-bottom: 1px solid var(--hairline); }
+.qui-offre__haut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+.qui-offre__nom {
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  transition: color 0.3s ease;
+}
+.qui-offre__duree {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  opacity: 0.8;
+}
+.qui-offre__quoi {
+  display: block;
+  margin-top: 0.5rem;
+  max-width: 58ch;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.qui-offre__fleche {
+  position: absolute;
+  right: 0.4rem;
+  top: 1.45rem;
+  color: var(--indigo);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.qui-offre:hover .qui-offre__nom { color: var(--indigo); }
+.qui-offre:hover .qui-offre__fleche { transform: translateX(6px); }
+
+.qui-franchise {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid color-mix(in srgb, var(--indigo) 35%, transparent);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---------- pour ceux qui ne sont dans aucune case ---------- */
+
+.qui-ni { padding: clamp(4rem, 8vw, 7rem) 0 clamp(5rem, 10vw, 9rem); }
+.qui-ni__box {
+  padding: clamp(2.4rem, 5vw, 4rem);
+  border-radius: 18px;
+  background: var(--indigo);
+  color: var(--cream);
+}
+.qui-ni__t { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+.qui-ni__d { margin-top: 1rem; max-width: 56ch; color: rgba(240, 238, 232, 0.82); }
+.qui-ni__box .btn { margin-top: 1.8rem; }

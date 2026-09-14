@@ -2,10 +2,22 @@ import Page from '../components/Page';
 import HeroFormation from '../components/HeroFormation';
 import HomeCinema from '../components/HomeCinema';
 import LongPhrase from '../components/LongPhrase';
-import Aiguillage from '../components/Aiguillage';
 import { useLang } from '../i18n';
+import UniversCorps from '../components/UniversCorps';
+import Axono from '../components/Axono';
+import { SCENES } from '../lib/axono';
+import { PAR_SLUG } from '../data/univers';
 
-/* HOME — structure calquée sur noomoagency.com, DA réseau Reskope :
+/* AUDIT ET CARTOGRAPHIE — c'est ici que vit tout le site historique.
+
+   Cette page était l'accueil. Elle racontait une seule chose, très bien :
+   l'audit. On l'a donc laissée entière et déplacée dans son univers, et
+   l'accueil est devenu le triage par profil. Rien n'a été réécrit ici :
+   le hero réseau, le manifeste au scrub et le cinéma sont ceux d'avant.
+   Ce qui s'ajoute en bas, c'est le corps commun des univers : les chiffres
+   sourcés, les trois temps, ce que vous recevez, les pages rattachées.
+
+   Structure d'origine, calquée sur noomoagency.com, DA réseau Reskope :
    1. Hero (récit volet + R qui se forme et tourne) + offres-réseau
    2. Manifesto (phrase longue, mots révélés au scrub — « At Noomo, we… »)
    3. Services (grandes lignes typographiques — « Services »)
@@ -213,12 +225,13 @@ const CONTENT = {
   },
 };
 
-export default function Home() {
+export default function Audit() {
   const { lang } = useLang();
   const c = CONTENT[lang];
+  const u = PAR_SLUG['/audit-et-cartographie'][lang];
 
   return (
-    <Page title={c.metaTitle} description={c.metaDesc}>
+    <Page title={u.metaTitle} description={u.metaDesc} univers="audit">
 
       {/* 1 — Hero : titre à gauche, R 3D qui se forme au scroll puis tourne.
              key={lang} : remonte proprement au changement de langue (sinon le
@@ -228,12 +241,24 @@ export default function Home() {
       {/* 2 — La marque en une phrase (mots révélés au scrub) */}
       <LongPhrase text={c.longPhrase} />
 
-      {/* L'aiguillage : c'est lui qui envoie chacun dans son univers. */}
-      <Aiguillage />
 
       {/* 3 — Traversée caméra 3D : constat → réponse → bascule → offres →
              signature. FIN de la home : le footer (scène de clôture) suit. */}
       <HomeCinema c={c} lang={lang} />
+
+      {/* 4 — La facture logicielle en volume : le schéma des plaquettes,
+             qui se construit au scroll. C'est la pièce qui manquait au
+             site, et c'est elle qui montre le problème en une image. */}
+      <section className="section uni-schema">
+        <div className="container">
+          <p className="eyebrow eyebrow--index">{u.figTitre}</p>
+          <Axono scene={SCENES.facture} titre={u.figTitre} max={820} />
+          <p className="uni-fig-leg">{u.figLeg}</p>
+        </div>
+      </section>
+
+      {/* 5 — Le corps commun des univers */}
+      <UniversCorps c={u} />
 
     </Page>
   );

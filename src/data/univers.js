@@ -410,6 +410,95 @@ export const UNIVERS = [
   },
 ];
 
+
+/* ============================================================
+   LES TROIS PROFILS — c'est la page d'accueil.
+
+   On ne demande pas au visiteur quelle offre il veut : personne ne sait
+   répondre à ça. On lui demande QUI IL EST, parce que ça il le sait
+   toujours, et parce que la réponse détermine réellement ce qu'on peut
+   lui proposer. Un audit poste par poste chez une entreprise de trois
+   personnes n'a aucun sens, et on préfère l'écrire que le vendre.
+
+   Chaque porte ne montre que ce qui concerne CE profil. Deux offres au
+   maximum : au-delà, on redevient un catalogue, et un catalogue ne range
+   rien.
+   ============================================================ */
+export const PROFILS = [
+  {
+    id: 'createur',
+    shape: 'createur',
+    fr: {
+      q: 'Vous montez un projet',
+      taille: 'Avant le premier salarié',
+      situation: 'Vous avez une idée, peut-être un début de dossier, et beaucoup de questions sans réponse. À ce stade, il n’y a rien à auditer : il y a un modèle à éprouver et une marque à poser.',
+      offres: [
+        { to: '/strategie-et-modele', nom: 'Stratégie et modèle', duree: '2 à 4 jours', quoi: 'Le besoin réel, le modèle économique, les chiffres qui nourriront votre dossier. La recherche de fournisseurs en option.' },
+        { to: '/direction-artistique', nom: 'Direction artistique', duree: '3 à 5 jours', quoi: 'Le positionnement d’abord, les couleurs ensuite. Vous repartez avec des règles écrites, pas une image à interpréter.' },
+      ],
+      franchise: 'Ce qu’on ne vous proposera pas : un audit de vos outils. Vous n’en avez pas encore.',
+    },
+    en: {
+      q: 'You are starting a project',
+      taille: 'Before the first employee',
+      situation: 'You have an idea, maybe the beginning of a file, and a lot of open questions. At this stage there is nothing to audit: there is a model to test and a brand to set.',
+      offres: [
+        { to: '/strategie-et-modele', nom: 'Strategy and model', duree: '2 to 4 days', quoi: 'The real need, the business model, the figures that will feed your file. Supplier sourcing as an option.' },
+        { to: '/direction-artistique', nom: 'Art direction', duree: '3 to 5 days', quoi: 'Positioning first, colours second. You leave with written rules, not an image to interpret.' },
+      ],
+      franchise: 'What we will not offer you: an audit of your tools. You do not have any yet.',
+    },
+  },
+  {
+    id: 'tpe',
+    shape: 'tpe',
+    fr: {
+      q: 'Vous faites tourner une TPE',
+      taille: 'De 1 à 10 personnes',
+      situation: 'Tout le monde se parle, les décisions se prennent vite, et le numérique n’est pas votre métier. Ce qu’il vous faut, c’est un site qui tienne debout et deux ou trois outils qui vous fassent gagner du temps.',
+      offres: [
+        { to: '/solutions-numeriques', nom: 'Solutions numériques', duree: '5 à 15 jours', quoi: 'Le site vitrine, la boutique, la prise de réservation. Et les liaisons entre les outils que vous avez déjà, pour arrêter les saisies en double.' },
+        { to: '/direction-artistique', nom: 'Direction artistique', duree: '3 à 5 jours', quoi: 'Si votre image ne vous ressemble plus, ou si vous partez de rien.' },
+      ],
+      franchise: 'Ce qu’on ne vous proposera pas : un audit poste par poste. À cinq personnes, ça ne se fait pas, et on vous le dira plutôt que de vous le vendre.',
+    },
+    en: {
+      q: 'You run a small business',
+      taille: 'From 1 to 10 people',
+      situation: 'Everyone talks to everyone, decisions are quick, and digital is not your trade. What you need is a website that stands up and two or three tools that save you time.',
+      offres: [
+        { to: '/solutions-numeriques', nom: 'Digital solutions', duree: '5 to 15 days', quoi: 'The website, the shop, the booking module. And the links between the tools you already have, to stop double entry.' },
+        { to: '/direction-artistique', nom: 'Art direction', duree: '3 to 5 days', quoi: 'If your image no longer looks like you, or if you are starting from nothing.' },
+      ],
+      franchise: 'What we will not offer you: a desk-by-desk audit. At five people it makes no sense, and we will say so rather than sell it to you.',
+    },
+  },
+  {
+    id: 'pme',
+    shape: 'pme',
+    fr: {
+      q: 'Vous dirigez une PME',
+      taille: 'De 10 à 250 personnes',
+      situation: 'Des logiciels partout, plus personne ne sait lequel fait quoi, et la même information est saisie trois fois. Là, il y a quelque chose à regarder avant de construire quoi que ce soit.',
+      offres: [
+        { to: '/audit-et-cartographie', nom: 'Audit et cartographie', duree: '2 à 5 jours', quoi: 'On rencontre chaque personne, on ouvre chaque abonnement, on suit une donnée d’un bout à l’autre. Vous recevez les chantiers chiffrés en jours, classés par gain.' },
+        { to: '/solutions-numeriques', nom: 'Solutions numériques', duree: '5 à 15 jours', quoi: 'La mise en œuvre des chantiers que vous retenez, dans l’ordre que vous choisissez, et la formation des équipes.' },
+      ],
+      franchise: 'Ce qu’on ne fait pas : les ETI. À deux, on ne saurait pas suivre une structure de cette taille.',
+    },
+    en: {
+      q: 'You run an SME',
+      taille: 'From 10 to 250 people',
+      situation: 'Software everywhere, nobody knows which one does what, and the same information is keyed in three times. Here, there is something to look at before building anything.',
+      offres: [
+        { to: '/audit-et-cartographie', nom: 'Audit and mapping', duree: '2 to 5 days', quoi: 'We meet every person, open every subscription, follow one piece of data end to end. You receive the work priced in days, ranked by gain.' },
+        { to: '/solutions-numeriques', nom: 'Digital solutions', duree: '5 to 15 days', quoi: 'Delivery of the work you select, in the order you choose, and training for your teams.' },
+      ],
+      franchise: 'What we do not do: mid-caps. At two, we could not properly follow a structure that size.',
+    },
+  },
+];
+
 export const PAR_SLUG = Object.fromEntries(UNIVERS.map((u) => [u.slug, u]));
 
 /* Les cinq âges d'un projet — la question qu'on pose au visiteur sur la

@@ -11,7 +11,8 @@ import Interactions from './components/Interactions';
 import Nav from './components/Nav';
 import Breadcrumb from './components/Breadcrumb';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+import Accueil from './pages/Accueil';
+import Audit from './pages/Audit';
 import Pourquoi from './pages/Pourquoi';
 import Methode from './pages/Methode';
 import Offres from './pages/Offres';
@@ -48,7 +49,7 @@ export default function App() {
       <Interactions />
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Accueil />} />
         <Route path="/pourquoi" element={<Pourquoi />} />
         <Route path="/methode" element={<Methode />} />
         <Route path="/offres" element={<Offres />} />
@@ -56,7 +57,11 @@ export default function App() {
             réglage visuel viennent de data/univers.js, pilotés par le
             chemin. Les pages historiques ne bougent pas, elles sont
             simplement rattachées à l'univers dont elles parlent. */}
-        {UNIVERS.map((u) => (
+        {/* L'audit garde sa page à lui : c'est l'ancien accueil, avec
+            toute sa mise en scène. Les trois autres univers partagent la
+            même page pilier, pilotée par le chemin. */}
+        <Route path="/audit-et-cartographie" element={<Audit />} />
+        {UNIVERS.filter((u) => u.id !== 'audit').map((u) => (
           <Route key={u.slug} path={u.slug} element={<Univers />} />
         ))}
         <Route path="/exemple" element={<Exemple />} />

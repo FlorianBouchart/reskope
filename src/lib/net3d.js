@@ -113,3 +113,67 @@ function shapeLoop() {
 }
 
 export const GLYPH_SHAPES = [shapeAudit(), shapeLink(), shapeBurst(), shapeLoop()];
+
+/* — Les trois profils de la page d'accueil, en vrais solides —
+
+   L'accueil ne demande pas quelle offre on veut (personne ne le sait), il
+   demande QUI ON EST. Et la réponse se voit avant de se lire : la densité
+   du solide dit la taille de la structure. Une graine tient en quatre
+   nœuds, une PME en dix-huit. C'est le même langage que la frise du
+   livret, ramené à la question qui range tout le site. */
+
+/* Le porteur de projet : un point, trois racines, et l'idée au-dessus. */
+function shapeGraine() {
+  const nodes = [
+    [0, -4, 0],                                  // la graine
+    [-20, 22, -10], [22, 18, 8], [2, 30, 16],    // les racines
+    [0, -44, 0],                                 // l'idée qui tombe
+  ];
+  const links = [[0, 1], [0, 2], [0, 3], [0, 4]];
+  return { nodes, links, hub: 0 };
+}
+
+/* La TPE : un amas compact, tout le monde se parle, un seul décideur. */
+function shapeAmas() {
+  const nodes = [
+    [0, 0, 0],
+    [-30, -18, 12], [28, -22, -8], [34, 16, 14], [-8, 32, -14], [-34, 12, -6],
+  ];
+  const links = [
+    [0, 1], [0, 2], [0, 3], [0, 4], [0, 5],
+    [1, 2], [2, 3], [3, 4], [4, 5], [5, 1],
+  ];
+  return { nodes, links, hub: 0 };
+}
+
+/* La PME : une trame 3×3×2. Dense, régulière, et c'est exactement le
+   problème — dix-huit points reliés, plus personne ne sait qui fait quoi. */
+function shapeTrame() {
+  const nodes = [];
+  const pas = 30;
+  for (let z = 0; z < 2; z += 1) {
+    for (let y = 0; y < 3; y += 1) {
+      for (let x = 0; x < 3; x += 1) {
+        nodes.push([(x - 1) * pas, (y - 1) * pas, (z - 0.5) * pas * 1.2]);
+      }
+    }
+  }
+  const idx = (x, y, z) => z * 9 + y * 3 + x;
+  const links = [];
+  for (let z = 0; z < 2; z += 1) {
+    for (let y = 0; y < 3; y += 1) {
+      for (let x = 0; x < 3; x += 1) {
+        if (x < 2) links.push([idx(x, y, z), idx(x + 1, y, z)]);
+        if (y < 2) links.push([idx(x, y, z), idx(x, y + 1, z)]);
+        if (z < 1 && (x + y) % 2 === 0) links.push([idx(x, y, z), idx(x, y, z + 1)]);
+      }
+    }
+  }
+  return { nodes, links, hub: idx(1, 1, 0), hub2: idx(1, 1, 1) };
+}
+
+export const PROFIL_SHAPES = {
+  createur: shapeGraine(),
+  tpe: shapeAmas(),
+  pme: shapeTrame(),
+};
