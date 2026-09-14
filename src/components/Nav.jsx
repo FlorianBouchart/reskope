@@ -8,6 +8,7 @@ import Net3D from './Net3D';
 import SwapLabel from './SwapLabel';
 import { useT, useLang, LangToggle } from '../i18n';
 import { CONTACT } from '../data/site';
+import { UNIVERS } from '../data/univers';
 import { openCalModal, isCalConfigured } from '../lib/cal';
 
 /* NAV — header minimal + MENU refait (exigence premium).
@@ -26,7 +27,10 @@ export default function Nav() {
   const { pathname } = useLocation();
   const { lang } = useLang();
   const t = useT();
-  const tabs = Object.entries(t.nav.tabs);
+  /* Deux groupes dans le menu, plus une liste à plat. Les quatre métiers
+     passent devant : c'est par eux qu'on entre, et c'est ce qui évite de
+     les noyer entre « la méthode » et « à propos ». */
+  const maison = (t.nav.maison || []).map((to) => [to, t.nav.tabs[to]]).filter(([, l]) => l);
 
   /* Deux CTA distincts dans le header : « Écrire » mène au formulaire,
      « Réserver » ouvre l'agenda. Un seul bouton pour les deux intentions
@@ -213,7 +217,28 @@ export default function Nav() {
         <div className="menu2__panel" ref={panelRef} aria-hidden={!open}>
 
           <nav className="menu2__links" aria-label="Pages">
-            {tabs.map(([to, label], i) => (
+            <p className="menu2__groupe">{t.nav.groupeOffres}</p>
+            {UNIVERS.map((u) => (
+              <NavLink
+                key={u.slug}
+                to={u.slug}
+                className={({ isActive }) => `menu2__link menu2__link--uni${isActive ? ' is-current' : ''}`}
+              >
+                <span className="menu2__mask">
+                  <span className="menu2__row">
+                    <span className="menu2__node" aria-hidden="true" />
+                    <span className="menu2__label">
+                      {u[lang].nom}
+                      <span className="menu2__sub">{u[lang].court}</span>
+                    </span>
+                    <span className="menu2__arrow" aria-hidden="true">→</span>
+                  </span>
+                </span>
+              </NavLink>
+            ))}
+
+            <p className="menu2__groupe menu2__groupe--2">{t.nav.groupeMaison}</p>
+            {maison.map(([to, label]) => (
               <NavLink
                 key={to}
                 to={to}

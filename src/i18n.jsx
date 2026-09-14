@@ -12,14 +12,22 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 const SHARED = {
   fr: {
     nav: {
+      /* Le menu ne met plus les quatre métiers au même niveau que « la
+         méthode » ou « à propos » : ils forment un groupe à part, au-dessus.
+         `tabs` reste la table des libellés de TOUTES les pages intérieures
+         (le fil d'Ariane s'en sert), `maison` dit lesquelles apparaissent
+         dans la seconde colonne du menu. */
       tabs: {
         '/pourquoi': 'Le constat',
         '/methode': 'La méthode',
-        '/offres': 'Offres',
+        '/offres': 'Tarifs et FAQ',
         '/exemple': 'Exemple de bilan',
         '/numerique-responsable': 'Numérique responsable',
         '/a-propos': 'À propos',
       },
+      groupeOffres: 'Ce qu’on fait',
+      groupeMaison: 'La maison',
+      maison: ['/methode', '/offres', '/numerique-responsable', '/a-propos'],
       cta: 'Me contacter',
       ctaBook: 'Réserver 30 min',
       menu: 'Menu',
@@ -75,11 +83,14 @@ const SHARED = {
       tabs: {
         '/pourquoi': 'The findings',
         '/methode': 'The method',
-        '/offres': 'Offers',
+        '/offres': 'Pricing & FAQ',
         '/exemple': 'Sample audit',
         '/numerique-responsable': 'Sustainable IT',
         '/a-propos': 'About',
       },
+      groupeOffres: 'What we do',
+      groupeMaison: 'The practice',
+      maison: ['/methode', '/offres', '/numerique-responsable', '/a-propos'],
       cta: "Contact me",
       ctaBook: 'Book 30 min',
       menu: 'Menu',

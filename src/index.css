@@ -13817,3 +13817,450 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
   .zone__inner { grid-template-columns: 1fr; }
   .zone__map { order: -1; max-width: 26rem; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   LES QUATRE UNIVERS
+
+   Quatre métiers qui ne s'adressent pas aux mêmes personnes. Un dirigeant
+   de PME qui vient pour un audit et un porteur de projet qui vient pour son
+   identité ne doivent pas avoir l'impression de lire la même page.
+
+   Mais quatre univers ne veut pas dire quatre chartes : aucune teinte
+   nouvelle n'est introduite ici. Ce qui change d'un univers à l'autre, ce
+   sont QUATRE RÉGLAGES — le sol (quel fond), le dominant (lequel des trois
+   indigos porte), la trame (serrée, large, absente) et le tempo (comment
+   les choses arrivent). C'est suffisant pour que deux pages n'aient rien à
+   voir, et assez discipliné pour qu'on reconnaisse la même maison.
+
+   Un attribut data-univers sur <main> suffit : tout le reste en découle.
+   ════════════════════════════════════════════════════════════ */
+
+[data-univers] {
+  --u-sol: var(--cream);
+  --u-encre: var(--ink);
+  --u-doux: var(--muted);
+  --u-accent: var(--indigo);
+  --u-appui: var(--cream-shade);
+  --u-trait: var(--hairline);
+  --u-trame: 0;           /* opacité du quadrillage de fond */
+  --u-pas: 34px;          /* son pas */
+  --u-rayon: 14px;
+  --u-tempo: 1;           /* multiplicateur de durée */
+  --u-dy: 10px;           /* d'où arrivent les pièces d'un schéma */
+  --u-dx: 0px;
+  background: var(--u-sol);
+  color: var(--u-encre);
+}
+
+/* 1 — AUDIT : le relevé. Trame serrée comme un calque de mesure, angles
+   francs, arrivée sèche. Rien ne glisse : on relève, on ne raconte pas. */
+[data-univers='audit'] {
+  --u-trame: 0.06;
+  --u-pas: 26px;
+  --u-rayon: 3px;
+  --u-tempo: 0.8;
+  --u-dy: 15px;
+}
+
+/* 2 — SOLUTIONS : l'atelier. Le seul univers qui bascule en sombre, parce
+   qu'on y parle d'écrans et de code. Les pièces arrivent de côté et se
+   clipsent, comme un montage. */
+[data-univers='solutions'] {
+  --u-sol: var(--cream-light);
+  --u-accent: var(--indigo-bright);
+  --u-appui: var(--ink);
+  --u-trame: 0.05;
+  --u-pas: 44px;
+  --u-rayon: 6px;
+  --u-tempo: 0.9;
+  --u-dy: 0px;
+  --u-dx: -16px;
+}
+
+/* 3 — STRATÉGIE : la projection. Sol sable, trame très large, beaucoup
+   d'air, tempo lent. On regarde loin, donc on ne s'agite pas. */
+[data-univers='strategie'] {
+  --u-sol: var(--cream-shade);
+  --u-accent: var(--indigo-deep);
+  --u-appui: var(--cream-light);
+  --u-trame: 0.035;
+  --u-pas: 68px;
+  --u-rayon: 22px;
+  --u-tempo: 1.35;
+  --u-dy: 20px;
+}
+
+/* 4 — MARQUE : la matière. Aucune trame, des aplats larges, de grands
+   rayons, une arrivée ample. C'est la page la moins technique des quatre,
+   et ça doit se sentir avant d'avoir lu un mot. */
+[data-univers='marque'] {
+  --u-sol: var(--cream-light);
+  --u-appui: var(--cream-shade);
+  --u-trame: 0;
+  --u-rayon: 30px;
+  --u-tempo: 1.15;
+  --u-dy: 8px;
+}
+
+/* La trame de fond, tracée en dégradés répétés. Elle ne se voit presque
+   pas : c'est son PAS qui fait la différence d'un univers à l'autre, pas
+   son contraste. */
+[data-univers]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--u-trame);
+  background:
+    repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px var(--u-pas)),
+    repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px var(--u-pas));
+  color: var(--u-accent);
+}
+[data-univers] > * { position: relative; z-index: 1; }
+
+/* ---------- le schéma axonométrique ---------- */
+
+.axono {
+  width: 100%;
+  max-width: var(--ax-max, 760px);
+  margin-inline: auto;
+  color: var(--u-accent, var(--indigo));
+}
+.axono svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* Chaque pièce connaît son groupe (--g) ; le conteneur dit combien de
+   groupes sont posés (--av). La soustraction donne l'avancement de CETTE
+   pièce, entre 0 et 1 — aucune classe à basculer en JavaScript. */
+.axono svg > * {
+  --a: clamp(0, calc(var(--av, 0) - var(--g, 0)), 1);
+  opacity: var(--a);
+  transform: translate(calc((1 - var(--a)) * var(--u-dx, 0px)), calc((1 - var(--a)) * var(--u-dy, 10px)));
+  transition: opacity calc(0.1s * var(--u-tempo, 1)) linear;
+}
+.axono text { transform: none; }
+
+/* Les trois faces d'un volume reprennent les trois indigos de la charte :
+   c'est ce qui fait tenir le relief sans ombre portée ni dégradé. */
+.ax-t { fill: var(--indigo-bright); }
+.ax-r { fill: var(--indigo); }
+.ax-l { fill: var(--indigo-deep); }
+.ax-wf { fill: none; stroke: currentColor; stroke-width: 0.3; opacity: 0.5; }
+.ax-gr { stroke: currentColor; stroke-width: 0.16; opacity: 0.26; fill: none; }
+.ax-gr2 { stroke: currentColor; stroke-width: 0.16; opacity: 0.3; fill: none; }
+.ax-bd { fill: none; stroke: currentColor; stroke-width: 0.28; opacity: 0.42; }
+.ax-bd2 { fill: none; stroke: currentColor; stroke-width: 0.3; opacity: 0.6; }
+.ax-etage { fill: var(--u-sol, var(--cream)); opacity: 0.9; stroke: none; }
+.ax-ln { stroke: currentColor; stroke-width: 0.5; opacity: 0.85; fill: none; }
+.ax-ln2 { stroke: currentColor; stroke-width: 0.3; opacity: 0.42; fill: none; }
+.ax-ri { stroke: currentColor; stroke-width: 0.32; opacity: 0.38; fill: none; stroke-dasharray: 1.2 1.4; }
+.ax-nd { fill: currentColor; }
+.ax-ndp { fill: currentColor; opacity: 0.45; }
+.ax-seuil { fill: var(--indigo); opacity: 0.2; stroke: var(--indigo); stroke-width: 0.3; }
+.ax-tl { font-size: 2.75px; font-weight: 600; fill: var(--u-encre, var(--ink)); }
+.ax-tv { font-size: 2.9px; font-weight: 600; fill: var(--u-accent, var(--indigo)); }
+.ax-tq { font-size: 2.6px; font-weight: 500; fill: var(--u-doux, var(--muted)); }
+.ax-tz { font-size: 2.4px; letter-spacing: 0.3px; text-transform: uppercase; fill: var(--u-doux, var(--muted)); }
+
+/* Sur fond sombre, les volumes s'inversent : le dessus devient le clair. */
+.uni-noir .ax-t { fill: var(--cream); }
+.uni-noir .ax-r { fill: rgba(240, 238, 232, 0.62); }
+.uni-noir .ax-l { fill: rgba(240, 238, 232, 0.34); }
+.uni-noir .ax-etage { fill: var(--ink); }
+.uni-noir .ax-tl { fill: var(--cream); }
+.uni-noir .ax-tv { fill: var(--cream); }
+.uni-noir .ax-tq,
+.uni-noir .ax-tz { fill: rgba(240, 238, 232, 0.62); }
+.uni-noir .ax-seuil { fill: var(--cream); opacity: 0.24; stroke: var(--cream); }
+
+/* ---------- la page pilier d'un univers ---------- */
+
+.uni-hero { padding: clamp(7rem, 13vw, 11rem) 0 clamp(3rem, 6vw, 5rem); }
+.uni-hero__inner {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .uni-hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+}
+.uni-hero__title {
+  font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  margin: 0.6rem 0 0;
+}
+.uni-hero__lead { margin-top: 1.6rem; max-width: 46ch; color: var(--u-doux); }
+.uni-hero__duree {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--u-accent);
+}
+.uni-hero__duree::before {
+  content: '';
+  width: 0.5rem; height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+.uni-hero__fig { min-width: 0; }
+.uni-fig-leg {
+  margin: 1.4rem auto 0;
+  max-width: 46ch;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--u-doux);
+  text-align: center;
+}
+
+/* Le constat : deux chiffres qui ne viennent pas de nous, leur source
+   écrite et cliquable. Un chiffre sans source ne vaut rien. */
+.uni-src { display: grid; gap: clamp(1.8rem, 4vw, 3.2rem); grid-template-columns: 1fr; margin-top: 2.6rem; }
+@media (min-width: 640px) { .uni-src { grid-template-columns: 1fr 1fr; } }
+.uni-src__val {
+  display: block;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: var(--u-accent);
+}
+.uni-src__txt { display: block; margin-top: 0.7rem; max-width: 32ch; color: var(--u-doux); }
+.uni-src__from {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--u-accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  padding-bottom: 0.15rem;
+}
+.uni-src__from:hover { border-bottom-color: currentColor; }
+
+/* Les trois temps : une séquence accrochée à un fil, pas une liste à
+   puces. Même information, langage de la marque. */
+.uni-temps { display: grid; gap: clamp(2rem, 4vw, 3rem); grid-template-columns: 1fr; margin-top: 3rem; }
+@media (min-width: 820px) { .uni-temps { grid-template-columns: repeat(3, 1fr); } }
+.uni-temps__c { position: relative; padding-top: 2.6rem; }
+.uni-temps__c::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55rem;
+  width: 0.66rem; height: 0.66rem;
+  border-radius: 50%;
+  background: var(--u-accent);
+}
+.uni-temps__c::after {
+  content: '';
+  position: absolute;
+  left: 0.66rem; right: -1.5rem; top: 0.85rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--u-accent) 32%, transparent);
+}
+.uni-temps__c:last-child::after { display: none; }
+@media (max-width: 819px) { .uni-temps__c::after { display: none; } }
+.uni-temps__n { font-size: 1.06rem; font-weight: 600; letter-spacing: -0.015em; }
+.uni-temps__d { margin-top: 0.6rem; color: var(--u-doux); line-height: 1.65; }
+
+/* Ce que vous recevez / en pratique */
+.uni-deux { display: grid; gap: clamp(2.4rem, 5vw, 4.5rem); grid-template-columns: 1fr; }
+@media (min-width: 820px) { .uni-deux { grid-template-columns: 1.1fr 0.9fr; } }
+.uni-liste { list-style: none; margin: 1.6rem 0 0; padding: 0; }
+.uni-liste li {
+  position: relative;
+  padding: 0 0 1.15rem 1.9rem;
+  line-height: 1.55;
+}
+.uni-liste li:last-child { padding-bottom: 0; }
+.uni-liste li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.58rem;
+  width: 0.6rem; height: 0.6rem;
+  border-radius: 50%;
+  background: var(--u-accent);
+}
+.uni-faits {
+  margin-top: 1.6rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--u-rayon);
+  background: color-mix(in srgb, var(--u-appui) 70%, transparent);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--u-doux);
+}
+.uni-faits b { color: var(--u-encre); font-weight: 600; }
+
+/* Une section pleine, sombre : l'univers Solutions en vit, les autres s'en
+   servent une fois pour ponctuer. */
+.uni-noir {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--u-rayon);
+}
+.uni-noir .uni-temps__d,
+.uni-noir .uni-src__txt,
+.uni-noir .uni-fig-leg { color: rgba(240, 238, 232, 0.74); }
+.uni-noir .uni-src__val,
+.uni-noir .uni-temps__c::before,
+.uni-noir .uni-liste li::before { color: var(--cream); background: var(--cream); }
+.uni-noir .uni-src__val { background: none; }
+.uni-noir .uni-faits { background: rgba(240, 238, 232, 0.07); color: rgba(240, 238, 232, 0.78); }
+.uni-noir .uni-faits b { color: var(--cream); }
+
+/* Les preuves rattachées à l'univers : c'est par là qu'on va vers les
+   pages existantes, et c'est ce qui fait qu'on ne croise jamais les trois
+   autres métiers quand on est dans celui-ci. */
+.uni-preuves { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 2.4rem; }
+@media (min-width: 720px) { .uni-preuves { grid-template-columns: 1fr 1fr; } }
+.uni-preuve {
+  display: block;
+  padding: 1.8rem;
+  border-radius: var(--u-rayon);
+  background: color-mix(in srgb, var(--u-appui) 65%, transparent);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s;
+}
+.uni-preuve:hover { transform: translateY(-3px); background: color-mix(in srgb, var(--u-appui) 100%, transparent); }
+.uni-preuve__t { display: block; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.02em; }
+.uni-preuve__d { display: block; margin-top: 0.5rem; color: var(--u-doux); font-size: 0.94rem; line-height: 1.6; }
+.uni-preuve__a { display: block; margin-top: 0.9rem; color: var(--u-accent); font-size: 0.86rem; }
+
+/* La bande de fin : un seul appel, jamais deux. */
+.uni-fin { margin: clamp(4rem, 8vw, 7rem) 0 clamp(5rem, 9vw, 8rem); }
+.uni-fin__box {
+  padding: clamp(2.4rem, 5vw, 4rem);
+  border-radius: var(--u-rayon);
+  background: var(--u-accent);
+  color: var(--cream);
+}
+.uni-fin__t { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+.uni-fin__d { margin-top: 1rem; max-width: 52ch; color: rgba(240, 238, 232, 0.82); }
+.uni-fin__row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+
+/* ---------- le menu, en deux groupes ---------- */
+
+/* Les quatre métiers ne sont pas des pages comme les autres : ils passent
+   devant, avec une ligne qui dit à qui chacun s'adresse. Sans ça, un
+   visiteur doit deviner ce qu'il y a derrière « Direction artistique ». */
+.menu2__groupe {
+  margin: 0 0 0.7rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.menu2__groupe--2 { margin-top: 1.6rem; }
+
+/* Huit entrées au lieu de six, plus deux intertitres et quatre sous-lignes :
+   le panneau dépassait la hauteur d'écran et, centré verticalement, sa
+   première entrée devenait inatteignable. On l'aligne donc en haut et on
+   resserre les quatre lignes de métier. */
+.menu2__panel { justify-content: flex-start; }
+.menu2__link--uni .menu2__label {
+  display: block;
+  font-size: clamp(1.25rem, 2.1vw, 1.85rem);
+  line-height: 1.12;
+}
+.menu2__link--uni .menu2__row { padding-block: clamp(0.55rem, 1.3vh, 0.85rem); }
+.menu2__panel { padding-top: clamp(4.5rem, 9vh, 6rem); gap: clamp(1rem, 2vh, 1.6rem); }
+.menu2__link:not(.menu2__link--uni) .menu2__label {
+  font-size: clamp(1.4rem, 2.5vw, 2.15rem);
+}
+.menu2__sub {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.45;
+  opacity: 0.62;
+  max-width: 34ch;
+}
+@media (max-width: 640px) { .menu2__sub { display: none; } }
+
+/* Le hero sombre de l'univers Solutions : plein cadre, bord à bord. */
+.uni-hero--noir {
+  background: var(--ink);
+  color: var(--cream);
+}
+.uni-hero--noir .uni-hero__lead { color: rgba(240, 238, 232, 0.78); }
+.uni-hero--noir .uni-hero__duree { color: var(--cream); }
+.uni-hero--noir .eyebrow { color: rgba(240, 238, 232, 0.68); }
+
+/* ---------- l'aiguillage de l'accueil ---------- */
+
+/* Les cinq âges d'un projet. Sur écran large ils s'alignent et forment la
+   frise : on voit la croissance avant de lire. Sur mobile ils s'empilent,
+   et la même croissance se lit en descendant. */
+.aig {
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
+  background: var(--cream-shade);
+}
+.aig__lead { max-width: 56ch; margin-top: 1.2rem; }
+.aig__rang {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.4rem);
+  grid-template-columns: 1fr;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (min-width: 640px) { .aig__rang { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .aig__rang { grid-template-columns: repeat(5, 1fr); } }
+
+.aig__c {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem 1.4rem 1.6rem;
+  border-radius: 16px;
+  background: var(--cream);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s;
+}
+.aig__c:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -28px rgba(14, 11, 31, 0.5); }
+
+/* Le végétal est calé en bas de sa boîte : les cinq cartes ont donc la
+   même ligne de sol, et c'est la plante qui grandit de l'une à l'autre. */
+.aig__fig {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 120px;
+  margin-bottom: 1.2rem;
+  color: var(--indigo);
+}
+.aig__h {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  opacity: 0.75;
+}
+.aig__n {
+  margin-top: 0.35rem;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.aig__p {
+  margin-top: 0.55rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+  flex: 1;
+}
+.aig__a {
+  margin-top: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--indigo);
+}

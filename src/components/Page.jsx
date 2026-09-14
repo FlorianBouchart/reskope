@@ -5,7 +5,7 @@ const BRAND = 'Reskope';
 /* Enveloppe de page : contenu toujours visible (les entrées sont portées
    par les <Reveal>). Gère aussi le SEO par page : <title> et meta
    description mis à jour à l'affichage. */
-export default function Page({ children, title, description }) {
+export default function Page({ children, title, description, univers }) {
   useEffect(() => {
     document.title = title ? `${title} · ${BRAND}` : `${BRAND} · Conseil & ingénierie numérique`;
     if (description) {
@@ -19,5 +19,8 @@ export default function Page({ children, title, description }) {
     }
   }, [title, description]);
 
-  return <main>{children}</main>;
+  /* `univers` bascule toute la page dans l'un des quatre mondes
+     (audit, solutions, strategie, marque). Le réglage vit en CSS : sol,
+     dominant, trame et tempo découlent du seul attribut. */
+  return <main {...(univers ? { 'data-univers': univers } : {})}>{children}</main>;
 }

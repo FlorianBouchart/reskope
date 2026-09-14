@@ -15,12 +15,14 @@ import Home from './pages/Home';
 import Pourquoi from './pages/Pourquoi';
 import Methode from './pages/Methode';
 import Offres from './pages/Offres';
+import Univers from './pages/Univers';
 import Exemple from './pages/Exemple';
 import Ecologie from './pages/Ecologie';
 import APropos from './pages/APropos';
 import Contact from './pages/Contact';
 import { MentionsLegales, Confidentialite, CGU, CGV } from './pages/Legales';
 import { NotFound, Merci } from './pages/Etats';
+import { UNIVERS } from './data/univers';
 
 export default function App() {
   useEffect(() => {
@@ -50,6 +52,13 @@ export default function App() {
         <Route path="/pourquoi" element={<Pourquoi />} />
         <Route path="/methode" element={<Methode />} />
         <Route path="/offres" element={<Offres />} />
+        {/* Les quatre univers. Une page, quatre mondes : le contenu et le
+            réglage visuel viennent de data/univers.js, pilotés par le
+            chemin. Les pages historiques ne bougent pas, elles sont
+            simplement rattachées à l'univers dont elles parlent. */}
+        {UNIVERS.map((u) => (
+          <Route key={u.slug} path={u.slug} element={<Univers />} />
+        ))}
         <Route path="/exemple" element={<Exemple />} />
         <Route path="/numerique-responsable" element={<Ecologie />} />
         <Route path="/a-propos" element={<APropos />} />

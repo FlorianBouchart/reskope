@@ -2,6 +2,7 @@ import Page from '../components/Page';
 import HeroFormation from '../components/HeroFormation';
 import HomeCinema from '../components/HomeCinema';
 import LongPhrase from '../components/LongPhrase';
+import Aiguillage from '../components/Aiguillage';
 import { useLang } from '../i18n';
 
 /* HOME — structure calquée sur noomoagency.com, DA réseau Reskope :
@@ -226,6 +227,9 @@ export default function Home() {
 
       {/* 2 — La marque en une phrase (mots révélés au scrub) */}
       <LongPhrase text={c.longPhrase} />
+
+      {/* L'aiguillage : c'est lui qui envoie chacun dans son univers. */}
+      <Aiguillage />
 
       {/* 3 — Traversée caméra 3D : constat → réponse → bascule → offres →
              signature. FIN de la home : le footer (scène de clôture) suit. */}
