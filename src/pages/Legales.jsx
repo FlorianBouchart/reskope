@@ -2,7 +2,6 @@ import Page from '../components/Page';
 import PageHeader from '../components/PageHeader';
 import { Reveal, RevealItem } from '../components/Reveal';
 import { useLang } from '../i18n';
-import { CONTACT } from '../data/site';
 
 /* Pages légales : mentions, confidentialité, CGU, CGV.
    Sobres et lisibles (prose), même squelette pour les quatre.
@@ -53,7 +52,7 @@ const MENTIONS = {
         'Siège : [À COMPLÉTER : adresse du siège].',
         'SIRET : 939 285 003 00017 · Code APE : [À COMPLÉTER : code APE].',
         'TVA : non applicable, article 293 B du CGI (franchise en base).',
-        `Contact : ${CONTACT.email}`,
+        'Contact : par le formulaire de la page Contact de ce site. [À COMPLÉTER : un numéro de téléphone ou une adresse électronique joignable, exigés par la loi pour l’éditeur d’un site professionnel.]',
       ] },
       { h: 'Directeur de la publication', p: [
         'Directeur de la publication : Florian Bouchart.',
@@ -65,7 +64,7 @@ const MENTIONS = {
         "L'ensemble des contenus de ce site (textes, identité visuelle, logo, animations, code) est la propriété de Reskope, sauf mention contraire. Toute reproduction, représentation, modification ou adaptation, totale ou partielle, sans autorisation écrite préalable, est interdite et constitue une contrefaçon.",
       ] },
       { h: 'Données personnelles', p: [
-        `Les traitements de données personnelles réalisés via ce site (formulaires de contact, questionnaire) sont détaillés dans la politique de confidentialité. Pour toute question ou pour exercer vos droits : ${CONTACT.email}`,
+        'Les traitements de données personnelles réalisés via ce site (formulaires de contact, questionnaire) sont détaillés dans la politique de confidentialité. Pour toute question ou pour exercer vos droits : le formulaire de la page Contact.',
       ] },
       { h: 'Cookies', p: [
         "Ce site n'utilise aucun cookie de suivi ou de publicité. Voir la politique de confidentialité pour le détail.",
@@ -90,7 +89,7 @@ const MENTIONS = {
         'Registered address: [TO COMPLETE: registered address].',
         'SIRET: 939 285 003 00017 · APE code: [TO COMPLETE: APE code].',
         'VAT: not applicable, article 293 B of the French Tax Code (small-business exemption).',
-        `Contact: ${CONTACT.email}`,
+        'Contact: through the contact form on this site. [TO COMPLETE: a reachable phone number or email address, required by French law for a professional website publisher.]',
       ] },
       { h: 'Publication director', p: [
         'Publication director: Florian Bouchart.',
@@ -102,7 +101,7 @@ const MENTIONS = {
         'All content on this site (texts, visual identity, logo, animations, code) is the property of Reskope unless stated otherwise. Any reproduction, representation, modification or adaptation, in whole or in part, without prior written consent, is prohibited and constitutes infringement.',
       ] },
       { h: 'Personal data', p: [
-        `Personal data processing carried out through this site (contact forms, questionnaire) is detailed in the privacy policy. For any question or to exercise your rights: ${CONTACT.email}`,
+        'Personal data processing carried out through this site (contact forms, questionnaire) is detailed in the privacy policy. For any question or to exercise your rights: the contact form on this site.',
       ] },
       { h: 'Cookies', p: [
         'This site uses no tracking or advertising cookies. See the privacy policy for details.',
@@ -127,7 +126,7 @@ const PRIVACY = {
     updated: 'Dernière mise à jour : 14 septembre 2026.',
     sections: [
       { h: 'Responsable du traitement', p: [
-        `Le responsable du traitement est Florian Bouchart (Reskope), [À COMPLÉTER : adresse]. Pour toute question relative à vos données : ${CONTACT.email}`,
+        'Le responsable du traitement est Florian Bouchart (Reskope), [À COMPLÉTER : adresse]. Pour toute question relative à vos données : le formulaire de la page Contact, en précisant « Données personnelles ».',
       ] },
       { h: 'Données collectées', p: [
         "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire ni de mesure d'audience. Les seules données personnelles collectées sont celles que vous transmettez volontairement via les formulaires de contact et le questionnaire : nom, adresse e-mail et contenu de votre message.",
@@ -150,7 +149,7 @@ const PRIVACY = {
         "Le site est servi en HTTPS. Des mesures raisonnables sont prises pour protéger vos données contre tout accès non autorisé ; aucune transmission sur Internet ne peut toutefois être garantie à 100 %.",
       ] },
       { h: 'Vos droits', p: [
-        `Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité sur vos données, ainsi que du droit de retirer votre consentement. Pour l'exercer : ${CONTACT.email}`,
+        "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité sur vos données, ainsi que du droit de retirer votre consentement. Pour l'exercer : le formulaire de la page Contact, en précisant « Données personnelles ». On vous répond sous un mois au plus.",
         "Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr).",
       ] },
       { h: 'Cookies', p: [
@@ -169,7 +168,7 @@ const PRIVACY = {
     updated: 'Last updated: 14 September 2026.',
     sections: [
       { h: 'Data controller', p: [
-        `The data controller is Florian Bouchart (Reskope), [TO COMPLETE: address]. For any question about your data: ${CONTACT.email}`,
+        'The data controller is Florian Bouchart (Reskope), [TO COMPLETE: address]. For any question about your data: the contact form on this site, mentioning “Personal data”.',
       ] },
       { h: 'Data collected', p: [
         'This site requires no account and uses no advertising trackers or analytics. The only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message.',
@@ -191,7 +190,7 @@ const PRIVACY = {
         'The site is served over HTTPS. Reasonable measures are taken to protect your data against unauthorized access; no transmission over the Internet can, however, be guaranteed 100%.',
       ] },
       { h: 'Your rights', p: [
-        `Under the GDPR, you have the right to access, rectify, erase, restrict, object to and port your data, as well as the right to withdraw your consent. To exercise it: ${CONTACT.email}`,
+        'Under the GDPR, you have the right to access, rectify, erase, restrict, object to and port your data, as well as the right to withdraw your consent. To exercise it: the contact form on this site, mentioning “Personal data”. We reply within one month at most.',
         'You may also lodge a complaint with the French authority, the CNIL (cnil.fr).',
       ] },
       { h: 'Cookies', p: [
@@ -339,7 +338,7 @@ const SALES = {
         "Les prestations s'adressent à des clients professionnels agissant dans le cadre de leur activité : le droit de rétractation prévu pour les consommateurs ne s'applique en principe pas. Le cas échéant, il peut s'appliquer au professionnel employant cinq salariés ou moins lorsque l'objet de la prestation n'entre pas dans le champ de son activité principale (art. L221-3 du Code de la consommation).",
       ] },
       { h: 'Réclamations et médiation', p: [
-        `Toute réclamation peut être adressée à ${CONTACT.email}. [À COMPLÉTER : en cas de clientèle consommateur, coordonnées du médiateur de la consommation compétent].`,
+        'Toute réclamation peut être adressée par le formulaire de la page Contact. [À COMPLÉTER : en cas de clientèle consommateur, coordonnées du médiateur de la consommation compétent].',
       ] },
       { h: 'Litiges et droit applicable', p: [
         "Les présentes CGV sont soumises au droit français. En cas de différend, les parties rechercheront une solution amiable avant toute action ; à défaut, les tribunaux français seront compétents.",
@@ -409,7 +408,7 @@ const SALES = {
         'Services are aimed at professional clients acting within their business: the right of withdrawal provided for consumers does not, in principle, apply. Where applicable, it may apply to a professional employing five staff or fewer where the subject of the service does not fall within their main activity (art. L221-3 of the French Consumer Code).',
       ] },
       { h: 'Complaints and mediation', p: [
-        `Any complaint may be sent to ${CONTACT.email}. [TO COMPLETE: for consumer clients, details of the competent consumer mediator].`,
+        'Any complaint may be sent through the contact form on this site. [TO COMPLETE: for consumer clients, details of the competent consumer mediator].',
       ] },
       { h: 'Disputes and applicable law', p: [
         'These terms of sale are governed by French law. In the event of a dispute, the parties will seek an amicable solution before any action; failing that, French courts have jurisdiction.',

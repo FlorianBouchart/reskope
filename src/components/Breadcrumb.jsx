@@ -1,12 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useT, useLang } from '../i18n';
+import { SITE as ADRESSE } from '../data/seo';
 
 /* Fil d'Ariane — situe le visiteur et donne à Google la hiérarchie du site.
    Rendu uniquement sur les pages intérieures (jamais sur l'accueil, où il
    n'aurait rien à afficher). Le JSON-LD BreadcrumbList accompagne le rendu
    visuel : c'est lui qui produit le chemin sous le lien dans les résultats. */
 
-const SITE = 'https://floops10.github.io/reskope';
+const SITE = `${ADRESSE.origine}${ADRESSE.base}`;
 
 /* Pages absentes du menu principal : leur libellé n'est pas dans t.nav.tabs */
 const EXTRA = {

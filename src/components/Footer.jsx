@@ -7,7 +7,7 @@ import Net3D from './Net3D';
 import SwapLabel from './SwapLabel';
 import BusinessCard from './BusinessCard';
 import { useT, useLang } from '../i18n';
-import { CONTACT } from '../data/site';
+import { CONTACT, AUTRE_SITE } from '../data/site';
 import { useProfil } from '../profil';
 import { PAGES_PROFIL } from '../data/profils';
 
@@ -180,6 +180,9 @@ export default function Footer() {
           <Link to="/atelier">{tabs['/atelier']}</Link>
           {visible('/exemple') && <Link to="/exemple">{tabs['/exemple']}</Link>}
           <Link to="/numerique-responsable">{tabs['/numerique-responsable']}</Link>
+          {/* L'autre site de Reskope, pour qui prépare un projet plutôt que
+              de remettre ses outils en ordre. */}
+          <a href={AUTRE_SITE.url}>{AUTRE_SITE[lang] || AUTRE_SITE.fr}</a>
           <Link to="/a-propos">{tabs['/a-propos']}</Link>
         </nav>
 

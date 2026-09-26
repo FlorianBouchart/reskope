@@ -31,8 +31,9 @@ const PHRASES = {
   },
 };
 
-/* Retire la base GitHub Pages (/reskope) pour retrouver la route applicative */
-const routeOf = (pathname) => pathname.replace(/^\/reskope/, '') || '/';
+/* Retire la base GitHub Pages pour retrouver la route applicative */
+const BASE_URL = import.meta.env.BASE_URL.replace(/\/$/, '');
+const routeOf = (pathname) => (pathname.startsWith(BASE_URL) ? pathname.slice(BASE_URL.length) : pathname) || '/';
 
 function pickPhrase(lang, pathname) {
   const table = PHRASES[lang] || PHRASES.fr;

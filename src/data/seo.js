@@ -25,7 +25,7 @@
 
 export const SITE = {
   origine: 'https://floops10.github.io',
-  base: '/reskope',
+  base: '/reskope-numerique',
   marque: 'Reskope',
   image: '/og-image.png',
   villes: ['Valenciennes', 'Lille'],

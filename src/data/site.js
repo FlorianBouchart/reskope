@@ -13,6 +13,15 @@ export const CONTACT = {
   ouverte: false,
 };
 
+/* L'autre site de Reskope : celui des dirigeants qui s'apprêtent à engager
+   de l'argent (tester une idée, comprendre ses clients, relire son dossier).
+   Il est en français seulement : le lien le dit en anglais. */
+export const AUTRE_SITE = {
+  url: 'https://floops10.github.io/reskope/',
+  fr: 'Tester un projet avant d’investir',
+  en: 'Test a project before investing (in French)',
+};
+
 /* Le libellé de repli, quand on ne peut pas donner d'adresse. */
 export const FORMULAIRE = {
   fr: 'Passer par le formulaire',

@@ -57,7 +57,7 @@ const securityMeta = () => ({
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/reskope/',
+  base: '/reskope-numerique/',
   plugins: [react(), securityMeta(), spaFallback()],
   build: {
     // Pas de script inline injecté → script-src 'self' reste strict.
