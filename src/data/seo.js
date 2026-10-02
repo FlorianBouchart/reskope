@@ -47,28 +47,28 @@ export const url = (route) => {
 export const PAGES = [
   {
     route: '/', priorite: '1.0', freq: 'weekly', fil: 'Accueil',
-    titre: 'Créer ou faire grandir votre entreprise',
-    description: 'Vous créez ou reprenez une entreprise, ou vous dirigez une TPE ou une PME : Reskope vous aide à décider, et construit la suite. À Valenciennes et à Lille.',
+    titre: 'Conseil aux entreprises à Valenciennes et Lille',
+    description: 'Vous créez ou reprenez une entreprise, ou vous dirigez une TPE ou une PME près de Valenciennes ou de Lille : on vous aide à décider, et on construit la suite.',
     h1: 'Où en est votre entreprise ?',
     resume: 'Reskope accompagne trois personnes, et parle à chacune de ce qui la concerne : celle qui crée ou reprend une entreprise (trouver ses clients, construire son business plan, convaincre la banque), le dirigeant d’une TPE de 1 à 10 personnes (être trouvé, être joignable, gagner du temps), et celui d’une PME de 10 à 250 personnes (des outils qui se parlent, des équipes qui gagnent du temps). Thomy et Florian, à Valenciennes et à Lille.',
   },
   {
     route: '/creation', espace: 'creation', priorite: '1.0', freq: 'weekly', fil: 'Créer ou reprendre',
-    titre: 'Créer ou reprendre une entreprise',
-    description: 'Avant d’ouvrir, sachez qui sera votre client : on va le rencontrer, on bâtit votre business plan avec ses réponses, et on vous aide à convaincre la banque.',
+    titre: 'Conseil création d’entreprise, Valenciennes, Lille',
+    description: 'Vous créez ou reprenez une entreprise près de Valenciennes ou de Lille ? Avant d’investir, on rencontre vos futurs clients et on nourrit votre business plan.',
     h1: 'On trouve le client qui fera vivre votre projet.',
     resume: 'Pour la personne qui crée ou reprend une entreprise, d’un coffee shop à un logiciel : on va rencontrer vos futurs clients, et vous repartez avec le portrait de votre client idéal, l’endroit où le trouver et ce qu’il faut lui dire. Avec ses réponses, on construit votre business plan, de l’offre et du prix au prévisionnel et au financement, et on vous accompagne sur votre marque et votre communication. On fait ce que vous n’avez pas envie de faire, à un prix fixe, écrit avant de commencer.',
   },
   {
     route: '/tester-une-idee', espace: 'creation', priorite: '0.9', freq: 'monthly', fil: 'Tester votre idée', porte: 'idee',
-    titre: 'Tester votre idée, trouver votre client idéal',
-    description: 'Dix à douze entretiens avec votre cible : vous repartez avec le portrait de votre client idéal, où le trouver, quoi lui dire, et un prix testé pour de vrai.',
+    titre: 'Tester votre idée : persona et étude terrain',
+    description: 'Discovery terrain à Lille et Valenciennes : dix à douze entretiens avec votre cible, le persona de votre client idéal et un prix testé pour de vrai.',
     h1: 'Tester votre idée avant d’investir',
     resume: 'Avant d’engager vos économies ou un prêt, on confronte votre idée aux gens qui devraient l’acheter. En trois à quatre semaines : vos hypothèses écrites et classées par risque, dix à douze entretiens avec votre cible, un test réel sur ce qui est le plus risqué, souvent le prix, et le portrait de votre client idéal, avec l’endroit où le trouver et ce qu’il faut lui dire. Une heure et demie de votre temps par semaine, un prix fixe écrit avant de commencer.',
   },
   {
     route: '/construire-votre-business-plan', espace: 'creation', priorite: '0.9', freq: 'monthly', fil: 'Construire votre business plan', porte: 'bp',
-    titre: 'Construire votre business plan',
+    titre: 'Business plan accompagné, Valenciennes et Lille',
     description: 'Un business plan construit à partir de votre client : offre et prix, prévisionnel sourcé, financement, marque et communication. Sans l’écrire à votre place.',
     h1: 'Construire votre business plan, de votre client à vos chiffres',
     resume: 'On ne rédige pas votre business plan à votre place : on le construit avec vous, en commençant par le chapitre qui décide de tous les autres, votre client. Viennent ensuite l’offre et le prix, un prévisionnel dont chaque chiffre a sa source, le financement, le cadre de votre marque avec des maquettes de logo, et le plan pour aller chercher vos premiers clients. Le dossier est relu comme un financeur le lira.',
@@ -82,7 +82,7 @@ export const PAGES = [
   },
   {
     route: '/comprendre-vos-clients', priorite: '0.9', freq: 'monthly', fil: 'Comprendre vos clients', porte: 'clients',
-    titre: 'Comprendre pourquoi vos clients achètent',
+    titre: 'Discovery client : pourquoi vos clients achètent',
     description: 'Vous signez moins de devis, ou vous reprenez une entreprise ? On interroge ses clients gagnés, perdus et partis pour trouver ce qui décide d’une vente.',
     h1: 'Comprendre pourquoi vos clients achètent, ou partent',
     resume: 'Pour une entreprise qui existe déjà, ou pour celle que vous reprenez : on interroge huit à douze clients, ceux qui ont signé, ceux qui ont refusé et ceux qui sont partis, sur leur dernier achat ou leur dernier refus. Vous recevez la carte de leur parcours, les moments qui décident d’une vente, les portraits de vos clients, et des pistes classées, chacune avec un test possible.',
@@ -118,7 +118,7 @@ export const PAGES = [
   {
     route: '/contact', priorite: '0.9', freq: 'yearly', fil: 'Contact',
     titre: 'Parlons de votre situation',
-    description: 'Un premier échange gratuit de trente minutes pour comprendre votre situation. Si on ne peut pas vous aider, on vous le dit. Sinon, un prix écrit sous 48 h.',
+    description: 'Un premier échange gratuit de trente minutes, à Valenciennes, à Lille ou à distance. Si on ne peut pas vous aider, on vous le dit. Sinon, un prix sous 48 h.',
     h1: 'Parlons de votre situation.',
     resume: 'Dites-nous en quelques lignes où vous en êtes, ou réservez directement un premier échange de trente minutes. Il est gratuit. Si on pense ne pas pouvoir vous aider, on vous le dit à ce moment-là ; sinon, vous recevez sous quarante-huit heures une proposition écrite, avec un prix qui ne bougera plus.',
   },

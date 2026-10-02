@@ -49,7 +49,7 @@ const MENTIONS = {
     sections: [
       { h: 'Éditeur du site', p: [
         `Le site Reskope est édité par Florian Bouchart, entrepreneur individuel.`,
-        'Siège : [À COMPLÉTER : adresse du siège].',
+        'Siège : Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger.',
         'SIRET : 939 285 003 00017 · Code APE : 70.22Z (conseil pour les affaires et autres conseils de gestion).',
         'TVA : non applicable, article 293 B du CGI (franchise en base).',
         'Contact : 06 20 23 55 20 · florian.bouchart@hotmail.fr, ou le formulaire de la page Contact de ce site.',
@@ -86,7 +86,7 @@ const MENTIONS = {
     sections: [
       { h: 'Publisher', p: [
         'The Reskope website is published by Florian Bouchart, sole proprietor (entrepreneur individuel).',
-        'Registered address: [TO COMPLETE: registered address].',
+        'Registered address: Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger, France.',
         'SIRET: 939 285 003 00017 · APE code: 70.22Z (business and other management consultancy).',
         'VAT: not applicable, article 293 B of the French Tax Code (small-business exemption).',
         'Contact: the contact form on this site.',
@@ -126,7 +126,7 @@ const PRIVACY = {
     updated: 'Dernière mise à jour : 26 septembre 2026.',
     sections: [
       { h: 'Responsable du traitement', p: [
-        'Le responsable du traitement est Florian Bouchart (Reskope), [À COMPLÉTER : adresse]. Pour toute question relative à vos données : le formulaire de la page Contact, en précisant « Données personnelles ».',
+        'Le responsable du traitement est Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger. Pour toute question relative à vos données : le formulaire de la page Contact, en précisant « Données personnelles ».',
       ] },
       { h: 'Données collectées', p: [
         "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire ni de mesure d'audience. Les seules données personnelles collectées sont celles que vous transmettez volontairement par le formulaire de contact : votre nom, votre adresse e-mail, le nom de votre entreprise ou de votre projet si vous le donnez, la situation que vous cochez et le contenu de votre message.",
@@ -173,7 +173,7 @@ const PRIVACY = {
     updated: 'Last updated: 26 September 2026.',
     sections: [
       { h: 'Data controller', p: [
-        `The data controller is Florian Bouchart (Reskope), [TO COMPLETE: address]. For any question about your data: the contact form on this site, mentioning “Personal data”.`,
+        `The data controller is Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger, France. For any question about your data: the contact form on this site, mentioning “Personal data”.`,
       ] },
       { h: 'Data collected', p: [
         'This site requires no account and uses no advertising trackers or analytics. The only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message.',
@@ -341,7 +341,9 @@ const SALES = {
         "Les missions prennent fin à la remise des livrables. Le client peut interrompre une mission en cours par écrit ; les conséquences sur le prix sont précisées dans la proposition.",
       ] },
       { h: 'Droit de rétractation', p: [
-        "Les prestations s'adressent à des clients professionnels agissant dans le cadre de leur activité : le droit de rétractation prévu pour les consommateurs ne s'applique en principe pas. Le cas échéant, il peut s'appliquer au professionnel employant cinq salariés ou moins lorsque l'objet de la prestation n'entre pas dans le champ de son activité principale (art. L221-3 du Code de la consommation).",
+        "Lorsque le client est un consommateur, c’est-à-dire un particulier qui n’agit pas dans le cadre d’une activité professionnelle (par exemple avant d’avoir créé son entreprise), il dispose de quatorze jours à compter de la conclusion du contrat pour se rétracter, sans avoir à se justifier (article L221-18 du Code de la consommation). Il lui suffit de nous l’écrire, par e-mail ou par le formulaire de la page Contact ; un modèle de formulaire de rétractation est joint à la proposition.",
+        "Si le client consommateur demande expressément que la mission commence avant la fin de ce délai, il reste redevable du travail réalisé jusqu’à sa rétractation (article L221-25). Une prestation entièrement exécutée avant la fin du délai, à sa demande expresse, ne peut plus faire l’objet d’une rétractation (article L221-28).",
+        "Les clients professionnels, qui agissent dans le cadre de leur activité, ne bénéficient pas de ce droit.",
       ] },
       { h: 'Réclamations et médiation', p: [
         'Toute réclamation peut être adressée par le formulaire de la page Contact.',
@@ -411,7 +413,9 @@ const SALES = {
         'One-off engagements end on delivery. The monthly retainer has no fixed term and may be terminated at any time by either party with the notice period stated in the quote, with work in progress remaining due.',
       ] },
       { h: 'Right of withdrawal', p: [
-        'Services are aimed at professional clients acting within their business: the right of withdrawal provided for consumers does not, in principle, apply. Where applicable, it may apply to a professional employing five staff or fewer where the subject of the service does not fall within their main activity (art. L221-3 of the French Consumer Code).',
+        "When the client is a consumer, meaning an individual not acting for professional purposes (for example before setting up their business), they have fourteen days from the conclusion of the contract to withdraw, without giving any reason (article L221-18 of the French Consumer Code). They simply need to tell us in writing, by email or through the contact form; a model withdrawal form is attached to the proposal.",
+        "If a consumer client expressly asks for the engagement to start before this period ends, they remain liable for the work done until they withdraw (article L221-25). A service fully performed before the period ends, at their express request, can no longer be withdrawn from (article L221-28).",
+        "Business clients, acting for professional purposes, do not have this right.",
       ] },
       { h: 'Complaints and mediation', p: [
         `Any complaint may be sent through the contact form on this site.`,
