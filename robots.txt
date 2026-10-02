@@ -1,4 +1,4 @@
-# Reskope — https://reskope.fr/
+# Reskope : https://reskope.fr/
 # Tout est public : il n'y a ni espace privé, ni page de test à cacher.
 # Les pages de confirmation d'envoi n'ont rien à dire à un moteur, ce sont les
 # seules exclusions. Deux groupes « * » dans un même fichier ne se cumulent pas : tout
