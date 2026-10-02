@@ -18,7 +18,10 @@ export default function PageHeader({ eyebrow, title, lead, tone = 'default', act
 
       let split = null;
       try {
-        split = new SplitText(restRef.current, { type: 'words' });
+        // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
+        // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
+        // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
+        split = new SplitText(restRef.current, { type: 'words', aria: 'none' });
         gsap.from(split.words, {
           autoAlpha: 0,
           yPercent: 65,

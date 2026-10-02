@@ -75,7 +75,7 @@ export const PORTE = {
 /* ── LA VERSION PME ───────────────────────────────────────── */
 const PME = {
   '/': {
-    titre: 'Audit des outils numériques de votre PME',
+    titre: 'Audit numérique de PME, Valenciennes et Lille',
     description: 'Audit et cartographie des outils numériques de votre PME, poste par poste, à Valenciennes et Lille. On relie ce qui ne se parle pas.',
     h1: 'Vos outils vous coûtent plus que ce que vous croyez.',
     resume: 'On vient compter, poste par poste, ce que vos logiciels vous coûtent vraiment : les abonnements payés sans être ouverts, les outils achetés deux fois pour le même travail, et les informations qu’une personne recopie à la main d’un écran à l’autre. Quatre chantiers, dans l’ordre où ils arrivent : on fait le tour de vos outils quand ça s’est accumulé, on relie ce qui ne se parle pas, on construit ce qui manque, et on forme vos équipes pour que ça tienne sans nous. Vous entrez là où vous en êtes et vous vous arrêtez quand ça vous suffit.',
@@ -124,14 +124,14 @@ const PME = {
     mots: ['numérique responsable PME', 'sobriété numérique entreprise'],
   },
   '/a-propos': {
-    titre: 'Qui sommes-nous : Thomy et Florian',
+    titre: 'Qui sommes-nous : Thomy Phanzu et Florian Bouchart',
     description: 'Thomy tient la stratégie et l’identité, Florian la technique. Deux métiers qui se nourrissent l’un l’autre, pour que le dossier avance d’un seul tenant.',
     h1: 'Bonjour, nous c’est Thomy et Florian.',
     resume: 'Reskope, ce sont deux personnes. Thomy tient le sens, la stratégie et l’identité : ce que vous voulez faire, le modèle qui tient, jusqu’à la recherche de financement. Florian tient la technique : les sites, les outils métier et les logiciels qu’on relie entre eux. On ne fait pas du conseil à la chaîne.',
     mots: ['cabinet conseil numérique Valenciennes'],
   },
   '/contact': {
-    titre: 'Nous contacter',
+    titre: 'Contact : audit numérique, Valenciennes et Lille',
     description: 'Parlons de vos outils. Un premier échange sans engagement pour comprendre votre situation, à Valenciennes, à Lille ou partout dans les Hauts-de-France.',
     h1: 'Parlons de vos outils.',
     resume: 'Écrivez-nous en décrivant votre situation en quelques lignes, ou réservez directement un premier échange de trente minutes. On intervient sur place dans tout le Hainaut et les Hauts-de-France, sans frais de déplacement dans un rayon de soixante kilomètres.',
@@ -146,7 +146,7 @@ const PME = {
 /* ── LA VERSION TPE ───────────────────────────────────────── */
 const TPE = {
   '/': {
-    titre: 'Site internet et outils pour TPE et artisans',
+    titre: 'Site internet pour TPE, Valenciennes et Lille',
     description: 'Site vitrine, boutique en ligne, prise de rendez-vous et identité de marque pour les TPE, artisans et commerçants de Valenciennes et de Lille.',
     h1: 'Ce qui vous manque pour être trouvé et joignable.',
     resume: 'On construit ce qui manque aux petites entreprises, dans l’ordre où ça arrive : préparer le lancement avant d’ouvrir, mettre l’entreprise en ligne pour qu’on vous trouve, prendre les rendez-vous à votre place pour qu’on vous joigne, et poser l’identité pour qu’on vous reconnaisse. Un site qui dit en une phrase ce que vous faites et pour qui, une boutique si vous vendez. Facturé à la journée, code et accès à votre nom.',
@@ -188,14 +188,14 @@ const TPE = {
     mots: ['numérique responsable petite entreprise'],
   },
   '/a-propos': {
-    titre: 'Qui sommes-nous : Thomy et Florian',
+    titre: 'Qui sommes-nous : Thomy Phanzu et Florian Bouchart',
     description: 'Thomy tient la stratégie et l’identité, Florian la technique. Deux métiers qui se nourrissent l’un l’autre, pour que votre projet avance d’un seul tenant.',
     h1: 'Bonjour, nous c’est Thomy et Florian.',
     resume: 'Reskope, ce sont deux personnes. Thomy tient le sens, la stratégie et l’identité, jusqu’à la recherche de financement. Florian tient la technique : les sites, les boutiques et les outils qu’on relie entre eux. On s’investit sur chaque dossier comme s’il s’agissait de notre propre entreprise.',
     mots: ['agence web Valenciennes artisan'],
   },
   '/contact': {
-    titre: 'Nous contacter',
+    titre: 'Contact : site internet, Valenciennes et Lille',
     description: 'Parlons de votre projet. Un premier échange sans engagement, à Valenciennes, à Lille ou partout dans les Hauts-de-France, sans frais de déplacement.',
     h1: 'Parlons de votre projet.',
     resume: 'Décrivez votre projet en quelques lignes, ou réservez un premier échange de trente minutes. On se déplace dans tout le Hainaut et les Hauts-de-France, sans frais dans un rayon de soixante kilomètres.',

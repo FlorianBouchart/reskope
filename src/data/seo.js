@@ -110,14 +110,14 @@ export const PAGES = [
   },
   {
     route: '/qui-on-est', priorite: '0.6', freq: 'yearly', fil: 'Qui on est',
-    titre: 'Qui on est : Thomy et Florian',
+    titre: 'Qui on est : Thomy Phanzu et Florian Bouchart',
     description: 'Thomy mène le business plan et le financement, Florian la discovery et la technique. Deux personnes, à Valenciennes et à Lille, sur chaque dossier.',
     h1: 'Bonjour, nous c’est Thomy et Florian.',
     resume: 'Reskope, ce sont deux personnes. Thomy mène le business plan, la stratégie et le passage devant les financeurs ; elle a accompagné pendant deux ans des créateurs d’entreprise jusqu’à ce rendez-vous. Florian mène les entretiens avec vos clients et la partie technique : les sites, les outils, et ce qu’on relie entre eux. Aucun des deux ne reste dans son couloir. Reskope démarre : on n’a pas encore de clients à citer, alors on montre la méthode en entier.',
   },
   {
     route: '/contact', priorite: '0.9', freq: 'yearly', fil: 'Contact',
-    titre: 'Parlons de votre situation',
+    titre: 'Contact : parlons de votre situation',
     description: 'Un premier échange gratuit de trente minutes, à Valenciennes, à Lille ou à distance. Si on ne peut pas vous aider, on vous le dit. Sinon, un prix sous 48 h.',
     h1: 'Parlons de votre situation.',
     resume: 'Dites-nous en quelques lignes où vous en êtes, ou réservez directement un premier échange de trente minutes. Il est gratuit. Si on pense ne pas pouvoir vous aider, on vous le dit à ce moment-là ; sinon, vous recevez sous quarante-huit heures une proposition écrite, avec un prix qui ne bougera plus.',

@@ -3,6 +3,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, PAGES, PROFILS, PORTE, META, url, fiche, adresses } from '../src/data/seo.js';
 import { MARQUES, MERE, MARQUE_DE_L_ESPACE, nomComplet } from '../src/data/marques.js';
+import { CABINET, ID_SITE, OFFRES_ENTREPRISES, service, typeDePage } from '../../scripts/entreprise.mjs';
 
 /* ════════════════════════════════════════════════════════════
    LE PRÉ-RENDU — écrire un vrai fichier par adresse.
@@ -48,48 +49,9 @@ function nettoyer(html) {
 const base = nettoyer(coquille);
 
 /* ── Le schema ──────────────────────────────────────────────
-   Corrigé : deux fondateurs et non un, pas d'adresse e-mail tant que la
-   boîte n'existe pas, et plus de fourchette de prix alors que tout le site
-   dit « sur devis ». Un balisage qui ment est pire que pas de balisage. */
-const CABINET = {
-  '@type': 'ProfessionalService',
-  '@id': `${SITE.origine}${SITE.base}/#cabinet`,
-  name: SITE.marque,
-  description: 'Audit, cartographie et remise en ordre des outils numériques des TPE et PME.',
-  url: `${SITE.origine}${SITE.base}/`,
-  image: `${SITE.origine}${SITE.base}${SITE.image}`,
-  founder: [
-    { '@type': 'Person', name: 'Thomy Phanzu' },
-    { '@type': 'Person', name: 'Florian Bouchart' },
-  ],
-  areaServed: [
-    { '@type': 'AdministrativeArea', name: SITE.region },
-    { '@type': 'City', name: 'Valenciennes' },
-    { '@type': 'City', name: 'Lille' },
-  ],
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Valenciennes',
-    addressRegion: SITE.region,
-    addressCountry: 'FR',
-  },
-  knowsLanguage: ['fr', 'en'],
-};
-
-const OFFRES = {
-  pme: [
-    ['Audit et cartographie des outils numériques', 'On recense poste par poste les outils que vous payez, ce qu’ils coûtent et ce qu’ils servent vraiment.'],
-    ['Mise en ordre et liaison des outils', 'On relie les outils qui ne se parlent pas pour qu’une information saisie une fois ne soit jamais retapée.'],
-    ['Outils métier sur mesure', 'Automatisation, écran ou petit outil interne construit à la taille exacte de ce qui manque.'],
-    ['Formation et suivi', 'On forme les équipes sur leurs propres dossiers, puis on revient une demi-journée par mois.'],
-  ],
-  tpe: [
-    ['Création de site internet et boutique en ligne', 'Un site qui dit en une phrase ce que vous faites, et une boutique si vous vendez.'],
-    ['Prise de rendez-vous en ligne', 'Vos disponibilités réelles, la réservation en autonomie et les confirmations automatiques.'],
-    ['Identité de marque', 'Le positionnement d’abord, puis les mots, les couleurs et le logo qui en découlent.'],
-    ['Aide au lancement', 'Le modèle économique, les chiffres et le dossier à présenter avant d’ouvrir ou d’emprunter.'],
-  ],
-};
+   La fiche de l'entreprise et la liste des offres sont communes aux deux
+   applications : elles vivent dans scripts/entreprise.mjs, à la racine. */
+const OFFRES = OFFRES_ENTREPRISES;
 
 function schemaDe(profil, route, f) {
   const adresse = url(profil, route);
@@ -105,13 +67,13 @@ function schemaDe(profil, route, f) {
 
   const blocs = [
     {
-      '@type': 'WebPage',
+      '@type': typeDePage(route),
       '@id': `${adresse}#page`,
       url: adresse,
       name: `${f.titre} · ${nomComplet(MARQUE_DE_L_ESPACE[profil])}`,
       description: f.description,
       inLanguage: 'fr',
-      isPartOf: { '@type': 'WebSite', name: SITE.marque, url: `${SITE.origine}${SITE.base}/` },
+      isPartOf: { '@type': 'WebSite', '@id': ID_SITE, name: SITE.marque, url: `${SITE.origine}${SITE.base}/` },
       about: { '@id': CABINET['@id'] },
     },
     { '@type': 'BreadcrumbList', itemListElement: fil },
@@ -126,13 +88,7 @@ function schemaDe(profil, route, f) {
       itemListElement: OFFRES[profil].map(([nom, desc], i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        item: {
-          '@type': 'Service',
-          name: nom,
-          description: desc,
-          provider: { '@id': CABINET['@id'] },
-          areaServed: CABINET.areaServed,
-        },
+        item: service(nom, desc, adresse),
       })),
     });
   }

@@ -4,6 +4,7 @@ import { SITE, PAGES, url, fiche, VERS_ENTREPRISES } from '../src/data/seo.js';
 import { OFFRES, OFFRE } from '../src/data/offres.js';
 import { MARQUES, MERE, marqueDeLaRouteDuSite, nomComplet } from '../src/data/marques.js';
 import { DOMAINE, BASE, URL_SITE } from '../site.config.mjs';
+import { CABINET, SITE_WEB, ID_SITE, service as serviceDe, typeDePage } from './entreprise.mjs';
 
 /* ════════════════════════════════════════════════════════════
    LE PRÉ-RENDU — écrire un vrai fichier par adresse.
@@ -48,34 +49,8 @@ function nettoyer(html) {
 const base = nettoyer(coquille);
 
 /* ── Le schema ──────────────────────────────────────────────
-   Deux fondateurs, pas d'adresse e-mail tant que la boîte n'existe pas, et
-   pas de prix : le site n'en affiche aucun. Un balisage qui ment est pire
-   que pas de balisage. */
-const CABINET = {
-  '@type': 'ProfessionalService',
-  '@id': `${SITE.origine}${SITE.base}/#cabinet`,
-  name: SITE.marque,
-  slogan: 'On vous aide à décider, et on construit la suite.',
-  description: 'Pour la personne qui crée ou reprend une entreprise : trouver son client idéal, construire son business plan, convaincre la banque. Pour les TPE et les PME : des sites, des outils qui se parlent, des équipes qui gagnent du temps.',
-  url: `${SITE.origine}${SITE.base}/`,
-  image: `${SITE.origine}${SITE.base}${SITE.image}`,
-  founder: [
-    { '@type': 'Person', name: 'Thomy Phanzu' },
-    { '@type': 'Person', name: 'Florian Bouchart' },
-  ],
-  areaServed: [
-    { '@type': 'AdministrativeArea', name: SITE.region },
-    { '@type': 'City', name: 'Valenciennes' },
-    { '@type': 'City', name: 'Lille' },
-  ],
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Valenciennes',
-    addressRegion: SITE.region,
-    addressCountry: 'FR',
-  },
-  knowsLanguage: ['fr'],
-};
+   La fiche de l'entreprise est commune aux deux applications : elle vit
+   dans scripts/entreprise.mjs. */
 
 /* Le fil d'Ariane : les pages de l'espace « en projet » descendent de son
    accueil. (La même table vit dans src/components/Breadcrumb.jsx.) */
@@ -87,17 +62,7 @@ const PARENT = {
   '/comment-ca-se-passe': '/creation',
 };
 
-function service(o) {
-  return {
-    '@type': 'Service',
-    name: o.nom,
-    description: o.accroche,
-    serviceType: o.pole === 'bp' ? 'Business plan et financement' : o.pole === 'construire' ? 'Réalisation' : 'Discovery',
-    provider: { '@id': CABINET['@id'] },
-    areaServed: CABINET.areaServed,
-    ...(o.slug ? { url: url(o.slug) } : {}),
-  };
-}
+const service = (o) => serviceDe(o.nom, o.accroche, o.slug ? url(o.slug) : undefined);
 
 function schemaDe(route, f) {
   const adresse = url(route);
@@ -107,18 +72,19 @@ function schemaDe(route, f) {
 
   const blocs = [
     {
-      '@type': 'WebPage',
+      '@type': typeDePage(route),
       '@id': `${adresse}#page`,
       url: adresse,
       name: `${f.titre} · ${nomComplet(marqueDeLaRouteDuSite(route))}`,
       description: f.description,
       inLanguage: 'fr',
-      isPartOf: { '@type': 'WebSite', name: SITE.marque, url: url('/') },
+      isPartOf: { '@type': 'WebSite', '@id': ID_SITE, name: SITE.marque, url: url('/') },
       about: { '@id': CABINET['@id'] },
     },
     { '@type': 'BreadcrumbList', itemListElement: fil },
   ];
 
+  if (route === '/') blocs.push(SITE_WEB);
   if (route === '/' || route === '/creation') blocs.push(CABINET);
   if (f.porte) blocs.push(service(OFFRE[f.porte]));
   if (route === '/nos-offres') {
@@ -233,7 +199,10 @@ for (const p of PAGES) {
 
 /* Le repli du routage client reste la coquille NUE : une adresse inconnue ne
    doit pas se faire passer pour l'accueil. */
-ecrire('404.html', coquille);
+ecrire('404.html', coquille
+  .replace(/<title>[\s\S]*?<\/title>/i, `<title>Page introuvable · ${SITE.marque}</title>\n    <meta name="robots" content="noindex" />`)
+  .replace(/<link\s+rel="canonical"[\s\S]*?\/>\s*/i, '')
+  .replace(/<meta\s+property="og:url"[\s\S]*?\/>\s*/i, ''));
 
 /* Les anciennes adresses sans espace, et les pages qui vivent désormais
    dans l'espace des entreprises : un renvoi vers la même page. Les adresses

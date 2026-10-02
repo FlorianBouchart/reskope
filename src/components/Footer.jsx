@@ -56,7 +56,10 @@ export default function Footer() {
     /* Déclaration : lignes masquées */
     let split = null;
     try {
-      split = new SplitText(stRef.current, { type: 'lines', mask: 'lines', linesClass: 'footer2__stline' });
+      // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
+      // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
+      // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
+      split = new SplitText(stRef.current, { type: 'lines', mask: 'lines', linesClass: 'footer2__stline', aria: 'none' });
     } catch { split = null; }
     if (split) {
       gsap.from(split.lines, {

@@ -223,7 +223,10 @@ export default function HeroFormation({ c }) {
       netSplit = new SplitText(netTitleRef.current, { type: 'words,chars' });
     } catch { split = null; netSplit = null; }
     if (presRef.current) {
-      try { presSplit = new SplitText(presRef.current, { type: 'words' }); } catch { presSplit = null; }
+      // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
+      // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
+      // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
+      try { presSplit = new SplitText(presRef.current, { type: 'words', aria: 'none' }); } catch { presSplit = null; }
       if (presSplit) {
         presData.els = presSplit.words;
         presData.vecs = presSplit.words.map((_, i) => [

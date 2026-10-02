@@ -203,7 +203,10 @@ export default function APropos() {
     }
     root.querySelectorAll('.astory__p').forEach((p) => {
       try {
-        const sp = new SplitText(p, { type: 'lines', mask: 'lines' });
+        // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
+        // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
+        // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
+        const sp = new SplitText(p, { type: 'lines', mask: 'lines', aria: 'none' });
         splits.push(sp);
         gsap.from(sp.lines, {
           yPercent: 110, duration: 0.85, ease: 'power4.out', stagger: 0.07,
@@ -224,7 +227,7 @@ export default function APropos() {
       tl.fromTo(dit, { yPercent: 118 }, { yPercent: 0, duration: 0.8, ease: 'power4.out' }, 0);
 
       try {
-        const sp = new SplitText(suite, { type: 'words' });
+        const sp = new SplitText(suite, { type: 'words', aria: 'none' });
         gsap.set(sp.words, { opacity: 0.16 });
         gsap.to(sp.words, {
           opacity: 1, ease: 'none', stagger: 0.28, duration: 0.3,

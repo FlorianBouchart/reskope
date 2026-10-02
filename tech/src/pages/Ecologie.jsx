@@ -149,7 +149,10 @@ export default function Ecologie() {
     let split = null;
     if (stanceLead) {
       try {
-        split = new SplitText(stanceLead, { type: 'words' });
+        // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
+        // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
+        // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
+        split = new SplitText(stanceLead, { type: 'words', aria: 'none' });
         gsap.set(split.words, { opacity: 0.13 });
         gsap.to(split.words, {
           opacity: 1, ease: 'none', stagger: 0.35, duration: 0.35,
