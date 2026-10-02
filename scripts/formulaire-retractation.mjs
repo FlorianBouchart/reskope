@@ -53,7 +53,7 @@ h1{margin-top:12mm;font-size:22pt;font-weight:600;letter-spacing:-.02em;color:#1
   <h1>Formulaire de rétractation</h1>
   <p class="sous">Pour les clients particuliers (consommateurs) · articles L221-5 et R221-1 du Code de la consommation</p>
   <p class="note">Complétez et renvoyez ce formulaire uniquement si vous souhaitez vous rétracter du contrat. Vous disposez de quatorze jours à compter de la conclusion du contrat, c’est-à-dire de la signature de la proposition.</p>
-  <p class="dest">À l’attention de&nbsp;: <b>Reskope, Florian Bouchart</b>, entrepreneur individuel, SIRET 939&nbsp;285&nbsp;003&nbsp;00017, Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger. E-mail&nbsp;: florian.bouchart@hotmail.fr</p>
+  <p class="dest">À l’attention de&nbsp;: <b>Reskope, Florian Bouchart</b>, entrepreneur individuel, SIRET 939&nbsp;285&nbsp;003&nbsp;00017, 156 Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger. E-mail&nbsp;: florian.bouchart@hotmail.fr</p>
   <p class="texte">Je / Nous (*) vous notifie / notifions (*) par la présente ma / notre (*) rétractation du contrat portant sur la prestation de services ci-dessous&nbsp;:</p>
   ${champ('Prestation (intitulé de la proposition)')}
   ${champ('Proposition n° et date de signature (contrat conclu le)')}
