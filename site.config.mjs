@@ -14,7 +14,7 @@
    GitHub Pages garde le domaine à chaque publication.
    ════════════════════════════════════════════════════════════ */
 
-export const DOMAINE = null;
+export const DOMAINE = 'reskope.fr';
 
 /** L'origine, sans barre finale : « https://floops10.github.io ». */
 export const ORIGINE = DOMAINE ? `https://${DOMAINE}` : 'https://floops10.github.io';
