@@ -48,11 +48,11 @@ const MENTIONS = {
     updated: 'Dernière mise à jour : 14 septembre 2026.',
     sections: [
       { h: 'Éditeur du site', p: [
-        `Le site Reskope est édité par Florian Bouchart, [À COMPLÉTER : forme juridique, ex. entrepreneur individuel / micro-entreprise].`,
+        `Le site Reskope est édité par Florian Bouchart, entrepreneur individuel.`,
         'Siège : [À COMPLÉTER : adresse du siège].',
-        'SIRET : 939 285 003 00017 · Code APE : [À COMPLÉTER : code APE].',
+        'SIRET : 939 285 003 00017 · Code APE : 70.22Z (conseil pour les affaires et autres conseils de gestion).',
         'TVA : non applicable, article 293 B du CGI (franchise en base).',
-        'Contact : par le formulaire de la page Contact de ce site. [À COMPLÉTER : un numéro de téléphone ou une adresse électronique joignable, exigés par la loi pour l’éditeur d’un site professionnel.]',
+        'Contact : 06 20 23 55 20 · florian.bouchart@hotmail.fr, ou le formulaire de la page Contact de ce site.',
       ] },
       { h: 'Directeur de la publication', p: [
         'Directeur de la publication : Florian Bouchart.',
@@ -85,11 +85,11 @@ const MENTIONS = {
     updated: 'Last updated: 26 September 2026.',
     sections: [
       { h: 'Publisher', p: [
-        'The Reskope website is published by Florian Bouchart, [TO COMPLETE: legal form, e.g. sole proprietor / micro-enterprise].',
+        'The Reskope website is published by Florian Bouchart, sole proprietor (entrepreneur individuel).',
         'Registered address: [TO COMPLETE: registered address].',
-        'SIRET: 939 285 003 00017 · APE code: [TO COMPLETE: APE code].',
+        'SIRET: 939 285 003 00017 · APE code: 70.22Z (business and other management consultancy).',
         'VAT: not applicable, article 293 B of the French Tax Code (small-business exemption).',
-        'Contact: through the contact form on this site. [TO COMPLETE: a reachable phone number or email address, required by French law for a professional website publisher.]',
+        'Contact: +33 6 20 23 55 20 · florian.bouchart@hotmail.fr, or the contact form on this site.',
       ] },
       { h: 'Publication director', p: [
         'Publication director: Florian Bouchart.',
@@ -286,7 +286,7 @@ const SALES = {
         "Les présentes conditions générales de vente (CGV) régissent les prestations de conseil, d'audit numérique, de développement, d'automatisation et de suivi fournies par Reskope à ses clients professionnels. Toute commande implique l'acceptation sans réserve des présentes CGV, qui prévalent sur tout autre document du client.",
       ] },
       { h: 'Prestataire', p: [
-        'Reskope, Florian Bouchart, [À COMPLÉTER : forme juridique, SIRET, adresse]. Coordonnées complètes dans les mentions légales.',
+        'Reskope, Florian Bouchart, entrepreneur individuel, SIRET 939 285 003 00017. Coordonnées complètes dans les mentions légales.',
       ] },
       { h: 'Prestations', p: [
         "Reskope propose quatre types de prestations : l'audit numérique (diagnostic terrain et bilan priorisé), l'audit assorti de la mise en œuvre, le développement et l'automatisation sur-mesure, et le suivi mensuel. Le périmètre précis de chaque mission est défini au devis.",
@@ -304,8 +304,8 @@ const SALES = {
         "En cas d'annulation, le bilan et l'ensemble des documents remis doivent être restitués et ne peuvent faire l'objet d'aucune exploitation, directe ou indirecte. Cette garantie porte sur la prestation d'audit uniquement, à l'exclusion des journées de mise en œuvre, des développements et de l'abonnement de suivi.",
       ] },
       { h: 'Modalités et délais de paiement', p: [
-        'Paiement par virement bancaire. [À COMPLÉTER : acompte à la commande, ex. 30 % ; solde à la livraison ou selon l’échéancier du devis].',
-        'Délai de règlement : [À COMPLÉTER : ex. 30 jours à réception de facture]. En cas de retard, des pénalités égales à trois fois le taux d’intérêt légal sont dues de plein droit, ainsi qu’une indemnité forfaitaire de recouvrement de 40 € (art. L441-10 et D441-5 du Code de commerce).',
+        'Paiement par virement bancaire, selon l’échéancier indiqué dans le devis signé (acompte éventuel à la commande, solde à la livraison).',
+        'Délai de règlement : celui indiqué sur la facture ; à défaut, 30 jours après l’exécution de la prestation. En cas de retard, des pénalités égales à trois fois le taux d’intérêt légal sont dues de plein droit, ainsi qu’une indemnité forfaitaire de recouvrement de 40 € (art. L441-10 et D441-5 du Code de commerce).',
       ] },
       { h: 'Exécution et délais', p: [
         "Reskope est tenue à une obligation de moyens. Les délais annoncés sont indicatifs et dépendent notamment de la disponibilité du client et de la fourniture des éléments nécessaires. Chaque journée de réalisation est estimée avant démarrage et tracée avec le client.",
@@ -314,7 +314,7 @@ const SALES = {
         "Le client s'engage à fournir en temps utile les informations, accès et contenus nécessaires, à désigner un interlocuteur, et à valider les étapes clés. Un défaut de collaboration peut décaler les délais sans engager la responsabilité de Reskope.",
       ] },
       { h: 'Réception des livrables', p: [
-        "À défaut de réserve écrite formulée sous [À COMPLÉTER : ex. 10 jours] à compter de la livraison, les livrables sont réputés acceptés.",
+        "À défaut de réserve écrite formulée dans le délai indiqué dans le devis à compter de la livraison, les livrables sont réputés acceptés.",
       ] },
       { h: 'Propriété intellectuelle', p: [
         "Sauf mention contraire au devis, les droits sur les livrables sur-mesure sont cédés au client après paiement intégral de la mission. Les outils, briques logicielles génériques, méthodes et savoir-faire préexistants de Reskope restent sa propriété. Les composants open-source ou tiers conservent leur licence propre.",
@@ -332,13 +332,13 @@ const SALES = {
         "Aucune partie ne saurait être tenue responsable d'un manquement dû à un cas de force majeure au sens de l'article 1218 du Code civil.",
       ] },
       { h: 'Durée et résiliation', p: [
-        "Les missions ponctuelles prennent fin à la livraison. Le suivi mensuel est sans engagement de durée, résiliable à tout moment par chaque partie moyennant un préavis de [À COMPLÉTER : ex. 30 jours], les prestations en cours restant dues.",
+        "Les missions ponctuelles prennent fin à la livraison. Le suivi mensuel est sans engagement de durée, résiliable à tout moment par chaque partie moyennant le préavis indiqué dans le devis, les prestations en cours restant dues.",
       ] },
       { h: 'Droit de rétractation', p: [
         "Les prestations s'adressent à des clients professionnels agissant dans le cadre de leur activité : le droit de rétractation prévu pour les consommateurs ne s'applique en principe pas. Le cas échéant, il peut s'appliquer au professionnel employant cinq salariés ou moins lorsque l'objet de la prestation n'entre pas dans le champ de son activité principale (art. L221-3 du Code de la consommation).",
       ] },
       { h: 'Réclamations et médiation', p: [
-        'Toute réclamation peut être adressée par le formulaire de la page Contact. [À COMPLÉTER : en cas de clientèle consommateur, coordonnées du médiateur de la consommation compétent].',
+        'Toute réclamation peut être adressée par le formulaire de la page Contact.',
       ] },
       { h: 'Litiges et droit applicable', p: [
         "Les présentes CGV sont soumises au droit français. En cas de différend, les parties rechercheront une solution amiable avant toute action ; à défaut, les tribunaux français seront compétents.",
@@ -356,7 +356,7 @@ const SALES = {
         'These terms of sale govern the consulting, digital audit, development, automation and retainer services provided by Reskope to its professional clients. Any order implies unreserved acceptance of these terms, which prevail over any other document from the client.',
       ] },
       { h: 'Provider', p: [
-        'Reskope, Florian Bouchart, [TO COMPLETE: legal form, SIRET, address]. Full details in the legal notice.',
+        'Reskope, Florian Bouchart, sole proprietor, SIRET 939 285 003 00017. Full details in the legal notice.',
       ] },
       { h: 'Services', p: [
         'Reskope offers four types of engagement: the digital audit (on-site diagnosis and prioritized report), the audit combined with delivery, custom development and automation, and the monthly retainer. The precise scope of each engagement is defined in the quote.',
@@ -374,8 +374,8 @@ const SALES = {
         'In the event of cancellation, the report and all documents provided must be returned and may not be used in any way, directly or indirectly. This guarantee covers the audit engagement only, excluding delivery days, development work and the retainer.',
       ] },
       { h: 'Payment terms', p: [
-        'Payment by bank transfer. [TO COMPLETE: deposit on order, e.g. 30%; balance on delivery or per the quote schedule].',
-        'Payment term: [TO COMPLETE: e.g. 30 days from invoice]. In case of late payment, penalties equal to three times the legal interest rate are due as of right, plus a fixed recovery indemnity of €40 (art. L441-10 and D441-5 of the French Commercial Code).',
+        'Payment by bank transfer, following the schedule set out in the signed quote (any deposit on order, balance on delivery).',
+        'Payment term: as stated on the invoice; failing that, 30 days after the service is performed. In case of late payment, penalties equal to three times the legal interest rate are due as of right, plus a fixed recovery indemnity of €40 (art. L441-10 and D441-5 of the French Commercial Code).',
       ] },
       { h: 'Performance and timelines', p: [
         'Reskope is bound by an obligation of means. Stated timelines are indicative and depend notably on the client’s availability and provision of the required materials. Every delivery day is estimated before starting and tracked with the client.',
@@ -384,7 +384,7 @@ const SALES = {
         'The client undertakes to provide the necessary information, access and content in good time, to designate a point of contact, and to validate key steps. A lack of cooperation may shift timelines without engaging Reskope’s liability.',
       ] },
       { h: 'Acceptance of deliverables', p: [
-        'Failing written reservations made within [TO COMPLETE: e.g. 10 days] of delivery, deliverables are deemed accepted.',
+        'Failing written reservations made within the period stated in the quote from delivery, deliverables are deemed accepted.',
       ] },
       { h: 'Intellectual property', p: [
         'Unless stated otherwise in the quote, rights to custom deliverables are transferred to the client after full payment of the engagement. Reskope’s pre-existing tools, generic software components, methods and know-how remain its property. Open-source or third-party components keep their own licence.',
@@ -402,13 +402,13 @@ const SALES = {
         'Neither party may be held liable for a failure due to force majeure within the meaning of Article 1218 of the French Civil Code.',
       ] },
       { h: 'Term and termination', p: [
-        'One-off engagements end on delivery. The monthly retainer has no fixed term and may be terminated at any time by either party with [TO COMPLETE: e.g. 30 days] notice, with work in progress remaining due.',
+        'One-off engagements end on delivery. The monthly retainer has no fixed term and may be terminated at any time by either party with the notice period stated in the quote, with work in progress remaining due.',
       ] },
       { h: 'Right of withdrawal', p: [
         'Services are aimed at professional clients acting within their business: the right of withdrawal provided for consumers does not, in principle, apply. Where applicable, it may apply to a professional employing five staff or fewer where the subject of the service does not fall within their main activity (art. L221-3 of the French Consumer Code).',
       ] },
       { h: 'Complaints and mediation', p: [
-        'Any complaint may be sent through the contact form on this site. [TO COMPLETE: for consumer clients, details of the competent consumer mediator].',
+        'Any complaint may be sent through the contact form on this site.',
       ] },
       { h: 'Disputes and applicable law', p: [
         'These terms of sale are governed by French law. In the event of a dispute, the parties will seek an amicable solution before any action; failing that, French courts have jurisdiction.',
