@@ -139,12 +139,17 @@ const SHARED = {
 const LangContext = createContext({ lang: 'fr', setLang: () => {}, t: SHARED.fr });
 
 export function LangProvider({ children }) {
+  /* Le français par défaut, l'anglais seulement si le visiteur l'a choisi.
+     Pas de bascule selon la langue du navigateur : le robot de Google lit
+     les pages avec un navigateur réglé en anglais, il aurait indexé la
+     version anglaise d'adresses déclarées en français. */
   const [lang, setLangState] = useState(() => {
-    if (typeof localStorage !== 'undefined') {
+    try {
       const s = localStorage.getItem('reskope-lang');
       if (s === 'fr' || s === 'en') return s;
+    } catch {
+      /* stockage bloqué : on reste en français */
     }
-    if (typeof navigator !== 'undefined' && navigator.language?.startsWith('en')) return 'en';
     return 'fr';
   });
 
