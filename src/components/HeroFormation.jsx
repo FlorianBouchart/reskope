@@ -47,6 +47,7 @@ export default function HeroFormation({ c }) {
   const actionsRef = useRef(null);
   const ditRef = useRef(null);
   const surRef = useRef(null);
+  const faitRef = useRef(null);
   const presRef = useRef(null);
   const glyphRefs = useRef([]);
 
@@ -259,6 +260,7 @@ export default function HeroFormation({ c }) {
     }
     if (surRef.current) intro.from(surRef.current, { z: -70, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0);
     if (ditRef.current) intro.from(ditRef.current, { z: -90, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.5);
+    if (faitRef.current) intro.from(faitRef.current, { z: -70, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0.75);
     intro.from(actionsRef.current, { z: -90, transformPerspective: 900, y: 24, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.6);
 
     /* Morph survol : VAGUE de bascule lettre à lettre — la lettre sans
@@ -424,6 +426,14 @@ export default function HeroFormation({ c }) {
               <SwapLabel>{c.ghost}</SwapLabel>
             </Link>
           </div>
+          {/* Ce que le désordre coûte, chiffré et sourcé : on craint plus de
+              perdre que l'on espère gagner. */}
+          {c.heroFait && (
+            <p className="heroform__fait" ref={faitRef}>
+              <strong>{c.heroFait.chiffre}</strong> {c.heroFait.texte}{' '}
+              <a href={c.heroFait.url} target="_blank" rel="noopener noreferrer">{c.heroFait.source}</a>
+            </p>
+          )}
         </div>
 
         {/* Les présentations, une fois le R formé. Le titre dit le problème,

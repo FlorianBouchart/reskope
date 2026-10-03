@@ -56,6 +56,11 @@ const idee = {
   couleur: 'soleil',
   slug: '/tester-une-idee',
   pole: 'discovery',
+  /* La garantie de la discovery (risque inversé) : écrite aussi dans les CGV,
+     et dans chaque proposition qui la prévoit. */
+  garantie: 'si, à la remise, la synthèse ne vous apprend rien, vous ne la payez pas. C’est écrit dans la proposition.',
+  /* Le guide gratuit, à télécharger sans rien laisser : on donne avant de demander. */
+  guide: true,
   statut: 'porte',
   mene: 'Florian',
   scene: 'hypotheses',
@@ -112,6 +117,11 @@ const clients = {
   couleur: 'menthe',
   slug: '/comprendre-vos-clients',
   pole: 'discovery',
+  /* La garantie de la discovery (risque inversé) : écrite aussi dans les CGV,
+     et dans chaque proposition qui la prévoit. */
+  garantie: 'si, à la remise, la synthèse ne vous apprend rien, vous ne la payez pas. C’est écrit dans la proposition.',
+  /* Le guide gratuit, à télécharger sans rien laisser : on donne avant de demander. */
+  guide: true,
   statut: 'porte',
   mene: 'Florian',
   scene: 'entretiens',

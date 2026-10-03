@@ -4,7 +4,7 @@
    ════════════════════════════════════════════════════════════ */
 export const RENDEZ_VOUS = {
   title: 'Trente minutes, à l’heure qui vous arrange.',
-  lead: 'Choisissez directement un créneau dans notre agenda. Vous nous racontez votre situation, et on vous dit franchement si on peut vous aider, ou non.',
+  lead: 'Choisissez directement un créneau dans notre agenda. Vous nous racontez votre situation, et on vous dit franchement si on peut vous aider, ou non. À deux, on mène peu de dossiers à la fois : on vous dit tout de suite quand on peut commencer.',
   points: [
     { value: '30 min', label: 'Au téléphone ou en visio, comme vous préférez' },
     { value: '0 €', label: 'Gratuit, sans engagement et sans relance commerciale' },

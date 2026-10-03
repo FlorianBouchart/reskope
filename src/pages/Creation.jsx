@@ -93,7 +93,7 @@ export default function Creation() {
     <Page>
       <HeroFormation c={HERO} />
 
-      <Chemins question="Laquelle de ces situations est la vôtre ?" portes={PORTES_CREATION} />
+      <Chemins question="Laquelle de ces situations est la vôtre ?" portes={PORTES_CREATION} boussole />
 
       <Livrable />
 

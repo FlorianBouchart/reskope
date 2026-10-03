@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Page from '../components/Page';
 import Amorce from '../components/Amorce';
 import CarteOffres from '../components/CarteOffres';
+import Boussole from '../components/Boussole';
 import Debut from '../components/Debut';
 import Explorateur from '../components/Explorateur';
 import SwapLabel from '../components/SwapLabel';
@@ -91,13 +92,19 @@ function Tete() {
 }
 
 export default function NosOffres() {
-  const { state } = useLocation();
+  const { state, hash } = useLocation();
   const [scene, setScene] = useState(null);
 
   const aller = (id) => scrollToEl(document.getElementById(`offre-${id}`));
 
   /* Arrivé depuis une autre page avec une offre en tête : on y descend une
      fois la page posée. */
+  useEffect(() => {
+    if (hash !== '#boussole') return undefined;
+    const t = setTimeout(() => scrollToEl(document.getElementById('boussole')), 700);
+    return () => clearTimeout(t);
+  }, [hash]);
+
   useEffect(() => {
     if (!state || !state.offre) return undefined;
     const t = setTimeout(() => aller(state.offre), 900);
@@ -111,6 +118,13 @@ export default function NosOffres() {
       <section className="co-sec" aria-label="La carte des offres">
         <div className="container">
           <CarteOffres onChoisir={aller} />
+        </div>
+      </section>
+
+      {/* Pour qui hésite entre deux missions : trois questions, une réponse. */}
+      <section className="bsl-sec" id="boussole" aria-labelledby="bsl-t">
+        <div className="container">
+          <Boussole />
         </div>
       </section>
 

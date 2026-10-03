@@ -2535,3 +2535,117 @@ button:focus-visible .croix__bras { transform: translate(var(--dx), var(--dy)); 
   .menu2__foot-actions .btn { padding-inline: 0.8rem; font-size: 0.92rem; }
   .menu2__foot-actions .btn__arrow { display: none; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   CE QUI RASSURE AU MOMENT DE DÉCIDER (neuromarketing honnête) :
+   des visages près du bouton, le risque levé, un repère concret.
+   ════════════════════════════════════════════════════════════ */
+.aig__rassure {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.9rem auto 0;
+  font-size: 0.9rem;
+  color: var(--muted-fort);
+  text-align: center;
+}
+.aig__visages { display: inline-flex; }
+.aig__visages img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cream);
+  box-shadow: 0 6px 14px -8px rgba(14, 11, 31, 0.5);
+}
+.aig__visages img + img { margin-left: -10px; }
+.aig__repere {
+  grid-area: repere;
+  justify-self: start;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c-vif) 16%, transparent);
+  color: var(--c-action);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.aig__carte { grid-template-areas: 'reseau marque fleche' 'reseau moment fleche' 'reseau qui fleche' 'repere repere repere' 'offres offres offres'; }
+/* (p de la carte remis à zéro plus haut : il faut deux classes pour le décaler) */
+.aig__carte .aig__repere { margin-top: 0.7rem; }
+@media (min-width: 960px) { .aig__repere { align-self: flex-start; } }
+
+/* La garantie, sous les faits d'une mission. */
+.ph__garantie {
+  max-width: 40rem;
+  margin: 1.1rem 0 0;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--indigo) 9%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.ph__garantie strong { color: var(--indigo); font-weight: 600; }
+
+/* Merci : la fin dont on se souvient. */
+.merci__nous { display: inline-flex; align-items: center; gap: 0.8rem; margin: 1.4rem 0 0.4rem; color: rgba(240, 238, 232, 0.86); }
+.merci__visages { display: inline-flex; }
+.merci__visages img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(240, 238, 232, 0.9); }
+.merci__visages img + img { margin-left: -12px; }
+.merci__guide { color: var(--cream); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ════════════════════════════════════════════════════════════
+   LA BOUSSOLE : trois questions, une réponse.
+   ════════════════════════════════════════════════════════════ */
+.bsl-sec { padding-block: clamp(2.5rem, 7vh, 4.5rem); }
+.bsl {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  border-radius: clamp(20px, 3vw, 28px);
+  background: var(--cream-light);
+  box-shadow: 0 34px 70px -42px rgba(14, 11, 31, 0.45);
+}
+.bsl__tete { display: grid; gap: 0.9rem; justify-items: center; text-align: center; }
+.bsl__titre { margin: 0; font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance; }
+.bsl__progres { display: flex; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.bsl__progres li { width: 2.2rem; height: 5px; border-radius: 99px; background: color-mix(in srgb, var(--indigo) 16%, transparent); transition: background-color 0.4s ease; }
+.bsl__progres li.is-fait { background: var(--indigo); }
+.bsl__progres li.is-ici { background: color-mix(in srgb, var(--indigo) 55%, transparent); }
+.bsl__etape { display: grid; gap: 0.9rem; justify-items: center; margin: 1.5rem 0 0; padding: 0; border: 0; min-width: 0; text-align: center; }
+.bsl__q { padding: 0; font-size: clamp(1.1rem, 2.4vw, 1.3rem); font-weight: 600; color: var(--ink); outline: none; }
+.bsl__choix { display: grid; gap: 0.55rem; width: 100%; max-width: 32rem; margin-top: 0.3rem; }
+.bsl__bouton {
+  appearance: none;
+  min-height: 48px;
+  padding: 0.65rem 1.1rem;
+  border: 1.5px solid color-mix(in srgb, var(--indigo) 35%, transparent);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bsl__bouton:hover, .bsl__bouton:focus-visible { border-color: var(--indigo); background: var(--indigo); color: var(--cream-light); transform: translateY(-2px); }
+.bsl__retour { appearance: none; margin-top: 0.4rem; padding: 0.5rem; border: 0; background: none; font: inherit; font-size: 0.9rem; color: var(--muted-fort); cursor: pointer; }
+.bsl__retour:hover, .bsl__retour:focus-visible { color: var(--indigo); }
+.bsl__resultat { gap: 0.55rem; }
+.bsl__pour { margin: 0; font-size: 0.86rem; font-weight: 500; color: var(--indigo); outline: none; }
+.bsl__mission { margin: 0; font-size: clamp(1.4rem, 3.4vw, 2rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+.bsl__accroche { max-width: 36rem; margin: 0; color: var(--muted-fort); line-height: 1.55; text-wrap: pretty; }
+.bsl__faits { margin: 0.2rem 0 0; font-weight: 600; color: var(--ink); }
+.bsl__garantie { max-width: 34rem; margin: 0.3rem 0 0; font-size: 0.92rem; color: var(--muted-fort); }
+.bsl__garantie strong { color: var(--indigo); }
+.bsl__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.8rem; }
+@media (prefers-reduced-motion: reduce) { .bsl__bouton { transition: none; } .bsl__bouton:hover { transform: none; } }
+
+/* L'en-tête d'un espace : le surtitre d'audience, et ce que le désordre
+   coûte, chiffré et sourcé, sous les boutons. */
+.heroform__surtitre { display: block; margin-bottom: 1rem; }
+.heroform__fait { max-width: 40rem; margin: 1.1rem 0 0; font-size: 0.92rem; line-height: 1.5; color: var(--muted-fort); }
+.heroform__fait strong { font-weight: 600; color: var(--indigo); }
+.heroform__fait a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

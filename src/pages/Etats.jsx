@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { openCalModal, isCalConfigured } from '../lib/cal';
 import Page from '../components/Page';
 import { Reveal, RevealItem } from '../components/Reveal';
 import { LogoMark } from '../components/Logo';
@@ -48,6 +49,12 @@ export function NotFound() {
 }
 
 export function Merci() {
+  const navigate = useNavigate();
+  /* L'agenda en pop-up ; s'il ne s'ouvre pas, la page de contact. */
+  const reserver = () => {
+    if (!isCalConfigured) { navigate('/contact'); return; }
+    openCalModal().catch(() => navigate('/contact'));
+  };
   return (
     <Page>
       <section className="state-page state-page--thanks" data-nav-dark data-cursor-dark>
@@ -73,17 +80,32 @@ export function Merci() {
               </div>
             </RevealItem>
 
-            <RevealItem as="p" className="state-page__meanwhile">
-              En attendant, vous pouvez voir une mission complète, du premier lundi à la décision.
+            {/* La fin de l'expérience est ce qu'on en retient : deux visages, la
+                suite, et de quoi gagner un jour. */}
+            <RevealItem>
+              <p className="merci__nous">
+                <span className="merci__visages" aria-hidden="true">
+                  <img src={`${import.meta.env.BASE_URL}thomy-480.webp`} alt="" width="48" height="48" />
+                  <img src={`${import.meta.env.BASE_URL}florian-480.webp`} alt="" width="48" height="48" />
+                </span>
+                <span>Thomy et Florian lisent votre message eux-mêmes.</span>
+              </p>
             </RevealItem>
 
             <RevealItem>
               <div className="state-page__actions">
-                <Link to="/exemple" className="btn btn--primary">
-                  Voir un exemple complet<span className="btn__arrow" aria-hidden="true">→</span>
-                </Link>
-                <Link to="/" className="btn btn--on-dark btn--ghost-dark">Retour à l’accueil</Link>
+                <button type="button" className="btn btn--primary" onClick={reserver}>
+                  Gagner un jour : choisir mon créneau<span className="btn__arrow" aria-hidden="true">→</span>
+                </button>
+                <Link to="/exemple" className="btn btn--on-dark btn--ghost-dark">Voir un exemple complet</Link>
               </div>
+            </RevealItem>
+
+            <RevealItem as="p" className="state-page__meanwhile">
+              En attendant :{' '}
+              <a href={`${import.meta.env.BASE_URL}guides/12-questions-futurs-clients.pdf`} className="merci__guide" download>
+                les 12 questions à poser à vos futurs clients (guide gratuit, PDF)
+              </a>
             </RevealItem>
           </Reveal>
         </div>

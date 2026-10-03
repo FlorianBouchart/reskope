@@ -28,6 +28,7 @@ const CONTENT = {
 
     /* — 1. Hero — */
     heroEyebrow: 'Reskope Elevate · PME de 10 à 250 personnes',
+    heroFait: { chiffre: '47 %', texte: 'de la semaine de travail part dans les e-mails et la recherche d’information.', source: 'McKinsey', url: 'https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy' },
     heroTitle: 'Vos équipes perdent des heures dans leurs outils.',
     /* Le premier écran annonçait un problème sans jamais dire ce qu'on
        vend. Cette ligne le dit, avec les quatre verbes qu'on retrouve
@@ -147,6 +148,7 @@ const CONTENT = {
     metaDesc:
       'Reskope maps and audits your tools on the ground, employee by employee, then connects, simplifies and builds what is missing. Open process, quantified gains.',
     heroEyebrow: 'Reskope Elevate · companies of 10 to 250 people',
+    heroFait: { chiffre: '47%', texte: 'of the working week goes into email and searching for information.', source: 'McKinsey', url: 'https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy' },
     heroTitle: 'Your teams lose hours inside their tools.',
     heroDit: 'We put your tools back in order, and your teams get back the hours they were losing.',
 

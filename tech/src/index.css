@@ -13380,3 +13380,10 @@ html[data-profil="pme"] { --espace: var(--ciel); --espace-pale: var(--ciel-pale)
   .menu2__foot-actions .btn { padding-inline: 0.8rem; font-size: 0.92rem; }
   .menu2__foot-actions .btn__arrow { display: none; }
 }
+
+/* L'en-tête d'un espace : le surtitre d'audience, et ce que le désordre
+   coûte, chiffré et sourcé, sous les boutons. */
+.heroform__surtitre { display: block; margin-bottom: 1rem; }
+.heroform__fait { max-width: 40rem; margin: 1.1rem 0 0; font-size: 0.92rem; line-height: 1.5; color: var(--muted-fort); }
+.heroform__fait strong { font-weight: 600; color: var(--indigo); }
+.heroform__fait a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

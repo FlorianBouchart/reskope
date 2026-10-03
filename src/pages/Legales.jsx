@@ -297,7 +297,7 @@ const SALES = {
     eyebrow: 'Prestations',
     title: 'Conditions générales de vente.',
     lead: "Le cadre des missions : discovery, relecture et business plan, cadre de marque, réalisation.",
-    updated: 'Dernière mise à jour : 26 septembre 2026.',
+    updated: 'Dernière mise à jour : 3 octobre 2026.',
     sections: [
       { h: 'Objet et champ d’application', p: [
         "Les présentes conditions générales de vente (CGV) régissent les missions de conseil et de réalisation fournies par Reskope à ses clients professionnels. Toute commande implique l'acceptation sans réserve des présentes CGV, qui prévalent sur tout autre document du client.",
@@ -357,6 +357,9 @@ const SALES = {
         "Si le client consommateur demande expressément que la mission commence avant la fin de ce délai, il reste redevable du travail réalisé jusqu’à sa rétractation (article L221-25). Une prestation entièrement exécutée avant la fin du délai, à sa demande expresse, ne peut plus faire l’objet d’une rétractation (article L221-28).",
         "Les clients professionnels, qui agissent dans le cadre de leur activité, ne bénéficient pas de ce droit.",
       ] },
+      { h: 'Garantie de la discovery', p: [
+        "Lorsque la proposition le prévoit, si, à la remise, le client estime que la synthèse d'une discovery ne lui apprend rien, cette synthèse n'est pas facturée ; les entretiens réalisés restent dus.",
+      ] },
       { h: 'Réclamations et médiation', p: [
         'Toute réclamation peut être adressée par le formulaire de la page Contact.',
       ] },
@@ -370,7 +373,7 @@ const SALES = {
     eyebrow: 'Services',
     title: 'Terms of sale.',
     lead: 'The framework for audit, delivery, development and retainer engagements.',
-    updated: 'Last updated: 26 September 2026.',
+    updated: 'Last updated: 3 October 2026.',
     sections: [
       { h: 'Purpose and scope', p: [
         'These terms of sale govern the consulting, digital audit, development, automation and retainer services provided by Reskope to its professional clients. Any order implies unreserved acceptance of these terms, which prevail over any other document from the client.',
@@ -428,6 +431,9 @@ const SALES = {
         "When the client is a consumer, meaning an individual not acting for professional purposes (for example before setting up their business), they have fourteen days from the conclusion of the contract to withdraw, without giving any reason (article L221-18 of the French Consumer Code). They simply need to tell us in writing, by email or through the contact form; a model withdrawal form is attached to the proposal.",
         "If a consumer client expressly asks for the engagement to start before this period ends, they remain liable for the work done until they withdraw (article L221-25). A service fully performed before the period ends, at their express request, can no longer be withdrawn from (article L221-28).",
         "Business clients, acting for professional purposes, do not have this right.",
+      ] },
+      { h: 'Discovery guarantee', p: [
+        'Where the proposal provides for it, if on delivery the client considers that the synthesis of a discovery has taught them nothing, that synthesis is not invoiced; the interviews already conducted remain payable.',
       ] },
       { h: 'Complaints and mediation', p: [
         `Any complaint may be sent through the contact form on this site.`,

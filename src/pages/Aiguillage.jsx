@@ -15,6 +15,8 @@ import { PORTES_CREATION } from '../data/offres';
 import { CONTACT } from '../data/site';
 import { RENDEZ_VOUS } from '../data/rendezvous';
 
+const BASE = import.meta.env.BASE_URL;
+
 /* ════════════════════════════════════════════════════════════
    L'ACCUEIL — tout comprendre en dix à vingt secondes.
 
@@ -61,6 +63,7 @@ function Carte({ e }) {
       </h2>
       <p className="aig__moment">{m.fr.moment}</p>
       <p className="aig__qui">{m.fr.qui}</p>
+      {e.repere && <p className="aig__repere">{e.repere}</p>}
       <ul className="aig__offres" aria-label={`Ce que ${nom} fait pour vous`}>
         {offresDe(e).map((o) => (
           <li key={o.nom}>
@@ -96,7 +99,7 @@ export default function Aiguillage() {
     const tl = gsap.timeline({ delay: 0.15 });
     tl.from(q('.aig__surtitre'), { z: -70, transformPerspective: 900, y: 16, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0)
       .from(q('.aig__q'), { z: -170, transformPerspective: 900, y: 50, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0)
-      .from(q('.aig__sous, .aig__actions'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
+      .from(q('.aig__sous, .aig__actions, .aig__rassure'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
       .from(q('.aig__carte'), {
         z: -130, transformPerspective: 900, y: 70, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,
       }, 0.35)
@@ -128,6 +131,14 @@ export default function Aiguillage() {
             </button>
             <a className="aig__tel lien-souligne" href={`tel:${CONTACT.telephoneLien}`}>ou appeler le {CONTACT.telephone}</a>
           </div>
+          {/* Deux visages près du bouton, et ce qui rassure au moment de cliquer. */}
+          <p className="aig__rassure">
+            <span className="aig__visages" aria-hidden="true">
+              <img src={`${BASE}thomy-480.webp`} alt="" width="34" height="34" />
+              <img src={`${BASE}florian-480.webp`} alt="" width="34" height="34" />
+            </span>
+            <span>Thomy et Florian vous répondent sous 24 h · sans engagement · prix fixe</span>
+          </p>
 
           <div className="aig__choix-cadre">
             {/* Le fil qui relie les trois marques : le même réseau, qui grandit. */}

@@ -25,6 +25,7 @@ export default function Chemins({
   question = 'Laquelle de ces situations vous ressemble ?',
   fin = 'Aucune ne vous ressemble tout à fait ? Racontez-nous la vôtre.',
   finLien = 'Parlons de votre situation',
+  boussole = false,
 }) {
   const racine = useRef(null);
 
@@ -90,6 +91,15 @@ export default function Chemins({
               <span aria-hidden="true"> →</span>
             </Link>
           </p>
+          {boussole && (
+            <p className="ch__fin">
+              Vous hésitez entre deux ?{' '}
+              <Link to="/nos-offres#boussole" className="ch__finlien">
+                Trois questions pour choisir
+                <span aria-hidden="true"> →</span>
+              </Link>
+            </p>
+          )}
         </div>
       </div>
     </section>

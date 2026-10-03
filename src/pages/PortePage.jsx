@@ -52,7 +52,7 @@ function Tete({ p, onVoir }) {
       .from(q('.ph__titre'), { z: -180, transformPerspective: 900, y: 60, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0.1)
       .from(q('.ph__accroche'), { z: -100, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out' }, 0.35)
       .from(q('.ph__fait'), { z: -90, transformPerspective: 900, y: 26, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.08 }, 0.5)
-      .from(q('.ph__actions'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0.75)
+      .from(q('.ph__garantie, .ph__actions'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0.75)
       .from(q('.ph__visuel'), { z: -140, transformPerspective: 900, rotateY: -16, rotateX: 2, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.4, ease: 'expo.out' }, 0.2);
   }, { scope: racine });
 
@@ -71,6 +71,9 @@ function Tete({ p, onVoir }) {
               </div>
             ))}
           </dl>
+          {p.garantie && (
+            <p className="ph__garantie"><strong>Garantie :</strong> {p.garantie}</p>
+          )}
           <div className="ph__actions">
             <Link to="/contact" state={{ situation: p.id }} className="btn btn--primary" data-cursor-label="Écrire">
               <SwapLabel>{p.cta}</SwapLabel>
@@ -167,6 +170,14 @@ export default function PortePage({ id }) {
             <span aria-hidden="true">→</span>
           </Link>
         </p>
+        {p.guide && (
+          <p className="am__suite">
+            <a href={`${import.meta.env.BASE_URL}guides/12-questions-futurs-clients.pdf`} className="lien-fleche" download>
+              Le guide gratuit : les 12 questions à poser à vos futurs clients (PDF)
+              <span aria-hidden="true">↓</span>
+            </a>
+          </p>
+        )}
       </Amorce>
 
       <Amorce id="demande" lead="Ce qu’on vous demande, et ce qu’on ne fait pas." entree="bascule">
