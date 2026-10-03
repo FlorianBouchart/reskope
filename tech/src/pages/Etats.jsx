@@ -53,7 +53,7 @@ const CONTENT = {
         { to: '/offres', label: 'Offers and pricing' },
         { to: '/exemple', label: 'A full example report' },
         { to: '/methode', label: 'The method, milestone by milestone' },
-        { to: '/contact', label: 'Contact me directly' },
+        { to: '/contact', label: 'Write to us directly' },
       ],
       cta: 'Back to home',
     },

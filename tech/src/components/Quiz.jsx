@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../i18n';
 import LienLegal from './LienLegal';
+import { mesurer } from '../lib/mesure';
 import { FORMSUBMIT_URL } from '../data/site';
 
 /* Contenu bilingue. Les `tags` sont des clés neutres (identiques fr/en) :
@@ -323,6 +324,7 @@ export default function Quiz() {
           _honey: trap,
         }),
       });
+      if (res.ok) mesurer('generate_lead', { formulaire: 'questionnaire' });
       setStatus(res.ok ? 'sent' : 'error');
     } catch {
       setStatus('error');

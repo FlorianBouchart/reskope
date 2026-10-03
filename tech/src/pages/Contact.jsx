@@ -11,6 +11,7 @@ import { useLang } from '../i18n';
 import { useProfil } from '../profil';
 import { CONTACT_TPE } from '../data/profils';
 import LienLegal from '../components/LienLegal';
+import { mesurer } from '../lib/mesure';
 import { CONTACT, FORMSUBMIT_URL } from '../data/site';
 
 /* CONTACT — clair, net, fonctionnel.
@@ -158,6 +159,7 @@ export default function Contact() {
         }),
       });
       if (res.ok) {
+        mesurer('generate_lead', { formulaire: 'contact' });
         setStatus('sent');
         setForm({ name: '', email: '', message: '' });
         /* Page de remerciement dediee : adresse reelle, partageable et

@@ -1,5 +1,6 @@
 import { useLang } from '../i18n';
 import { useProfil, cheminInterne, BASE } from '../profil';
+import { pageExiste } from '../data/seo';
 import { ESPACES } from '../data/espaces';
 import { MARQUES, MARQUE_DE_L_ESPACE } from '../data/marques';
 
@@ -42,8 +43,11 @@ export default function Espaces({ className = '' }) {
             </a>
           );
         }
-        const href = `${BASE}/${e.id}${interne === '/' ? '/' : `${interne}/`}`;
+        // La même page dans l'autre espace si elle y existe, sinon son accueil.
+        const existe = pageExiste(e.id, interne);
+        const href = `${BASE}/${e.id}${interne === '/' || !existe ? '/' : `${interne}/`}`;
         const basculer = (ev) => {
+          if (!existe) return;
           if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
           ev.preventDefault();
           setProfil(e.id);
@@ -86,8 +90,11 @@ export function EspacesTuiles({ className = '' }) {
         if (e.id === 'creation') {
           return <a key={e.id} href={`${BASE}/creation/`} className={classe} hrefLang={en ? 'fr' : undefined}>{contenu}</a>;
         }
-        const href = `${BASE}/${e.id}${interne === '/' ? '/' : `${interne}/`}`;
+        // La même page dans l'autre espace si elle y existe, sinon son accueil.
+        const existe = pageExiste(e.id, interne);
+        const href = `${BASE}/${e.id}${interne === '/' || !existe ? '/' : `${interne}/`}`;
         const basculer = (ev) => {
+          if (!existe) return;
           if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
           ev.preventDefault();
           setProfil(e.id);

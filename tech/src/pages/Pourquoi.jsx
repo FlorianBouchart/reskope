@@ -13,7 +13,8 @@ import { GLYPH_SHAPES } from '../lib/net3d';
 import { Reveal, RevealItem } from '../components/Reveal';
 import { useLang } from '../i18n';
 import ReservePme from '../components/ReservePme';
-import { useProfil } from '../profil';
+import { useProfil, BASE } from '../profil';
+import { pageExiste } from '../data/seo';
 import { PASSERELLE } from '../data/profils';
 import { CONSTAT } from '../data/constat';
 
@@ -118,6 +119,7 @@ const CONTENT = {
 /* POUR QUI — cartes épurées : un glyphe réseau 3D par profil, hover incliné,
    révélation en 3D. Aucun index 01/02/03, aucune ligne décorative. */
 function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
+  const { profil } = useProfil();
   const rootRef = useRef(null);
 
   useGSAP(() => {
@@ -168,10 +170,17 @@ function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
               <p className="plr__taille">{t.size}</p>
               <p className="plr__mask"><span className="plr__t">{t.title}</span></p>
               <p className="plr__d">{t.desc}</p>
-              <Link className="plr__lien" to={t.to}>
-                {t.cta}
-                <span aria-hidden="true">→</span>
-              </Link>
+              {pageExiste(profil, t.to) ? (
+                <Link className="plr__lien" to={t.to}>
+                  {t.cta}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ) : (
+                <a className="plr__lien" href={`${BASE}/pme${t.to}/`}>
+                  {t.cta}
+                  <span aria-hidden="true">→</span>
+                </a>
+              )}
             </div>
           ))}
         </div>

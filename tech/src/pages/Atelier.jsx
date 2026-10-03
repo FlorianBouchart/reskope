@@ -64,6 +64,8 @@ const CONTENT = {
     metaDesc:
       'Posez vos outils sur un plan, reliez ceux qui se parlent, et voyez en deux minutes ce que personne n’a jamais dessiné chez vous. Gratuit, sans compte, et le dessin s’emporte.',
     eyebrow: 'L’atelier',
+    sans3d: 'L’atelier dessine en 3D, et votre navigateur ne l’affiche pas ici (accélération graphique coupée, ou appareil ancien). Essayez depuis un autre navigateur, ou décrivez-nous vos outils : on dessine le plan avec vous.',
+    sans3dLien: 'Nous écrire',
     titre: 'Dessinez votre système d’information.',
     lead: 'Un bloc par outil que vous payez, et sa hauteur dit la place qu’il prend chez vous.',
     leadSuite: 'Ce qu’il coûte, ou ce qu’il vous fait perdre. Reliez ceux qui se parlent vraiment, et en deux minutes vous avez le plan que personne n’a jamais dessiné chez vous.',
@@ -112,6 +114,8 @@ const CONTENT = {
     metaDesc:
       'Place your tools on a plan, connect the ones that talk to each other, and see in two minutes what nobody has ever drawn at your company. Free, no account, and the drawing is yours to keep.',
     eyebrow: 'The workshop',
+    sans3d: 'The workshop draws in 3D, and your browser cannot display it here (graphics acceleration turned off, or an older device). Try another browser, or tell us about your tools: we will draw the map with you.',
+    sans3dLien: 'Write to us',
     titre: 'Map your information system.',
     lead: 'One block per tool you pay for, and its height says how much room it takes up.',
     leadSuite: 'What it costs, or what it makes you lose. Connect the ones that really talk to each other, and in two minutes you have the plan nobody has ever drawn at your company.',
@@ -178,6 +182,14 @@ function lire() {
 export default function Atelier() {
   const { lang } = useLang();
   const c = CONTENT[lang];
+  /* Sans WebGL (accélération graphique coupée, appareil ancien), la scène
+     resterait vide sans un mot : on le dit, et on propose une autre voie. */
+  const [webgl] = useState(() => {
+    try {
+      const toile = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (toile.getContext('webgl2') || toile.getContext('webgl')));
+    } catch { return false; }
+  });
   const navigate = useNavigate();
 
   /* Le plan est au visiteur : il le retrouve tel quel s'il revient. On le
@@ -339,6 +351,12 @@ export default function Atelier() {
 
           <div className="atl__plan">
             <div className="atl__scene" data-cursor-prise>
+              {!webgl ? (
+                <div className="atl__sans3d" role="status">
+                  <p>{c.sans3d}</p>
+                  <button type="button" className="btn btn--primary" onClick={() => navigate('/contact')}>{c.sans3dLien}</button>
+                </div>
+              ) : (
               <Suspense fallback={<div className="atl__attente" aria-hidden="true" />}>
                 <AtelierScene
                   blocs={monde}
@@ -352,6 +370,7 @@ export default function Atelier() {
                   onLier={relier}
                 />
               </Suspense>
+              )}
               <ul className="atl__aide" aria-hidden="true">
                 {c.aide.map((a) => <li key={a}>{a}</li>)}
               </ul>

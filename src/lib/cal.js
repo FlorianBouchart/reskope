@@ -1,4 +1,5 @@
 import { CAL_LINK } from '../data/site';
+import { mesurer } from './mesure';
 
 /* Prise de rendez-vous Cal.com — chargement à la demande.
 
@@ -95,6 +96,7 @@ export function openCalModal() {
   return calPromise.then((Cal) => {
     watchModalForCursor();
     Cal('modal', { calLink: CAL_LINK, config: { layout: 'month_view' } });
+    mesurer('ouverture_reservation');
   });
 }
 

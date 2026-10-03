@@ -62,13 +62,20 @@
 .mesure__bouton:hover { background-color: var(--indigo, #1c0cb3); color: var(--cream-light, #f7f5f0); }
 .mesure__bouton:focus-visible { outline: 2px solid var(--indigo, #1c0cb3); outline-offset: 3px; }
 
+/* Sur téléphone, la carte ne doit pas manger l'écran d'arrivée : texte et
+   marges resserrés, boutons toujours à 44 px pour le pouce. */
 @media (max-width: 520px) {
   .mesure {
     left: max(12px, env(safe-area-inset-left));
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
+    padding: 0.9rem 1rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
   }
+  .mesure__titre { margin-bottom: 0.2rem; font-size: 0.9375rem; }
+  .mesure__choix { margin-top: 0.75rem; gap: 0.5rem; }
 }
 
 /* Le bouton « Cookies » du pied de page : il rouvre la question, il ne mène

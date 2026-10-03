@@ -5,6 +5,7 @@ import MorphTitle from '../components/MorphTitle';
 import Booking from '../components/Booking';
 import { gsap, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
+import { mesurer } from '../lib/mesure';
 import { FORMSUBMIT_URL } from '../data/site';
 
 /* ════════════════════════════════════════════════════════════
@@ -99,6 +100,7 @@ export default function Contact() {
         }),
       });
       if (res.ok) {
+        mesurer('generate_lead', { formulaire: 'contact', situation: form.situation || 'non précisée' });
         navigate('/merci');
       } else {
         setStatus('error');

@@ -30,6 +30,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const retourFocus = useRef(null);
   const [dark, setDark] = useState(false);
   const { pathname } = useLocation();
   const { lang } = useLang();
@@ -171,7 +172,15 @@ export default function Nav() {
     if (!tl) return undefined;
     if (open) tl.timeScale(1).play();
     else tl.timeScale(1.5).reverse();
-    if (!open) return undefined;
+    if (!open) {
+      /* Au clavier, on revient là où l'on était avant d'ouvrir le menu
+         (son bouton), au lieu de se retrouver au début de la page. */
+      const avant = retourFocus.current;
+      retourFocus.current = null;
+      if (avant && menuRef.current?.contains(document.activeElement)) avant.focus({ preventScroll: true });
+      return undefined;
+    }
+    retourFocus.current = document.activeElement;
     const t = setTimeout(() => fermerRef.current && fermerRef.current.focus({ preventScroll: true }), 450);
     return () => clearTimeout(t);
   }, [open]);

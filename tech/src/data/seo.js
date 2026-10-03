@@ -61,6 +61,15 @@ export const PAGES = [
   { route: '/cgv', priorite: '0.2', freq: 'yearly', profils: ['pme'] },
 ];
 
+/** La page existe-t-elle en fichier dans cet espace ? L'exemple de bilan et
+    les pages légales n'existent que côté PME : un lien vers /tpe/exemple
+    s'afficherait au clic, mais renverrait 404 à un rechargement ou à un
+    moteur. */
+export function pageExiste(profil, route) {
+  const page = PAGES.find((x) => x.route === route);
+  return !!page && (!page.profils || page.profils.includes(profil));
+}
+
 export const PROFILS = ['pme', 'tpe'];
 
 /* La porte : l'adresse racine. Elle n'est pas une redirection déguisée, c'est

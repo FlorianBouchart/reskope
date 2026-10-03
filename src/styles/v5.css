@@ -1265,7 +1265,7 @@ a.espt__tuile:focus-visible {
   .espt { gap: 0.4rem; }
   .espt__tuile { padding: 0.6rem 0.6rem; }
   .espt__nom { font-size: 0.98rem; }
-  .espt__sous, .espt__etat { font-size: 0.74rem; }
+  .espt__sous, .espt__etat { font-size: max(0.74rem, 12px); }
 }
 
 /* ── Le fil d'Ariane ─────────────────────────────────────── */
@@ -1476,6 +1476,15 @@ a.esp__seg:hover { background: color-mix(in srgb, var(--indigo) 8%, transparent)
   min-height: 100svh;
   padding-top: clamp(5.6rem, 11vh, 7.5rem);
   padding-bottom: clamp(2rem, 6vh, 4.5rem);
+}
+/* La première ligne lue : ce qu'est Reskope, et où. La question vient
+   ensuite. Sans elle, un visiteur qui arrive de Google ou de LinkedIn
+   devait deviner qu'il était chez un cabinet de conseil. */
+.aig__surtitre {
+  display: block;
+  margin: 0 auto 1.1rem;
+  text-align: center;
+  text-wrap: balance;
 }
 .aig__q {
   max-width: 16ch;
@@ -2389,3 +2398,15 @@ button:focus-visible .croix__bras { transform: translate(var(--dx), var(--dy)); 
    de couleur séparent les blocs ; aucun lien n'est souligné au repos.
    ════════════════════════════════════════════════════════════ */
 .crumb, .footer2__grid, .legal__updated, .section--tint, .faq { border-top: 0; border-bottom: 0; }
+
+/* Les liens et boutons « texte » (une flèche, pas de fond) gardent leur
+   allure, mais leur zone de toucher monte à 44 px de haut : sur téléphone,
+   le pouce ne doit pas viser une ligne de 20 px. :where() ne pèse rien,
+   une position déjà donnée à l'un d'eux reste la sienne. */
+:where(.pont__btn, .resv__btn, .resv__lien, .bk__vers-form, .duo__lien, .eco-fact__source--lien, .plr__lien, .footer2__card-btn) { position: relative; }
+.pont__btn::before, .resv__btn::before, .resv__lien::before, .bk__vers-form::before, .duo__lien::before,
+.eco-fact__source--lien::before, .plr__lien::before, .footer2__card-btn::before {
+  content: '';
+  position: absolute;
+  inset: -12px -6px;
+}

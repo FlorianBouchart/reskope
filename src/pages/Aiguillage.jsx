@@ -60,7 +60,8 @@ export default function Aiguillage() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ delay: 0.15 });
-    tl.from(q('.aig__q'), { z: -700, y: 50, rotateX: -30, autoAlpha: 0, duration: 1.1, ease: 'power3.out' }, 0)
+    tl.from(q('.aig__surtitre'), { z: -300, y: 16, autoAlpha: 0, duration: 0.8, ease: 'power3.out' }, 0)
+      .from(q('.aig__q'), { z: -700, y: 50, rotateX: -30, autoAlpha: 0, duration: 1.1, ease: 'power3.out' }, 0)
       .from(q('.aig__sous'), { z: -300, y: 20, autoAlpha: 0, duration: 0.8, ease: 'power3.out' }, 0.25)
       .from(q('.aig__carte'), {
         z: -560, y: 70, rotateX: -24, autoAlpha: 0, duration: 1, ease: 'power3.out', stagger: 0.14,
@@ -78,6 +79,7 @@ export default function Aiguillage() {
   return (
     <Page className="aig">
       <section className="aig__in container" ref={racine} aria-labelledby="aig-q">
+        <p className="eyebrow aig__surtitre">Reskope, cabinet de conseil à Valenciennes et Lille</p>
         <h1 className="aig__q" id="aig-q">Où en est votre entreprise&nbsp;?</h1>
         <p className="aig__sous">Une même méthode, trois moments. Choisissez le vôtre&nbsp;: on ne vous parle que de ce qui vous concerne.</p>
 

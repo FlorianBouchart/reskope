@@ -32,15 +32,15 @@ const ACTIF = import.meta.env.PROD && /(^|\.)reskope\.fr$/.test(window.location.
 const TEXTES = {
   fr: {
     titre: 'Mesure d’audience',
-    texte: 'Avec votre accord, on utilise Google Analytics pour savoir quelles pages vous sont utiles. Si vous refusez, rien n’est déposé. Vous pouvez changer d’avis en bas de chaque page.',
-    plus: 'En savoir plus',
+    texte: 'Avec votre accord, Google Analytics nous dit quelles pages vous sont utiles. Si vous refusez, rien n’est déposé. Choix modifiable en bas de page.',
+    plus: 'Politique de confidentialité',
     non: 'Refuser',
     oui: 'Accepter',
   },
   en: {
     titre: 'Audience measurement',
-    texte: 'With your consent, we use Google Analytics to see which pages are useful to you. If you decline, nothing is stored. You can change your mind at the bottom of every page.',
-    plus: 'Learn more',
+    texte: 'With your consent, Google Analytics tells us which pages are useful to you. If you decline, nothing is stored. You can change this at the bottom of the page.',
+    plus: 'Privacy policy',
     non: 'Decline',
     oui: 'Accept',
   },
@@ -175,4 +175,11 @@ export function lancerMesure() {
 export function rouvrirMesure() {
   ouvrir();
   bandeau?.querySelector('button')?.focus({ preventScroll: true });
+}
+
+/* Les moments qui comptent pour savoir où les visiteurs s'arrêtent : une
+   demande envoyée (generate_lead, l'événement que Google Analytics
+   reconnaît) et l'agenda ouvert. Rien ne part sans l'accord du visiteur. */
+export function mesurer(evenement, details = {}) {
+  if (ACTIF && lireChoix() === 'oui' && window.gtag) window.gtag('event', evenement, details);
 }

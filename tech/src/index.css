@@ -12394,6 +12394,17 @@ html.eco-theme .crumb__node { background: rgba(125, 223, 168, 0.55); }
 .atl__canvas { cursor: grab; }
 .atl__canvas:active { cursor: grabbing; }
 .atl__attente { position: absolute; inset: 0; background: var(--cream-light); }
+.atl__sans3d {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.1rem;
+  padding: clamp(1.2rem, 4vw, 2.4rem);
+  text-align: center;
+}
+.atl__sans3d p { max-width: 46ch; margin: 0; color: var(--muted-fort); }
 
 .atl__aide {
   position: absolute;
@@ -13050,7 +13061,7 @@ a.espt__tuile:focus-visible {
   .espt { gap: 0.4rem; }
   .espt__tuile { padding: 0.6rem 0.6rem; }
   .espt__nom { font-size: 0.98rem; }
-  .espt__sous, .espt__etat { font-size: 0.74rem; }
+  .espt__sous, .espt__etat { font-size: max(0.74rem, 12px); }
 }
 
 /* ── Les tuiles d'espace, version sombre (pied de page) ─── */
@@ -13308,3 +13319,15 @@ html[data-profil="pme"] { --espace: var(--ciel); --espace-pale: var(--ciel-pale)
 .crumb, .footer2__grid, .legal__updated, .section--tint, .faq { border-top: 0; border-bottom: 0; }
 .pv3__src, .plr__lien { border-bottom: 0; }
 .cfy-flat-item, .constat-bridge__pied { border-top: 0; }
+
+/* Les liens et boutons « texte » (une flèche, pas de fond) gardent leur
+   allure, mais leur zone de toucher monte à 44 px de haut : sur téléphone,
+   le pouce ne doit pas viser une ligne de 20 px. :where() ne pèse rien,
+   une position déjà donnée à l'un d'eux reste la sienne. */
+:where(.pont__btn, .resv__btn, .resv__lien, .bk__vers-form, .duo__lien, .eco-fact__source--lien, .plr__lien, .footer2__card-btn) { position: relative; }
+.pont__btn::before, .resv__btn::before, .resv__lien::before, .bk__vers-form::before, .duo__lien::before,
+.eco-fact__source--lien::before, .plr__lien::before, .footer2__card-btn::before {
+  content: '';
+  position: absolute;
+  inset: -12px -6px;
+}
