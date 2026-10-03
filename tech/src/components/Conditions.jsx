@@ -30,8 +30,8 @@ export default function Conditions({ c }) {
 
     /* La question : elle arrive de loin, comme tout le reste du site. */
     gsap.from(q('.cond__q'), {
-      z: -760, y: 54, rotateX: -34, autoAlpha: 0,
-      duration: 1.05, ease: 'power3.out',
+      z: -180, transformPerspective: 900, y: 54, rotateX: -7, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+      duration: 1.3, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 78%' },
     });
 
@@ -44,7 +44,7 @@ export default function Conditions({ c }) {
         scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reverse' },
       });
       if (lien) {
-        tl.from(lien, { z: -260, autoAlpha: 0, y: 18, duration: 0.5, ease: 'power2.out' }, 0);
+        tl.from(lien, { z: -60, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', y: 18, duration: 0.5, ease: 'expo.out' }, 0);
       }
       tl.from(mot, {
         z: -640 - i * 90, y: 64, x: (i % 2 ? 1 : -1) * 34, rotateX: -32, rotateZ: (i % 2 ? 1 : -1) * 5,
@@ -54,8 +54,8 @@ export default function Conditions({ c }) {
 
     /* La réponse et le bouton : ensemble, parce que c'est une seule idée. */
     gsap.from(q('.cond__fin, .cond__cta'), {
-      z: -520, y: 44, rotateX: -24, autoAlpha: 0,
-      duration: 0.95, ease: 'power3.out', stagger: 0.12,
+      z: -120, transformPerspective: 900, y: 44, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+      duration: 1.2, ease: 'expo.out', stagger: 0.12,
       scrollTrigger: { trigger: q('.cond__fin')[0], start: 'top 88%' },
     });
   }, { scope: racine });

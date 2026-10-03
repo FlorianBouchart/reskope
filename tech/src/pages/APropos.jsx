@@ -160,8 +160,7 @@ export default function APropos() {
     const root = pageRef.current;
 
     /* HERO : cascade d'entrée + PHOTO révélée par balayage + parallaxe */
-    gsap.from(root.querySelectorAll('.ahero__reveal'), {
-      y: 30, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, delay: 0.15,
+    gsap.from(root.querySelectorAll('.ahero__reveal'), { z: -90, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out', stagger: 0.09, delay: 0.15,
     });
     const masks = root.querySelectorAll('.ahero__photo-mask');
     const img = root.querySelector('.ahero__img');
@@ -180,8 +179,7 @@ export default function APropos() {
       gsap.from(root.querySelectorAll('.ahero__pf-nom'), {
         yPercent: 110, duration: 0.7, ease: 'power4.out', delay: 1.05, stagger: 0.14,
       });
-      gsap.from(root.querySelectorAll('.ahero__pf-role, .ahero__pf-dit'), {
-        y: 12, autoAlpha: 0, duration: 0.6, ease: 'power3.out', delay: 1.2, stagger: 0.07,
+      gsap.from(root.querySelectorAll('.ahero__pf-role, .ahero__pf-dit'), { z: -90, transformPerspective: 900, y: 12, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out', delay: 1.2, stagger: 0.07,
       });
       /* parallaxe UNIQUEMENT vers le bas : le visage reste toujours cadré */
       gsap.fromTo(img, { yPercent: 0, scale: 1.06 }, {
@@ -196,8 +194,8 @@ export default function APropos() {
     const lead = root.querySelector('.astory__lead');
     if (lead) {
       gsap.from(lead, {
-        z: -700, y: 48, rotateX: -30, autoAlpha: 0,
-        duration: 1.05, ease: 'power3.out',
+        z: -170, transformPerspective: 900, y: 48, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+        duration: 1.3, ease: 'expo.out',
         scrollTrigger: { trigger: lead, start: 'top 86%' },
       });
     }
@@ -249,7 +247,7 @@ export default function APropos() {
           delay: i * 0.13,
         });
         tl.to(card, { clipPath: 'inset(0% 0% 0% 0% round 18px)', y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 1, ease: 'power4.out' }, 0)
-          .from(inner, { y: 24, autoAlpha: 0, duration: 0.65, ease: 'power3.out', stagger: 0.06 }, 0.18)
+          .from(inner, { z: -90, transformPerspective: 900, y: 24, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.9, ease: 'expo.out', stagger: 0.06 }, 0.18)
           .set(card, { clearProps: 'clipPath,filter,willChange' });
       });
     }

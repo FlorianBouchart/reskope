@@ -22,7 +22,7 @@ export default function Debut({ etapes = DEBUT }) {
     tl.fromTo(q('.dbt__fil i'), { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 1.3, ease: 'power2.inOut' }, 0);
     tl.from(q('.dbt__noeud'), { scale: 0, duration: 0.5, ease: 'back.out(2.4)', stagger: 0.42 }, 0.05);
     tl.from(q('.dbt__pas p'), {
-      z: -420, y: 26, rotateX: -20, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.14,
+      z: -100, transformPerspective: 900, y: 26, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.14,
     }, 0.12);
   }, { scope: racine });
 

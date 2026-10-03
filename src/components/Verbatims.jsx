@@ -26,11 +26,11 @@ export default function Verbatims({ sujets, total = 11 }) {
     const q = gsap.utils.selector(racine);
     q('.vb__sujet').forEach((col, k) => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: col, start: 'top 82%' } });
-      tl.from(col.querySelector('.vb__hub'), { z: -500, scale: 0.2, autoAlpha: 0, duration: 0.8, ease: 'back.out(1.8)' }, k * 0.12)
-        .from(col.querySelector('.vb__tete'), { z: -360, y: 20, autoAlpha: 0, duration: 0.7, ease: 'power3.out' }, k * 0.12 + 0.15)
+      tl.from(col.querySelector('.vb__hub'), { z: -120, transformPerspective: 900, scale: 0.2, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'back.out(1.8)' }, k * 0.12)
+        .from(col.querySelector('.vb__tete'), { z: -90, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out' }, k * 0.12 + 0.15)
         .fromTo(col.querySelector('.vb__fil'), { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: 'power2.inOut' }, k * 0.12 + 0.3)
         .from(col.querySelectorAll('.vb__cite'), {
-          z: -420, y: 30, rotateX: -18, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.14,
+          z: -100, transformPerspective: 900, y: 30, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.14,
         }, k * 0.12 + 0.4);
     });
   }, { scope: racine });

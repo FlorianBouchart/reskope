@@ -77,13 +77,13 @@ export default function Questions({ titre = 'Les questions qu’on nous pose', i
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.qs__titre'), {
-      z: -600, y: 44, rotateX: -26, autoAlpha: 0, duration: 1, ease: 'power3.out',
+      z: -140, transformPerspective: 900, y: 44, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 80%' },
     });
     q('.qs__item').forEach((el, i) => {
       gsap.from(el, {
-        z: -480 - i * 60, y: 40, rotateX: -22, autoAlpha: 0,
-        duration: 0.9, ease: 'power3.out',
+        z: -120 - i * 60, y: 40, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+        duration: 1.15, ease: 'expo.out',
         scrollTrigger: { trigger: el, start: 'top 90%' },
       });
     });

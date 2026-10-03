@@ -49,9 +49,9 @@ export default function Balance() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ scrollTrigger: { trigger: racine.current, start: 'top 78%' } });
-    tl.from(q('.bal__mission'), { y: -14, autoAlpha: 0, duration: 0.7, ease: 'power3.out' }, 0)
-      .from(q('.bal__bloc'), { y: -30, autoAlpha: 0, duration: 0.65, ease: 'bounce.out', stagger: 0.22 }, 0.3)
-      .from(q('.bal__raison'), { z: -300, x: 20, autoAlpha: 0, duration: 0.7, ease: 'power3.out', stagger: 0.22 }, 0.35);
+    tl.from(q('.bal__mission'), { z: -90, transformPerspective: 900, y: -14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out' }, 0)
+      .from(q('.bal__bloc'), { z: -90, transformPerspective: 900, y: -30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.9, ease: 'bounce.out', stagger: 0.22 }, 0.3)
+      .from(q('.bal__raison'), { z: -70, transformPerspective: 900, x: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out', stagger: 0.22 }, 0.35);
   }, { scope: racine });
 
   return (

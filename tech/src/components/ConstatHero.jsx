@@ -26,14 +26,12 @@ export default function ConstatHero({ eyebrow, title, teaser, lead, sourcesLabel
     const el = rootRef.current;
     /* Le titre arrive d'abord, seul, puis l'ourlet du bas se trace et son
        contenu suit. Deux temps : on lit le titre avant le reste. */
-    gsap.from(el.querySelectorAll('.chero__reveal'), {
-      y: 30, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, delay: 0.15,
+    gsap.from(el.querySelectorAll('.chero__reveal'), { z: -90, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out', stagger: 0.09, delay: 0.15,
     });
     gsap.from(el.querySelector('.chero__ourlet'), {
       scaleX: 0, transformOrigin: 'left center', duration: 1.1, ease: 'power4.out', delay: 0.5,
     });
-    gsap.from(el.querySelectorAll('.chero__ourlet-cell'), {
-      y: 16, autoAlpha: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08, delay: 0.72,
+    gsap.from(el.querySelectorAll('.chero__ourlet-cell'), { z: -90, transformPerspective: 900, y: 16, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out', stagger: 0.08, delay: 0.72,
     });
   }, { scope: rootRef });
 

@@ -4718,3 +4718,15 @@ main, .footer2, .crumb { position: relative; z-index: 1; }
   .nav .wordmark { min-width: 44px; min-height: 44px; justify-content: center; }
   .nav .wordmark__mark { width: 34px; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   SUR TÉLÉPHONE, LES SÉQUENCES ÉPINGLÉES À 0,7 ÉCRAN PAR PANNEAU.
+   Décision du 03/10/2026 : environ deux écrans de moins par page, sans
+   retirer une idée. Les séquences sont pilotées sur toute la hauteur de
+   leur rail (fin « bottom bottom ») : elles se jouent simplement plus vite.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 760px) {
+  .seq__rail { height: 180vh; }
+  .mfl { height: 340vh; }
+  .heroform { height: 150vh; }
+}

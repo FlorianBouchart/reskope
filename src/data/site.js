@@ -15,6 +15,10 @@ export const CONTACT = {
      qui menait à un mailto mène au formulaire — lui, il arrive. Le jour où
      la boîte existe, passer à true : rien d'autre à toucher. */
   ouverte: false,
+  /* Le portable de Florian : affiché sur la page Contact et dans le menu,
+     pour qu'on puisse appeler d'un geste. */
+  telephone: '06 20 23 55 20',
+  telephoneLien: '+33620235520',
 };
 
 /* Le libellé de repli, quand on ne peut pas donner d'adresse. */

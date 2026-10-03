@@ -22,20 +22,18 @@ export default function PageHeader({ eyebrow, title, lead, tone = 'default', act
         // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
         // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
         split = new SplitText(restRef.current, { type: 'words', aria: 'none' });
-        gsap.from(split.words, {
-          autoAlpha: 0,
+        gsap.from(split.words, { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
           yPercent: 65,
-          duration: 0.88,
-          ease: 'power4.out',
+          duration: 1.13,
+          ease: 'expo.out',
           stagger: 0.072,
           delay: 0.55,
         });
       } catch {
-        gsap.from(restRef.current, {
-          autoAlpha: 0,
+        gsap.from(restRef.current, { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
           y: 30,
-          duration: 0.9,
-          ease: 'power4.out',
+          duration: 1.15,
+          ease: 'expo.out',
           delay: 0.45,
         });
       }

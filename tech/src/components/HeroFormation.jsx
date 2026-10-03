@@ -46,6 +46,7 @@ export default function HeroFormation({ c }) {
   const visualRef = useRef(null);
   const actionsRef = useRef(null);
   const ditRef = useRef(null);
+  const surRef = useRef(null);
   const presRef = useRef(null);
   const glyphRefs = useRef([]);
 
@@ -254,10 +255,11 @@ export default function HeroFormation({ c }) {
 
     intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
     if (split) {
-      intro.from(split.chars, { yPercent: 112, autoAlpha: 0, duration: 0.9, stagger: 0.013 }, 0.12);
+      intro.from(split.chars, { z: -90, transformPerspective: 900, yPercent: 112, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, stagger: 0.013 }, 0.12);
     }
-    if (ditRef.current) intro.from(ditRef.current, { y: 20, autoAlpha: 0, duration: 0.7 }, 0.5);
-    intro.from(actionsRef.current, { y: 24, autoAlpha: 0, duration: 0.7 }, 0.6);
+    if (surRef.current) intro.from(surRef.current, { z: -70, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0);
+    if (ditRef.current) intro.from(ditRef.current, { z: -90, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.5);
+    intro.from(actionsRef.current, { z: -90, transformPerspective: 900, y: 24, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.6);
 
     /* Morph survol : VAGUE de bascule lettre à lettre — la lettre sans
        plonge (rotationX), la lettre réseau se relève à sa place exacte.
@@ -395,11 +397,11 @@ export default function HeroFormation({ c }) {
         </div>
 
         <div className="container heroform__copy">
-          {/* La version du site ne s'annonce plus ici. La porte d'entrée
-              pose la question une bonne fois, et le sélecteur du header la
-              rappelle en permanence : répéter « vous êtes plus de dix ? »
-              au-dessus du titre alourdissait le premier écran pour dire ce
-              que le visiteur vient déjà de choisir. */}
+          {/* À qui parle cet espace, en une ligne, au-dessus du titre. Beaucoup
+              arrivent ici directement depuis Google, sans être passés par la
+              porte d'entrée : sans cette ligne, « Define » ou « Elevate »
+              ne leur disait pas qu'ils étaient au bon endroit. */}
+          {c.heroEyebrow && <p className="eyebrow heroform__surtitre" ref={surRef}>{c.heroEyebrow}</p>}
           <div className="heroform__titlewrap" ref={wrapRef}>
             <h1 className="heroform__title" ref={titleRef}>{c.heroTitle}</h1>
             <div className="heroform__title heroform__title--net" ref={netTitleRef} aria-hidden="true">

@@ -23,9 +23,9 @@ export default function Compte({ rangs, total = 11, legende }) {
     const q = gsap.utils.selector(racine);
     q('.cpt__rang').forEach((r, k) => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: r, start: 'top 88%' } });
-      tl.from(r.querySelector('.cpt__sujet'), { z: -380, y: 22, rotateX: -18, autoAlpha: 0, duration: 0.8, ease: 'power3.out' }, 0)
+      tl.from(r.querySelector('.cpt__sujet'), { z: -90, transformPerspective: 900, y: 22, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0)
         .from(r.querySelectorAll('.cpt__p'), {
-          z: -300, scale: 0.2, autoAlpha: 0, duration: 0.6, ease: 'power3.out',
+          z: -70, transformPerspective: 900, scale: 0.2, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out',
           stagger: { each: 0.04, from: 'start' },
         }, 0.1)
         .from(r.querySelectorAll('.cpt__p.is-plein i'), {

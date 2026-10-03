@@ -37,6 +37,7 @@ import { PRIX, PORTES_CREATION } from '../data/offres';
    ════════════════════════════════════════════════════════════ */
 
 const HERO = {
+  heroEyebrow: 'Reskope Create · créer ou reprendre une entreprise',
   heroTitle: 'On trouve le client qui fera vivre votre projet.',
   heroDit: 'Vous créez ou reprenez une entreprise. On va rencontrer vos futurs clients, on construit votre business plan avec leurs réponses, et vous savez qui cibler, et comment.',
   primary: 'Parlons de votre projet',
@@ -62,7 +63,7 @@ function Livrable() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.liv__titre, .liv__dit'), {
-      z: -640, y: 50, rotateX: -26, autoAlpha: 0, duration: 1, ease: 'power3.out', stagger: 0.14,
+      z: -150, transformPerspective: 900, y: 50, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,
       scrollTrigger: { trigger: racine.current, start: 'top 80%' },
     });
   }, { scope: racine });

@@ -6,7 +6,8 @@ import Booking from '../components/Booking';
 import { gsap, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
 import { mesurer } from '../lib/mesure';
-import { FORMSUBMIT_URL } from '../data/site';
+import { RENDEZ_VOUS } from '../data/rendezvous';
+import { FORMSUBMIT_URL, CONTACT } from '../data/site';
 
 /* ════════════════════════════════════════════════════════════
    CONTACT — on arrive, on se situe, on écrit.
@@ -23,6 +24,10 @@ const SITUATIONS = [
   { id: 'idee', label: 'J’ai une idée à tester', amorce: 'Mon idée, en deux phrases : ' },
   { id: 'clients', label: 'Je veux comprendre mes clients', amorce: 'Ce qui a changé ces derniers mois : ' },
   { id: 'dossier', label: 'Mon dossier doit être relu', amorce: 'Mon rendez-vous avec le financeur est prévu le : ' },
+  /* Les dirigeants de TPE et de PME écrivent ici aussi : leur espace mène à
+     cette page, situation déjà cochée (?pour=tpe ou ?pour=pme). */
+  { id: 'tpe', label: 'Je dirige une TPE (1 à 10 personnes)', amorce: 'Ce qui me manque aujourd’hui : ' },
+  { id: 'pme', label: 'Je dirige une PME (10 à 250 personnes)', amorce: 'Les outils qui nous font perdre du temps : ' },
   { id: 'autre', label: 'Autre chose', amorce: '' },
 ];
 
@@ -32,28 +37,26 @@ const ENSUITE = [
   'Sous quarante-huit heures, vous recevez une proposition écrite, avec un prix fixe.',
 ];
 
-const BOOKING = {
-  title: 'Trente minutes, à l’heure qui vous arrange.',
-  lead: 'Choisissez directement un créneau dans notre agenda. Vous nous racontez votre situation, et on vous dit franchement si on peut vous aider, ou non.',
-  points: [
-    { value: '30 min', label: 'Au téléphone ou en visio, comme vous préférez' },
-    { value: '0 €', label: 'Gratuit, sans engagement et sans relance commerciale' },
-    { value: '48 h', label: 'Pour recevoir ensuite une proposition écrite, à prix fixe' },
-  ],
-  cta: 'Choisir un créneau',
-  ctaFallback: 'Écrire plutôt',
-  loading: 'Ouverture de l’agenda…',
-  or: 'Vous préférez écrire ?',
-  error: 'L’agenda n’a pas pu s’ouvrir. Réessayez, ou passez directement par',
-  privacy: 'L’agenda est fourni par Cal.com. Son script n’est chargé qu’au moment où vous cliquez : tant que vous ne demandez pas de rendez-vous, aucune donnée ne quitte ce site.',
-};
+
+/* Le message préparé par l'atelier de l'espace TPE ou PME : il arrive par
+   le stockage de session (on change d'application), et n'est lu qu'une fois. */
+function messagePrepare() {
+  try {
+    const m = sessionStorage.getItem('reskope-message');
+    if (m) sessionStorage.removeItem('reskope-message');
+    return m;
+  } catch {
+    return null;
+  }
+}
 
 export default function Contact() {
   const racine = useRef(null);
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state, search } = useLocation();
 
-  const depart = SITUATIONS.find((s) => s.id === state?.situation) || null;
+  const pour = new URLSearchParams(search).get('pour');
+  const depart = SITUATIONS.find((s) => s.id === (state?.situation || pour)) || null;
   /* L'atelier envoie ici le relevé du schéma qu'on vient de composer : on
      arrive avec le message déjà écrit, il n'y a plus qu'à signer. */
   const [form, setForm] = useState({
@@ -61,7 +64,7 @@ export default function Contact() {
     name: '',
     email: '',
     entreprise: '',
-    message: state?.message || (depart ? depart.amorce : ''),
+    message: state?.message || messagePrepare() || (depart ? depart.amorce : ''),
   });
   const [trap, setTrap] = useState(''); // honeypot anti-robot : doit rester vide
   const [status, setStatus] = useState('idle'); // idle | sending | error
@@ -114,7 +117,7 @@ export default function Contact() {
     if (instant()) return;
     const root = racine.current;
     gsap.from(root.querySelectorAll('.ctc__reveal'), {
-      z: -480, y: 36, rotateX: -20, autoAlpha: 0, duration: 0.95, ease: 'power3.out', stagger: 0.08, delay: 0.12,
+      z: -120, transformPerspective: 900, y: 36, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.12,
     });
     const fil = root.querySelector('.ctc__fil i');
     const pts = root.querySelectorAll('.ctc__steps li > i');
@@ -151,6 +154,9 @@ export default function Contact() {
               <p className="lead ctc__lead ctc__reveal">
                 Dites-nous en quelques lignes où vous en êtes. On vous répond sous vingt-quatre heures, et si on
                 ne peut pas vous aider, on vous le dit franchement.
+              </p>
+              <p className="ctc__tel ctc__reveal">
+                Vous préférez appeler ? <a href={`tel:${CONTACT.telephoneLien}`}>{CONTACT.telephone}</a>
               </p>
 
               <div className="ctc__next ctc__reveal">
@@ -234,7 +240,7 @@ export default function Contact() {
           </div>
         </header>
 
-        <Booking c={BOOKING} />
+        <Booking c={RENDEZ_VOUS} />
       </div>
     </Page>
   );

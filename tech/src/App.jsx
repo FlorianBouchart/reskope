@@ -12,6 +12,7 @@ import Interactions from './components/Interactions';
 import Nav from './components/Nav';
 import Breadcrumb from './components/Breadcrumb';
 import Footer from './components/Footer';
+import VersMaison from './components/VersMaison';
 import Home from './pages/Home';
 
 /* L'accueil part avec le paquet principal ; les autres pages ne sont
@@ -24,12 +25,6 @@ const Offres = lazy(() => import('./pages/Offres'));
 const Exemple = lazy(() => import('./pages/Exemple'));
 const Atelier = lazy(() => import('./pages/Atelier'));
 const Ecologie = lazy(() => import('./pages/Ecologie'));
-const APropos = lazy(() => import('./pages/APropos'));
-const Contact = lazy(() => import('./pages/Contact'));
-const MentionsLegales = lazy(() => import('./pages/Legales').then((m) => ({ default: m.MentionsLegales })));
-const Confidentialite = lazy(() => import('./pages/Legales').then((m) => ({ default: m.Confidentialite })));
-const CGU = lazy(() => import('./pages/Legales').then((m) => ({ default: m.CGU })));
-const CGV = lazy(() => import('./pages/Legales').then((m) => ({ default: m.CGV })));
 const NotFound = lazy(() => import('./pages/Etats').then((m) => ({ default: m.NotFound })));
 const Merci = lazy(() => import('./pages/Etats').then((m) => ({ default: m.Merci })));
 
@@ -71,12 +66,13 @@ export default function App() {
         <Route path="/exemple" element={<Exemple />} />
         <Route path="/atelier" element={<Atelier />} />
         <Route path="/numerique-responsable" element={<Ecologie />} />
-        <Route path="/a-propos" element={<APropos />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/mentions-legales" element={<MentionsLegales />} />
-        <Route path="/confidentialite" element={<Confidentialite />} />
-        <Route path="/cgu" element={<CGU />} />
-        <Route path="/cgv" element={<CGV />} />
+        {/* Les pages de la maison vivent sur le site principal (une seule fois). */}
+        <Route path="/a-propos" element={<VersMaison vers="/qui-on-est/" />} />
+        <Route path="/contact" element={<VersMaison vers={(p) => `/contact/?pour=${p}`} />} />
+        <Route path="/mentions-legales" element={<VersMaison vers="/mentions-legales/" />} />
+        <Route path="/confidentialite" element={<VersMaison vers="/confidentialite/" />} />
+        <Route path="/cgu" element={<VersMaison vers="/cgu/" />} />
+        <Route path="/cgv" element={<VersMaison vers="/cgv/" />} />
         <Route path="/merci" element={<Merci />} />
         {/* Route inconnue : page 404 dédiée (avant, la Home s'affichait
             silencieusement — mauvais pour l'utilisateur comme pour le SEO). */}

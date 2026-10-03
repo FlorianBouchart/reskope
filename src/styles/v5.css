@@ -2410,3 +2410,128 @@ button:focus-visible .croix__bras { transform: translate(var(--dx), var(--dy)); 
   position: absolute;
   inset: -12px -6px;
 }
+
+/* ════════════════════════════════════════════════════════════
+   LE MENU SUR TÉLÉPHONE : les actions restent en bas, toujours visibles.
+   Le panneau défile au-dessus ; on ne doit jamais avoir à chercher
+   comment nous joindre (le téléphone, nous écrire, réserver).
+   ════════════════════════════════════════════════════════════ */
+.menu2__tel {
+  justify-self: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--indigo);
+  text-decoration: none;
+}
+@media (max-width: 760px) {
+  .menu2__panel { justify-content: flex-start; padding-bottom: 0; }
+  .menu2__foot {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    display: grid;
+    gap: 0.65rem;
+    margin: auto -2rem 0;
+    padding: 0.95rem 2rem calc(0.95rem + env(safe-area-inset-bottom, 0px));
+    background: var(--cream);
+    box-shadow: 0 -22px 30px -20px rgba(14, 11, 31, 0.32);
+  }
+  .menu2__foot-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; width: 100%; }
+  .menu2__foot-actions .btn { width: 100%; justify-content: center; }
+  .menu2__foot-actions .menu2__lang { grid-column: 1 / -1; justify-self: center; }
+}
+
+/* Contact : le téléphone, juste sous l'accroche. */
+.ctc__tel { margin: 1rem 0 1.8rem; font-size: 1.05rem; color: var(--muted-fort); }
+.ctc__tel a { font-weight: 600; color: var(--indigo); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ════════════════════════════════════════════════════════════
+   L'ACCUEIL EN DIX SECONDES : la promesse, les deux façons de nous
+   joindre, et les offres de chaque marque lisibles sans entrer.
+   ════════════════════════════════════════════════════════════ */
+.aig__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem 1.2rem;
+  margin-top: clamp(1.1rem, 2.6vh, 1.6rem);
+}
+.aig__tel { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* La carte devient un article : son lien « Entrer » la recouvre entièrement
+   (toute la carte reste cliquable), ses offres passent au-dessus. */
+.aig__carte h2, .aig__carte p { margin: 0; font: inherit; }
+.aig__carte { grid-template-areas: 'reseau marque fleche' 'reseau moment fleche' 'reseau qui fleche' 'offres offres offres'; }
+.aig__entrer::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.aig__carte:focus-within { border-color: var(--c-vif); box-shadow: 0 30px 56px -34px color-mix(in srgb, var(--c-encre) 60%, transparent); }
+.aig__carte:focus-within .aig__entrer { background: var(--c-encre); }
+.aig__offres {
+  grid-area: offres;
+  display: grid;
+  gap: 0.15rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.aig__offres li { display: flex; align-items: baseline; gap: 0.55rem; }
+.aig__offres li::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-action);
+  transform: translateY(-2px);
+}
+.aig__offres a {
+  position: relative;
+  z-index: 1;
+  padding-block: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--c-encre);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+}
+.aig__offres a:hover, .aig__offres a:focus-visible { color: var(--c-action); background-size: 100% 1.5px; }
+@media (min-width: 960px) {
+  .aig__offres { width: 100%; margin: 1rem 0 1.2rem; }
+}
+
+/* La preuve : centrée, une phrase d'amorce, le détail, et le chiffre. */
+.aig__preuve {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-block: clamp(3.5rem, 10vh, 6.5rem);
+  text-align: center;
+}
+.aig__preuve .eyebrow { margin-bottom: 0; }
+.aig__preuve-titre { margin: 0; font-size: clamp(1.6rem, 3.6vw, 2.6rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; }
+.aig__preuve-texte { max-width: 40rem; margin: 0; font-size: var(--fs-lead, 1.1rem); line-height: 1.55; color: var(--muted-fort); text-wrap: pretty; }
+.aig__preuve-texte strong { color: var(--ink); font-weight: 600; }
+.aig__preuve-note { display: grid; justify-items: center; gap: 0.25rem; margin: 0.6rem 0 0.4rem; color: var(--muted-fort); }
+.aig__preuve-chiffre { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 600; line-height: 0.95; letter-spacing: -0.05em; color: var(--indigo); font-variant-numeric: tabular-nums; }
+
+/* Sur ordinateur, les trois cartes et leurs offres tiennent dans le premier
+   écran : un titre un peu moins haut, des réseaux plus discrets. */
+@media (min-width: 960px) {
+  .aig__q { font-size: clamp(2.2rem, 5vw, 4rem); }
+  .aig__reseau { width: clamp(4.6rem, 6vw, 6rem); height: clamp(4.6rem, 6vw, 6rem); margin-bottom: 0.5rem; }
+  .aig__choix-cadre { margin-top: clamp(1.2rem, 2.6vh, 2rem); }
+  .aig__offres { margin: 0.8rem 0 1rem; }
+  .aig__offres a { padding-block: 0.2rem; }
+}
+/* Petit téléphone : les deux actions du menu restent sur une ligne. */
+@media (max-width: 400px) {
+  .menu2__foot-actions .btn { padding-inline: 0.8rem; font-size: 0.92rem; }
+  .menu2__foot-actions .btn__arrow { display: none; }
+}

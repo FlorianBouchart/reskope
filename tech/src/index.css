@@ -13331,3 +13331,52 @@ html[data-profil="pme"] { --espace: var(--ciel); --espace-pale: var(--ciel-pale)
   position: absolute;
   inset: -12px -6px;
 }
+
+/* ════════════════════════════════════════════════════════════
+   LE MENU SUR TÉLÉPHONE : les actions restent en bas, toujours visibles.
+   Le panneau défile au-dessus ; on ne doit jamais avoir à chercher
+   comment nous joindre (le téléphone, nous écrire, réserver).
+   ════════════════════════════════════════════════════════════ */
+.menu2__tel {
+  justify-self: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--indigo);
+  text-decoration: none;
+}
+@media (max-width: 760px) {
+  .menu2__panel { justify-content: flex-start; padding-bottom: 0; }
+  .menu2__foot {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    display: grid;
+    gap: 0.65rem;
+    margin: auto -2rem 0;
+    padding: 0.95rem 2rem calc(0.95rem + env(safe-area-inset-bottom, 0px));
+    background: var(--cream);
+    box-shadow: 0 -22px 30px -20px rgba(14, 11, 31, 0.32);
+  }
+  .menu2__foot-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; width: 100%; }
+  .menu2__foot-actions .btn { width: 100%; justify-content: center; }
+  .menu2__foot-actions .menu2__lang { grid-column: 1 / -1; justify-self: center; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SUR TÉLÉPHONE, LES SÉQUENCES ÉPINGLÉES À 0,7 ÉCRAN PAR PANNEAU.
+   Décision du 03/10/2026 : environ deux écrans de moins par page, sans
+   retirer une idée. Les séquences sont pilotées sur toute la hauteur de
+   leur rail (fin « bottom bottom ») : elles se jouent simplement plus vite.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 760px) {
+  .seq__rail { height: 180vh; }
+  .mfl { height: 340vh; }
+  .heroform { height: 150vh; }
+}
+
+/* Petit téléphone : les deux actions du menu restent sur une ligne. */
+@media (max-width: 400px) {
+  .menu2__foot-actions .btn { padding-inline: 0.8rem; font-size: 0.92rem; }
+  .menu2__foot-actions .btn__arrow { display: none; }
+}

@@ -29,15 +29,20 @@ export function Reveal({
       return;
     }
 
-    gsap.set(items, { opacity: 0, y: 40, filter: 'blur(6px)' });
+    // La mise au point (voir lib/mouvement.js) : de la profondeur, du flou au net.
+    gsap.set(items, { opacity: 0, y: 22, z: -120, scale: 0.985, rotateX: -4, transformPerspective: 900, filter: 'blur(10px)' });
     const play = () =>
       gsap.to(items, {
         opacity: 1,
         y: 0,
+        z: 0,
+        scale: 1,
+        rotateX: 0,
         filter: 'blur(0px)',
-        duration: 0.95,
-        ease: 'power4.out',
-        stagger: 0.085,
+        duration: 1.25,
+        ease: 'expo.out',
+        stagger: 0.08,
+        clearProps: 'filter',
       });
 
     if (onMount) {

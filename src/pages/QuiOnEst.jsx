@@ -18,8 +18,7 @@ import { POLES } from '../data/offres';
 
    Le dirigeant veut savoir à qui il confie ses clients et son dossier. On
    lui montre deux visages, ce que chacun mène, comment on travaille, et on
-   lui dit franchement ce qu'on n'a pas encore : des clients à citer, et un
-   diplôme de graphiste.
+   lui dit franchement ce qu'on n'est pas : des graphistes diplômés.
    ════════════════════════════════════════════════════════════ */
 
 const PHOTOS = {
@@ -31,6 +30,7 @@ const BIO = [
   'On ne fait pas du conseil à la chaîne. Sur chaque dossier, on s’investit comme s’il s’agissait de notre propre entreprise.',
   'Thomy mène le business plan, la stratégie et le passage devant les financeurs. Elle a accompagné pendant deux ans des créateurs d’entreprise jusqu’à ce rendez-vous, et elle sait ce qu’un financeur lit en premier.',
   'Florian mène les entretiens avec vos clients, de la première question à la synthèse, puis la partie technique quand la suite en demande : les sites, les outils, et ce qu’on relie entre eux.',
+  'La méthode, il l’a d’abord appliquée à sa propre marque, Desrèves, des accessoires en soie lancés en 2025 : un grand chantier de restructuration, une nouvelle cible, et un business plan noté 18/20, la meilleure note de sa promotion.',
   'Aucun des deux ne reste dans son couloir : Florian a lui aussi accompagné des créations d’entreprise et relit les chiffres des dossiers, et Thomy est en appui sur chaque discovery. C’est ce qui fait qu’un dossier avance d’un seul tenant, de la preuve à la décision.',
 ];
 
@@ -53,7 +53,7 @@ export default function QuiOnEst() {
     if (instant()) return;
     const root = racine.current;
     gsap.from(root.querySelectorAll('.ahero__reveal'), {
-      z: -520, y: 40, rotateX: -22, autoAlpha: 0, duration: 1, ease: 'power3.out', stagger: 0.09, delay: 0.15,
+      z: -120, transformPerspective: 900, y: 40, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.09, delay: 0.15,
     });
     const masks = root.querySelectorAll('.ahero__photo-mask');
     if (masks.length) {
@@ -63,7 +63,7 @@ export default function QuiOnEst() {
       gsap.from(root.querySelectorAll('.ahero__pf-filet'), { scaleX: 0, duration: 0.8, ease: 'power3.inOut', delay: 0.95, stagger: 0.14 });
       gsap.from(root.querySelectorAll('.ahero__pf-nom'), { yPercent: 110, duration: 0.7, ease: 'power4.out', delay: 1.05, stagger: 0.14 });
       gsap.from(root.querySelectorAll('.ahero__pf-role, .ahero__pf-dit'), {
-        z: -200, y: 12, autoAlpha: 0, duration: 0.6, ease: 'power3.out', delay: 1.2, stagger: 0.07,
+        z: -60, transformPerspective: 900, y: 12, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out', delay: 1.2, stagger: 0.07,
       });
     }
 
@@ -73,7 +73,7 @@ export default function QuiOnEst() {
     const lead = root.querySelector('.astory__lead');
     if (lead) {
       gsap.from(lead, {
-        z: -700, y: 48, rotateX: -30, autoAlpha: 0, duration: 1.05, ease: 'power3.out',
+        z: -170, transformPerspective: 900, y: 48, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.3, ease: 'expo.out',
         scrollTrigger: { trigger: lead, start: 'top 86%' },
       });
     }

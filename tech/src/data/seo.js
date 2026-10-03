@@ -50,16 +50,21 @@ export const PAGES = [
   { route: '/pourquoi', priorite: '0.8', freq: 'monthly' },
   { route: '/methode', priorite: '0.8', freq: 'monthly' },
   { route: '/offres', priorite: '0.9', freq: 'monthly' },
-  { route: '/atelier', priorite: '0.8', freq: 'monthly' },
+  { route: '/atelier', priorite: '0.8', freq: 'monthly', canoniquePme: true },
   { route: '/exemple', priorite: '0.7', freq: 'monthly', profils: ['pme'] },
-  { route: '/numerique-responsable', priorite: '0.6', freq: 'yearly' },
-  { route: '/a-propos', priorite: '0.6', freq: 'yearly' },
-  { route: '/contact', priorite: '0.9', freq: 'yearly' },
-  { route: '/mentions-legales', priorite: '0.2', freq: 'yearly', profils: ['pme'] },
-  { route: '/confidentialite', priorite: '0.2', freq: 'yearly', profils: ['pme'] },
-  { route: '/cgu', priorite: '0.2', freq: 'yearly', profils: ['pme'] },
-  { route: '/cgv', priorite: '0.2', freq: 'yearly', profils: ['pme'] },
+  { route: '/numerique-responsable', priorite: '0.6', freq: 'yearly', canoniquePme: true },
+  /* Les pages de la maison : une seule fois, sur le site principal. Ici, un
+     simple renvoi (vers), pour les liens et les adresses déjà partagés. */
+  { route: '/a-propos', vers: () => '/qui-on-est/' },
+  { route: '/contact', vers: (profil) => `/contact/?pour=${profil}` },
+  { route: '/mentions-legales', vers: () => '/mentions-legales/' },
+  { route: '/confidentialite', vers: () => '/confidentialite/' },
+  { route: '/cgu', vers: () => '/cgu/' },
+  { route: '/cgv', vers: () => '/cgv/' },
 ];
+/* canoniquePme : l'atelier et le numérique responsable sont le même texte
+   dans les deux espaces. Le visiteur reste dans le sien (mêmes couleurs) ;
+   Google, lui, n'en retient qu'une adresse, celle de l'espace PME. */
 
 /** La page existe-t-elle en fichier dans cet espace ? L'exemple de bilan et
     les pages légales n'existent que côté PME : un lien vers /tpe/exemple
@@ -67,7 +72,7 @@ export const PAGES = [
     moteur. */
 export function pageExiste(profil, route) {
   const page = PAGES.find((x) => x.route === route);
-  return !!page && (!page.profils || page.profils.includes(profil));
+  return !!page && !page.vers && (!page.profils || page.profils.includes(profil));
 }
 
 export const PROFILS = ['pme', 'tpe'];
@@ -226,10 +231,17 @@ export function fiche(profil, route) {
 export function adresses() {
   const out = [];
   for (const p of PAGES) {
+    if (p.vers) continue;
     for (const profil of p.profils || PROFILS) {
       if (!fiche(profil, p.route)) continue;
       out.push({ profil, ...p });
     }
   }
   return out;
+}
+
+/* Les renvois à écrire au build : une page par ancienne adresse de la
+   maison, dans chaque espace, vers sa page unique du site principal. */
+export function renvois() {
+  return PAGES.filter((p) => p.vers).flatMap((p) => PROFILS.map((profil) => ({ chemin: `${profil}${p.route}/index.html`, cible: p.vers(profil) })));
 }

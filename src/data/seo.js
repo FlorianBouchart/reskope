@@ -148,7 +148,7 @@ export function fiche(route) {
 export const VERS_ENTREPRISES = {
   '/offres': 'pme/offres',
   '/methode': 'pme/methode',
-  '/a-propos': 'pme/a-propos',
+  '/a-propos': 'qui-on-est',
   '/pourquoi': 'pme/pourquoi',
   '/numerique-responsable': 'pme/numerique-responsable',
   '/atelier': 'pme/atelier',
@@ -162,13 +162,16 @@ export const VERS_ENTREPRISES = {
    l'exemple de bilan. Chargées directement depuis l'espace TPE, elles
    arrivent ici (la page d'erreur du site est celle de cette application) ;
    on les renvoie vers leur exemplaire PME plutôt que vers l'accueil. */
-const PME_SEULEMENT = ['mentions-legales', 'confidentialite', 'cgu', 'cgv', 'exemple'];
+const PME_SEULEMENT = ['exemple'];
+/* Les pages de la maison n'existent qu'une fois, ici, sur le site principal. */
+const MAISON = { 'a-propos': () => 'qui-on-est/', contact: (espace) => `contact/?pour=${espace}`, 'mentions-legales': () => 'mentions-legales/', confidentialite: () => 'confidentialite/', cgu: () => 'cgu/', cgv: () => 'cgv/' };
 
 export function versEntreprises(chemin) {
   const propre = chemin !== '/' ? chemin.replace(/\/+$/, '') : '/';
   if (VERS_ENTREPRISES[propre]) return `${VERS_ENTREPRISES[propre]}/`;
   const [premier, second] = propre.split('/').filter(Boolean);
   if (premier !== 'tpe' && premier !== 'pme') return null;
+  if (second && MAISON[second]) return MAISON[second](premier);
   if (second && PME_SEULEMENT.includes(second)) return `pme/${second}/`;
   return `${premier}/`;
 }

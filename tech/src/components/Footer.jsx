@@ -74,8 +74,7 @@ export default function Footer() {
     /* Colonnes : chaque ligne monte derrière son propre masque, colonne
        après colonne. Une cascade d'opacité sur trois blocs entiers ne se
        voit pas ; ligne à ligne, si. */
-    gsap.from(rootRef.current.querySelectorAll('.footer2__col > *'), {
-      yPercent: 105, autoAlpha: 0, duration: 0.65, ease: 'power4.out', stagger: 0.035,
+    gsap.from(rootRef.current.querySelectorAll('.footer2__col > *'), { z: -90, transformPerspective: 900, yPercent: 105, autoAlpha: 0, filter: 'blur(8px)', duration: 0.9, ease: 'expo.out', stagger: 0.035,
       /* Sans clearProps, une ligne pouvait rester sur son décalage de départ
          et se poser sur la suivante — c'est ce qui faisait passer « Carte de
          visite » par-dessus la ville. Une fois montée, la ligne ne garde
@@ -166,10 +165,10 @@ export default function Footer() {
 
       <div className="container footer2__top">
         <p className="footer2__statement" ref={stRef}>{statement}</p>
-        <Link to="/contact" className="btn btn--on-dark footer2__cta" data-cursor-label={f.cta}>
+        <a href={`${BASE}/contact/?pour=${profil}`} className="btn btn--on-dark footer2__cta" data-cursor-label={f.cta}>
           <SwapLabel>{f.cta}</SwapLabel>
           <span className="btn__arrow" aria-hidden="true">→</span>
-        </Link>
+        </a>
       </div>
 
       {/* Les trois espaces, en tuiles : chacun dit à qui il s'adresse. */}
@@ -195,7 +194,7 @@ export default function Footer() {
           <Link to="/atelier">{tabs['/atelier']}</Link>
           {visible('/exemple') && <Link to="/exemple">{tabs['/exemple']}</Link>}
           <Link to="/numerique-responsable">{tabs['/numerique-responsable']}</Link>
-          <Link to="/a-propos">{tabs['/a-propos']}</Link>
+          <a href={`${BASE}/qui-on-est/`}>{tabs['/a-propos']}</a>
           {/* Le reste du site : comprendre ses clients vaut pour toutes les
               entreprises, et l'aiguillage ramène aux trois espaces. */}
           {['clients'].map((k) => (
@@ -208,7 +207,7 @@ export default function Footer() {
         <div className="footer2__col">
           <span className="footer2__heading">{f.contact}</span>
           {CONTACT.ouverte && <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>}
-          <Link to="/contact">{f.talk}</Link>
+          <a href={`${BASE}/contact/?pour=${profil}`}>{f.talk}</a>
           <button type="button" className="footer2__card-btn" onClick={() => setCardOpen(true)}>
             {f.card} <span aria-hidden="true">→</span>
           </button>

@@ -29,7 +29,7 @@ export default function Duo({
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.duo__titre'), {
-      z: -700, y: 50, rotateX: -28, autoAlpha: 0, duration: 1.05, ease: 'power3.out',
+      z: -170, transformPerspective: 900, y: 50, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.3, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 78%' },
     });
     const tl = gsap.timeline({ scrollTrigger: { trigger: q('.duo__gens')[0], start: 'top 82%' } });
@@ -37,10 +37,10 @@ export default function Duo({
       { clipPath: 'inset(100% 0% 0% 0% round 16px)', z: -320, rotateX: -18 },
       { clipPath: 'inset(0% 0% 0% 0% round 16px)', z: 0, rotateX: 0, duration: 1.2, ease: 'power4.inOut', stagger: 0.16 }, 0)
       .from(q('.duo__nom'), { yPercent: 110, duration: 0.7, ease: 'power4.out', stagger: 0.16 }, 0.7)
-      .from(q('.duo__mene, .duo__dit'), { z: -220, y: 18, autoAlpha: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 }, 0.85)
+      .from(q('.duo__mene, .duo__dit'), { z: -60, transformPerspective: 900, y: 18, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out', stagger: 0.08 }, 0.85)
       .fromTo(q('.duo__fil'), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: 'power3.inOut' }, 1.05);
     gsap.from(q('.duo__franchise'), {
-      z: -420, y: 30, autoAlpha: 0, duration: 0.9, ease: 'power3.out',
+      z: -100, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out',
       scrollTrigger: { trigger: q('.duo__franchise')[0], start: 'top 90%' },
     });
   }, { scope: racine });

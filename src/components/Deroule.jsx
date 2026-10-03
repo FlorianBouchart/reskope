@@ -31,7 +31,7 @@ export default function Deroule({ etapes }) {
       const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 80%' } });
       tl.from(el.querySelector('.drl__point'), { scale: 0, duration: 0.45, ease: 'back.out(2.6)' }, 0)
         .from(el.querySelectorAll('.drl__quand, .drl__quoi, .drl__vous'), {
-          z: -460, y: 34, rotateX: -22, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09,
+          z: -110, transformPerspective: 900, y: 34, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out', stagger: 0.09,
         }, 0.05);
     });
   }, { scope: racine });

@@ -207,9 +207,9 @@ export default function Nav() {
             <LangToggle className="nav__lang" />
             {/* Deux intentions, deux boutons : écrire / réserver */}
             <div className="nav__ctas">
-              <Link to="/contact" className="nav__cta nav__cta--ghost">
+              <a href={`${BASE}/contact/?pour=${profil}`} className="nav__cta nav__cta--ghost">
                 <SwapLabel>{t.nav.cta}</SwapLabel>
-              </Link>
+              </a>
               {isCalConfigured && (
                 <button type="button" className="nav__cta nav__cta--solid" onClick={book}>
                   <SwapLabel>{t.nav.ctaBook}</SwapLabel>
@@ -256,7 +256,7 @@ export default function Nav() {
           onClick={() => setOpen(false)}
         />
         <div className="menu2__layer" aria-hidden="true" ref={layerRef} />
-        <div className="menu2__panel" ref={panelRef} aria-hidden={!open}>
+        <div className="menu2__panel" ref={panelRef} aria-hidden={!open} data-lenis-prevent>
           {/* La croix du menu : l'en-tête s'efface quand le menu s'ouvre, le
               menu porte sa propre sortie. */}
           <button
@@ -301,10 +301,11 @@ export default function Nav() {
                 <a href={`mailto:${CONTACT.email}`} className="menu2__contact-link">{CONTACT.email}</a>
               </div>
             )}
+            <a className="menu2__tel" href={`tel:${CONTACT.telephoneLien}`}>{CONTACT.telephone}</a>
             <div className="menu2__foot-actions">
-              <Link to="/contact" className="btn btn--ghost">
+              <a href={`${BASE}/contact/?pour=${profil}`} className="btn btn--ghost">
                 <SwapLabel>{t.nav.cta}</SwapLabel>
-              </Link>
+              </a>
               {isCalConfigured && (
                 <button type="button" className="btn btn--primary" onClick={book}>
                   <SwapLabel>{t.nav.ctaBook}</SwapLabel>

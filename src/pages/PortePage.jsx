@@ -48,12 +48,12 @@ function Tete({ p, onVoir }) {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ delay: 0.15 });
-    tl.from(q('.ph__voix'), { z: -500, y: 30, rotateX: -24, autoAlpha: 0, duration: 0.9, ease: 'power3.out' }, 0)
-      .from(q('.ph__titre'), { z: -760, y: 60, rotateX: -32, autoAlpha: 0, duration: 1.1, ease: 'power3.out' }, 0.1)
-      .from(q('.ph__accroche'), { z: -420, y: 30, autoAlpha: 0, duration: 0.9, ease: 'power3.out' }, 0.35)
-      .from(q('.ph__fait'), { z: -360, y: 26, rotateX: -18, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08 }, 0.5)
-      .from(q('.ph__actions'), { z: -300, y: 20, autoAlpha: 0, duration: 0.8, ease: 'power3.out' }, 0.75)
-      .from(q('.ph__visuel'), { z: -600, rotateY: -16, rotateX: 10, autoAlpha: 0, duration: 1.3, ease: 'power3.out' }, 0.2);
+    tl.from(q('.ph__voix'), { z: -120, transformPerspective: 900, y: 30, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out' }, 0)
+      .from(q('.ph__titre'), { z: -180, transformPerspective: 900, y: 60, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0.1)
+      .from(q('.ph__accroche'), { z: -100, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out' }, 0.35)
+      .from(q('.ph__fait'), { z: -90, transformPerspective: 900, y: 26, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.08 }, 0.5)
+      .from(q('.ph__actions'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0.75)
+      .from(q('.ph__visuel'), { z: -140, transformPerspective: 900, rotateY: -16, rotateX: 2, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.4, ease: 'expo.out' }, 0.2);
   }, { scope: racine });
 
   return (
@@ -98,10 +98,10 @@ function Suite({ ids }) {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ scrollTrigger: { trigger: racine.current, start: 'top 80%' } });
-    tl.from(q('.sui__titre'), { z: -640, y: 50, rotateX: -28, autoAlpha: 0, duration: 1, ease: 'power3.out' }, 0)
+    tl.from(q('.sui__titre'), { z: -150, transformPerspective: 900, y: 50, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out' }, 0)
       .fromTo(q('.sui__fil'), { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power2.inOut' }, 0.2)
       .from(q('.sui__noeud'), { scale: 0, duration: 0.45, ease: 'back.out(2.4)', stagger: 0.2 }, 0.3)
-      .from(q('.sui__offre'), { z: -460, y: 36, rotateX: -20, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }, 0.35);
+      .from(q('.sui__offre'), { z: -110, transformPerspective: 900, y: 36, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out', stagger: 0.12 }, 0.35);
   }, { scope: racine });
 
   return (

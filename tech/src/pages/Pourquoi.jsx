@@ -143,8 +143,7 @@ function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
         y: 0, autoAlpha: 1, filter: 'blur(0px)',
         duration: 1.05, ease: 'power4.out',
       }, 0)
-        .from(inner, {
-          y: 26, autoAlpha: 0, duration: 0.7, ease: 'power3.out', stagger: 0.07,
+        .from(inner, { z: -90, transformPerspective: 900, y: 26, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out', stagger: 0.07,
         }, 0.18)
         .set(card, { clearProps: 'clipPath,filter,willChange' });
     });

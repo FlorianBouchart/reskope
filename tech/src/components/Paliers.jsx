@@ -90,14 +90,12 @@ export default function Paliers({ tiers }) {
       tl.from(it.querySelectorAll('.axo__sol line, .axo__cadre'), {
         opacity: 0, duration: 0.4, ease: 'none', stagger: 0.012,
       }, i * 0.14)
-        .from(it.querySelectorAll('.axo__v'), {
-          y: 4.5, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.05,
+        .from(it.querySelectorAll('.axo__v'), { z: -90, transformPerspective: 900, y: 4.5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'back.out(1.6)', stagger: 0.05,
         }, i * 0.14 + 0.12)
         .from(it.querySelectorAll('.plr__t'), {
           yPercent: 112, duration: 0.65, ease: 'power4.out',
         }, i * 0.14 + 0.22)
-        .from(it.querySelectorAll('.plr__d, .plr__ex'), {
-          y: 14, autoAlpha: 0, duration: 0.55, ease: 'power3.out', stagger: 0.06,
+        .from(it.querySelectorAll('.plr__d, .plr__ex'), { z: -90, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.55, ease: 'expo.out', stagger: 0.06,
         }, i * 0.14 + 0.34);
     });
   }, { scope: racine });

@@ -12,6 +12,7 @@ import { fiche } from '../data/seo';
 import Espaces, { EspacesTuiles } from './Espaces';
 import { MARQUES } from '../data/marques';
 import { useMarque } from '../lib/useMarque';
+import { CONTACT } from '../data/site';
 import { openCalModal, isCalConfigured } from '../lib/cal';
 
 /* NAV — un en-tête minimal, et un menu qui tient dans un écran.
@@ -264,7 +265,7 @@ export default function Nav() {
           onClick={() => setOpen(false)}
         />
         <div className="menu2__layer" aria-hidden="true" ref={layerRef} />
-        <div className="menu2__panel" ref={panelRef} aria-hidden={!open}>
+        <div className="menu2__panel" ref={panelRef} aria-hidden={!open} data-lenis-prevent>
           {/* La croix du menu : l'en-tête s'efface quand le menu s'ouvre, le
               menu porte sa propre sortie. */}
           <button
@@ -315,6 +316,7 @@ export default function Nav() {
           </nav>
 
           <div className="menu2__foot">
+            <a className="menu2__tel" href={`tel:${CONTACT.telephoneLien}`}>{CONTACT.telephone}</a>
             <div className="menu2__foot-actions">
               <Link to="/contact" className="btn btn--ghost">
                 <SwapLabel>Nous écrire</SwapLabel>

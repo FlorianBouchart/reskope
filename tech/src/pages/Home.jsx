@@ -27,6 +27,7 @@ const CONTENT = {
       'Reskope cartographie et audite vos outils sur le terrain, salarié par salarié, puis relie, simplifie et construit ce qui manque. Démarche ouverte, gains chiffrés.',
 
     /* — 1. Hero — */
+    heroEyebrow: 'Reskope Elevate · PME de 10 à 250 personnes',
     heroTitle: 'Vos équipes perdent des heures dans leurs outils.',
     /* Le premier écran annonçait un problème sans jamais dire ce qu'on
        vend. Cette ligne le dit, avec les quatre verbes qu'on retrouve
@@ -145,6 +146,7 @@ const CONTENT = {
     metaTitle: 'Digital consulting & engineering',
     metaDesc:
       'Reskope maps and audits your tools on the ground, employee by employee, then connects, simplifies and builds what is missing. Open process, quantified gains.',
+    heroEyebrow: 'Reskope Elevate · companies of 10 to 250 people',
     heroTitle: 'Your teams lose hours inside their tools.',
     heroDit: 'We put your tools back in order, and your teams get back the hours they were losing.',
 

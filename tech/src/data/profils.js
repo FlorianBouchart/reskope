@@ -16,6 +16,7 @@ export const HOME_TPE = {
     metaTitle: 'Sites, boutiques et identité de marque pour TPE',
     metaDesc:
       'On construit ce qui vous manque : site vitrine, boutique en ligne, prise de rendez-vous, identité de marque. Facturé à la journée, code et accès à votre nom.',
+    heroEyebrow: 'Reskope Define · TPE et artisans, de 1 à 10 personnes',
     heroTitle: 'On construit ce qui vous manque.',
     heroDit: 'Ce qui vous manque existe en quelques semaines, et vous repartez avec les clés.',
     condQ: 'On est fait pour vous si vous vivez l’une de ces situations.',
@@ -80,6 +81,7 @@ export const HOME_TPE = {
     metaTitle: 'Websites, shops and brand identity for small businesses',
     metaDesc:
       'We build what you are missing: website, online shop, booking, brand identity. Billed by the day, code and access in your name.',
+    heroEyebrow: 'Reskope Define · small businesses of 1 to 10 people',
     heroTitle: 'We build what you are missing.',
     heroDit: 'What you are missing exists within weeks, and you leave with the keys.',
     condQ: 'We are made for you if you live one of these situations.',

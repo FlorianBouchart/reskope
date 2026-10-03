@@ -23,8 +23,8 @@ export default function Noeuds({ items, etat = 'plein', className = '', grand = 
     const tl = gsap.timeline({ scrollTrigger: { trigger: racine.current, start: 'top 86%' } });
     tl.fromTo(q('.nds__fil'), { scaleY: 0 }, { scaleY: 1, duration: 0.3 + items.length * 0.14, ease: 'power2.inOut' }, 0);
     tl.from(q('.nds__item'), {
-      z: -380, y: 30, rotateX: -24, autoAlpha: 0,
-      duration: 0.8, ease: 'power3.out', stagger: 0.12,
+      z: -90, transformPerspective: 900, y: 30, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+      duration: 1.05, ease: 'expo.out', stagger: 0.12,
     }, 0.05);
     tl.from(q('.nds__noeud'), {
       scale: 0, duration: 0.45, ease: 'back.out(2.6)', stagger: 0.12,
