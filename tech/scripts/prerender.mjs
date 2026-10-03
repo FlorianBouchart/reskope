@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, PAGES, PROFILS, PORTE, META, url, fiche, adresses } from '../src/data/seo.js';
+import { SITE, PAGES, PROFILS, PORTE, META, url, fiche, adresses, renvois } from '../src/data/seo.js';
 import { MARQUES, MERE, MARQUE_DE_L_ESPACE, nomComplet } from '../src/data/marques.js';
 import { CABINET, ID_SITE, OFFRES_ENTREPRISES, service, typeDePage } from '../../scripts/entreprise.mjs';
 
@@ -105,7 +105,8 @@ function corps(profil, route, f) {
     .filter((p) => fiche(profil || 'pme', p.route))
     .map((p) => {
       const g = fiche(profil || 'pme', p.route);
-      return `<li><a href="${url(profil, p.route)}">${ech(g.titre)}</a></li>`;
+      const href = p.vers ? `${SITE.origine}${SITE.base}${p.vers(profil || 'pme')}` : url(profil, p.route);
+      return `<li><a href="${href}">${ech(g.titre)}</a></li>`;
     })
     .join('');
 
@@ -125,8 +126,12 @@ function corps(profil, route, f) {
     </div>`;
 }
 
+/* L'atelier et le numérique responsable : même texte dans les deux espaces,
+   une seule adresse pour Google (celle de l'espace PME). */
+const canonique = (profil, route) => (profil === 'tpe' && PAGES.find((p) => p.route === route)?.canoniquePme ? url('pme', route) : url(profil, route));
+
 function page(profil, route, f) {
-  const adresse = url(profil, route);
+  const adresse = canonique(profil, route);
   /* Define pour les TPE, Elevate pour les PME : dans le titre, et posée sur
      <html> pour que la page naisse dans ses couleurs. */
   const marque = MARQUE_DE_L_ESPACE[profil] || 'reskope';
@@ -156,9 +161,32 @@ function ecrire(chemin, contenu) {
   writeFileSync(cible, contenu);
 }
 
+/* Un renvoi : une redirection immédiate, une canonique vers la page finale
+   (sans paramètre), pas d'indexation. */
+function renvoi(cible) {
+  const finale = `${SITE.origine}${SITE.base}${cible.split('?')[0]}`;
+  return `<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url=${SITE.base}${cible}" />
+    <link rel="canonical" href="${finale}" />
+    <title>Cette page a déménagé · ${SITE.marque}</title>
+  </head>
+  <body>
+    <p>Cette page a déménagé : <a href="${SITE.base}${cible}">la retrouver ici</a>.</p>
+  </body>
+</html>
+`;
+}
+
 /* ── Production ─────────────────────────────────────────────── */
-const liste = adresses();
-for (const a of liste) {
+const tout = adresses();
+/* Le plan du site ne déclare qu'une adresse par texte. */
+const liste = tout.filter((a) => !(a.profil === 'tpe' && a.canoniquePme));
+for (const r of renvois()) ecrire(r.chemin, renvoi(r.cible));
+for (const a of tout) {
   const f = fiche(a.profil, a.route);
   const chemin = a.route === '/' ? `${a.profil}/index.html` : `${a.profil}${a.route}/index.html`;
   ecrire(chemin, page(a.profil, a.route, f));
