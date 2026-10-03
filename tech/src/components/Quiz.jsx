@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../i18n';
+import LienLegal from './LienLegal';
 import { FORMSUBMIT_URL } from '../data/site';
 
 /* Contenu bilingue. Les `tags` sont des clés neutres (identiques fr/en) :
@@ -392,7 +392,7 @@ export default function Quiz() {
           </div>
           <p className="quiz__note">{ui.note}</p>
           <p className="ctc__consent quiz__consent">
-            {ui.consent} <Link to="/confidentialite">{ui.consentLink}</Link>.
+            {ui.consent} <LienLegal to="/confidentialite">{ui.consentLink}</LienLegal>.
           </p>
         </form>
       </div>

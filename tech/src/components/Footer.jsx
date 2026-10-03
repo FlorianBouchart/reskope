@@ -12,6 +12,8 @@ import { useProfil, BASE } from '../profil';
 import { PAGES_PROFIL } from '../data/profils';
 import { EspacesTuiles } from './Espaces';
 import { MARQUES } from '../data/marques';
+import LienLegal from './LienLegal';
+import { rouvrirMesure } from '../lib/mesure';
 import { useMarque } from '../lib/useMarque';
 
 /* FOOTER — L'UNIVERS de clôture (plein écran).
@@ -233,10 +235,11 @@ export default function Footer() {
 
       <div className="container footer2__legal">
         <nav className="footer2__legal-links" aria-label={f.mentions}>
-          <Link to="/mentions-legales">{f.mentions}</Link>
-          <Link to="/confidentialite">{f.privacy}</Link>
-          <Link to="/cgu">{f.terms}</Link>
-          <Link to="/cgv">{f.sales}</Link>
+          <LienLegal to="/mentions-legales">{f.mentions}</LienLegal>
+          <LienLegal to="/confidentialite">{f.privacy}</LienLegal>
+          <LienLegal to="/cgu">{f.terms}</LienLegal>
+          <LienLegal to="/cgv">{f.sales}</LienLegal>
+          <button type="button" className="mesure-lien" onClick={rouvrirMesure}>Cookies</button>
         </nav>
         <p>© {new Date().getFullYear()} {marque ? `Reskope ${marque.nom} · ${(marque[lang] || marque.fr).signature}` : `Reskope · ${f.rights}`}</p>
       </div>

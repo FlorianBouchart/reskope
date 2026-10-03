@@ -5,6 +5,7 @@ import './styles/v5.css';
 import './styles/marques.css';
 import App from './App.jsx';
 import { LangProvider } from './i18n.jsx';
+import { lancerMesure } from './lib/mesure';
 
 /* ============================================================
    Un seul site, à plat : /reskope/tester-une-idee, /reskope/contact...
@@ -32,3 +33,7 @@ racine.render(
     </BrowserRouter>
   </LangProvider>
 );
+
+/* La mesure d'audience : rien n'est chargé sans l'accord du visiteur
+   (voir src/lib/mesure.js). */
+lancerMesure();

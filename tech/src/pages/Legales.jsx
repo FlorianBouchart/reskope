@@ -45,7 +45,7 @@ const MENTIONS = {
     eyebrow: 'Informations',
     title: 'Mentions légales.',
     lead: "Les informations légales relatives à l'éditeur et à l'hébergement de ce site.",
-    updated: 'Dernière mise à jour : 14 septembre 2026.',
+    updated: 'Dernière mise à jour : 3 octobre 2026.',
     sections: [
       { h: 'Éditeur du site', p: [
         `Le site Reskope est édité par Florian Bouchart, entrepreneur individuel.`,
@@ -64,10 +64,10 @@ const MENTIONS = {
         "L'ensemble des contenus de ce site (textes, identité visuelle, logo, animations, code) est la propriété de Reskope, sauf mention contraire. Toute reproduction, représentation, modification ou adaptation, totale ou partielle, sans autorisation écrite préalable, est interdite et constitue une contrefaçon.",
       ] },
       { h: 'Données personnelles', p: [
-        'Les traitements de données personnelles réalisés via ce site (formulaires de contact, questionnaire) sont détaillés dans la politique de confidentialité. Pour toute question ou pour exercer vos droits : le formulaire de la page Contact.',
+        'Les traitements de données personnelles réalisés via ce site (formulaires de contact, questionnaire, mesure d’audience) sont détaillés dans la politique de confidentialité. Pour toute question ou pour exercer vos droits : le formulaire de la page Contact.',
       ] },
       { h: 'Cookies', p: [
-        "Ce site n'utilise aucun cookie de suivi ou de publicité. Voir la politique de confidentialité pour le détail.",
+        "Ce site ne dépose aucun cookie publicitaire. Les cookies de mesure d’audience (Google Analytics) ne sont déposés qu’avec votre accord, que vous retirez à tout moment avec le bouton « Cookies » en bas de page. Le détail est dans la politique de confidentialité.",
       ] },
       { h: 'Responsabilité', p: [
         "Reskope s'efforce d'assurer l'exactitude des informations publiées, sans pouvoir la garantir. Les liens externes sont fournis à titre informatif : Reskope n'est pas responsable de leur contenu.",
@@ -82,7 +82,7 @@ const MENTIONS = {
     eyebrow: 'Information',
     title: 'Legal notice.',
     lead: 'Legal information about the publisher and hosting of this site.',
-    updated: 'Last updated: 26 September 2026.',
+    updated: 'Last updated: 3 October 2026.',
     sections: [
       { h: 'Publisher', p: [
         'The Reskope website is published by Florian Bouchart, sole proprietor (entrepreneur individuel).',
@@ -101,10 +101,10 @@ const MENTIONS = {
         'All content on this site (texts, visual identity, logo, animations, code) is the property of Reskope unless stated otherwise. Any reproduction, representation, modification or adaptation, in whole or in part, without prior written consent, is prohibited and constitutes infringement.',
       ] },
       { h: 'Personal data', p: [
-        'Personal data processing carried out through this site (contact forms, questionnaire) is detailed in the privacy policy. For any question or to exercise your rights: the contact form on this site.',
+        'Personal data processing carried out through this site (contact forms, questionnaire, audience measurement) is detailed in the privacy policy. For any question or to exercise your rights: the contact form on this site.',
       ] },
       { h: 'Cookies', p: [
-        'This site uses no tracking or advertising cookies. See the privacy policy for details.',
+        'This site sets no advertising cookies. Audience measurement cookies (Google Analytics) are only set with your consent, which you can withdraw at any time with the “Cookies” button at the bottom of the page. Details are in the privacy policy.',
       ] },
       { h: 'Liability', p: [
         'Reskope strives to keep the published information accurate but cannot guarantee it. External links are provided for information only: Reskope is not responsible for their content.',
@@ -123,27 +123,33 @@ const PRIVACY = {
     eyebrow: 'Vos données',
     title: 'Politique de confidentialité.',
     lead: 'Ce que ce site collecte (très peu), pourquoi, où vont vos données, et vos droits.',
-    updated: 'Dernière mise à jour : 14 septembre 2026.',
+    updated: 'Dernière mise à jour : 3 octobre 2026.',
     sections: [
       { h: 'Responsable du traitement', p: [
         'Le responsable du traitement est Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger. Pour toute question relative à vos données : le formulaire de la page Contact, en précisant « Données personnelles ».',
       ] },
       { h: 'Données collectées', p: [
-        "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire ni de mesure d'audience. Les seules données personnelles collectées sont celles que vous transmettez volontairement via les formulaires de contact et le questionnaire : nom, adresse e-mail et contenu de votre message.",
-        "Deux éléments peuvent être enregistrés localement dans votre navigateur, et ils ne quittent jamais votre appareil : la langue que vous choisissez dans l’espace des entreprises (français ou anglais) et, si vous utilisez l’atelier, le schéma que vous y composez (noms des outils, niveaux d’utilisation et liaisons). Ce schéma n’est transmis nulle part tant que vous ne décidez pas de nous l’envoyer, et vous l’effacez à tout moment avec le bouton « Tout effacer » de l’atelier ou en vidant les données de site de votre navigateur.",
+        "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire. En dehors de la mesure d'audience, qui ne fonctionne qu'avec votre accord (voir plus bas), les seules données personnelles collectées sont celles que vous transmettez volontairement via les formulaires de contact et le questionnaire : nom, adresse e-mail et contenu de votre message.",
+        "Trois éléments peuvent être enregistrés localement dans votre navigateur, et ils ne quittent jamais votre appareil : la langue que vous choisissez dans l’espace des entreprises (français ou anglais), votre réponse sur la mesure d’audience (gardée six mois, pour ne pas vous reposer la question à chaque page) et, si vous utilisez l’atelier, le schéma que vous y composez (noms des outils, niveaux d’utilisation et liaisons). Ce schéma n’est transmis nulle part tant que vous ne décidez pas de nous l’envoyer, et vous l’effacez à tout moment avec le bouton « Tout effacer » de l’atelier ou en vidant les données de site de votre navigateur.",
         'Ces enregistrements ne servent qu’au fonctionnement du site, jamais à vous suivre ni à vous identifier.',
+      ] },
+      { h: 'Mesure d’audience (Google Analytics)', p: [
+        'Avec votre accord, et seulement avec lui, ce site mesure sa fréquentation avec Google Analytics. Celui-ci recueille notamment les pages vues, la durée de la visite, le site d’où vous venez, le type d’appareil, le navigateur et une localisation approximative (pays, ville), déduite de votre adresse IP, qui n’est pas conservée. Ces informations servent à savoir quelles pages vous sont utiles et lesquelles améliorer, jamais à la publicité ni à vous identifier.',
+        'Ces données sont traitées par Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlande) et peuvent être transférées à Google LLC, aux États-Unis. Ce transfert est encadré par le Data Privacy Framework, reconnu par la Commission européenne le 10 juillet 2023, auquel Google LLC adhère. Les signaux Google (le suivi d’un appareil à l’autre) et la personnalisation publicitaire sont désactivés.',
+        'Tant que vous n’avez pas accepté, rien n’est chargé : ni script de Google, ni cookie. Votre réponse est gardée six mois, puis la question vous est reposée. Vous changez d’avis à tout moment avec le bouton « Cookies » en bas de chaque page ; si vous retirez votre accord, les cookies de mesure sont effacés.',
       ] },
       { h: 'Finalités et bases légales', p: [
         "Vos données servent uniquement à traiter et répondre à votre demande (mesures précontractuelles et intérêt légitime à échanger avec vous), et à assurer le suivi de nos éventuels échanges commerciaux.",
         "L'envoi d'un message via un formulaire vaut consentement à ce traitement. Vous pouvez retirer ce consentement à tout moment.",
+        'La mesure d’audience repose sur votre seul consentement, que vous retirez à tout moment avec le bouton « Cookies » en bas de page.',
       ] },
       { h: 'Destinataires et transfert hors UE', p: [
         "Les messages des formulaires sont acheminés par le service FormSubmit (opéré depuis les États-Unis), qui transmet votre message par e-mail sans le stocker durablement. À ce titre, vos données transitent hors de l'Union européenne ; ce transfert est encadré par les garanties contractuelles du prestataire.",
         "La prise de rendez-vous est assurée par Cal.com. Le script de Cal.com n'est chargé qu'au moment où vous cliquez volontairement sur le bouton de réservation : tant que vous ne demandez pas de rendez-vous, aucune donnée n'est transmise à ce prestataire. Si vous réservez un créneau, les informations que vous saisissez (nom, e-mail, motif) sont traitées par Cal.com conformément à sa propre politique de confidentialité.",
-        "L'hébergement du site est assuré par GitHub, Inc. (États-Unis). Vos données ne sont ni vendues ni cédées à des fins commerciales, et ne sont partagées avec aucun autre tiers que les prestataires techniques strictement nécessaires ci-dessus.",
+        "L'hébergement du site est assuré par GitHub, Inc. (États-Unis). Vos données ne sont ni vendues ni cédées à des fins commerciales, et ne sont partagées avec aucun autre tiers que les prestataires techniques strictement nécessaires ci-dessus et, si vous l'acceptez, Google pour la mesure d'audience.",
       ] },
       { h: 'Durée de conservation', p: [
-        "Vos messages sont conservés le temps de l'échange, puis au maximum 3 ans après le dernier contact, avant suppression.",
+        "Vos messages sont conservés le temps de l'échange, puis au maximum 3 ans après le dernier contact, avant suppression. Les données de mesure d'audience sont conservées 14 mois au plus.",
       ] },
       { h: 'Sécurité', p: [
         "Le site est servi en HTTPS. Des mesures raisonnables sont prises pour protéger vos données contre tout accès non autorisé ; aucune transmission sur Internet ne peut toutefois être garantie à 100 %.",
@@ -153,7 +159,7 @@ const PRIVACY = {
         "Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr).",
       ] },
       { h: 'Cookies', p: [
-        "Ce site n'utilise aucun cookie de suivi ou de publicité. Le seul stockage local est celui décrit plus haut, votre langue et le schéma de l’atelier : il sert au fonctionnement du site, ne nécessite pas de consentement et ne quitte pas votre appareil.",
+        "Ce site ne dépose aucun cookie publicitaire. Les deux cookies de mesure d'audience, _ga et _ga_FHRC1RYNQZ, ne sont déposés qu'avec votre accord, pour 13 mois au plus, et sont effacés si vous le retirez. Le reste est du stockage local, décrit plus haut (votre langue, votre réponse sur la mesure d'audience, l'atelier) : il sert au fonctionnement du site, ne nécessite pas de consentement et ne quitte pas votre appareil.",
       ] },
       { h: 'Mise à jour', p: [
         "Cette politique peut être mise à jour pour refléter des évolutions légales ou techniques. La date de dernière mise à jour figure ci-dessous.",
@@ -165,26 +171,32 @@ const PRIVACY = {
     eyebrow: 'Your data',
     title: 'Privacy policy.',
     lead: 'What this site collects (very little), why, where your data goes, and your rights.',
-    updated: 'Last updated: 26 September 2026.',
+    updated: 'Last updated: 3 October 2026.',
     sections: [
       { h: 'Data controller', p: [
         'The data controller is Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger, France. For any question about your data: the contact form on this site, mentioning “Personal data”.',
       ] },
       { h: 'Data collected', p: [
-        'This site requires no account and uses no advertising trackers or analytics. The only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message.',
-        "Two things may be stored locally in your browser, and they never leave your device: the language you choose in the business space (French or English) and, if you use the workshop, the diagram you build there (tool names, usage levels and links). That diagram is sent nowhere unless you decide to send it to us, and you can erase it at any time with the workshop’s “Clear everything” button or by clearing your browser’s site data.",
+        'This site requires no account and uses no advertising trackers. Apart from audience measurement, which only runs with your consent (see below), the only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message.',
+        "Three things may be stored locally in your browser, and they never leave your device: the language you choose in the business space (French or English), your answer about audience measurement (kept for six months, so you are not asked again on every page) and, if you use the workshop, the diagram you build there (tool names, usage levels and links). That diagram is sent nowhere unless you decide to send it to us, and you can erase it at any time with the workshop’s “Clear everything” button or by clearing your browser’s site data.",
+      ] },
+      { h: 'Audience measurement (Google Analytics)', p: [
+        'With your consent, and only with it, this site measures its traffic with Google Analytics. It records, among other things, the pages viewed, the length of the visit, the site you came from, the type of device, the browser and an approximate location (country, city) derived from your IP address, which is not stored. This tells us which pages are useful to you and which to improve; it is never used for advertising or to identify you.',
+        'This data is processed by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland) and may be transferred to Google LLC in the United States. This transfer is governed by the Data Privacy Framework, recognised by the European Commission on 10 July 2023, to which Google LLC adheres. Google signals (tracking from one device to another) and ad personalisation are turned off.',
+        'Until you accept, nothing is loaded: no Google script, no cookie. Your answer is kept for six months, then you are asked again. You can change your mind at any time with the “Cookies” button at the bottom of every page; if you withdraw your consent, the measurement cookies are deleted.',
       ] },
       { h: 'Purpose and legal basis', p: [
         'Your data is used solely to handle and answer your request (pre-contractual steps and legitimate interest in talking with you) and to follow up on any exchanges.',
         'Sending a message through a form constitutes consent to this processing. You may withdraw that consent at any time.',
+        'Audience measurement relies solely on your consent, which you can withdraw at any time with the “Cookies” button at the bottom of the page.',
       ] },
       { h: 'Recipients and transfer outside the EU', p: [
         'Form messages are routed through the FormSubmit service (operated from the United States), which forwards your message by email without storing it durably. As a result, your data transits outside the European Union; this transfer is governed by the provider’s contractual safeguards.',
         'Meeting booking is handled by Cal.com. The Cal.com script is only loaded when you deliberately click the booking button: until you request a meeting, no data is sent to this provider. If you book a slot, the information you enter (name, email, reason) is processed by Cal.com under its own privacy policy.',
-        'The site is hosted by GitHub, Inc. (United States). Your data is neither sold nor transferred for commercial purposes, and is not shared with any third party other than the strictly necessary technical providers above.',
+        'The site is hosted by GitHub, Inc. (United States). Your data is neither sold nor transferred for commercial purposes, and is not shared with any third party other than the strictly necessary technical providers above and, if you accept it, Google for audience measurement.',
       ] },
       { h: 'Retention', p: [
-        'Your messages are kept for the duration of the exchange, then at most 3 years after the last contact, before deletion.',
+        'Your messages are kept for the duration of the exchange, then at most 3 years after the last contact, before deletion. Audience measurement data is kept for 14 months at most.',
       ] },
       { h: 'Security', p: [
         'The site is served over HTTPS. Reasonable measures are taken to protect your data against unauthorized access; no transmission over the Internet can, however, be guaranteed 100%.',
@@ -194,7 +206,7 @@ const PRIVACY = {
         'You may also lodge a complaint with the French authority, the CNIL (cnil.fr).',
       ] },
       { h: 'Cookies', p: [
-        "This site uses no tracking or advertising cookies. The only local storage is the one described above, your language and the workshop diagram: it is needed for the site to work, requires no consent and does not leave your device.",
+        "This site sets no advertising cookies. The two audience measurement cookies, _ga and _ga_FHRC1RYNQZ, are only set with your consent, for 13 months at most, and are deleted if you withdraw it. Everything else is the local storage described above (your language, your answer about audience measurement, the workshop): it is needed for the site to work, requires no consent and does not leave your device.",
       ] },
       { h: 'Updates', p: [
         'This policy may be updated to reflect legal or technical changes. The date of the last update appears below.',

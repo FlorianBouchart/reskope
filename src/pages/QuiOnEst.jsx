@@ -42,7 +42,6 @@ const SERMENTS = [
 ];
 
 const FRANCHISE = [
-  { texte: 'Reskope démarre', suite: 'On n’a pas encore de clients à vous citer. On vous montre donc la méthode en entier, et un exemple complet, en disant qu’il est inventé.' },
   { texte: 'On n’est pas graphistes diplômés', suite: 'On pose le cadre d’une marque, ses règles et ce qu’il faut produire. Quand une identité demande un spécialiste, on le dit, et on lui transmet le cadre.' },
   { texte: 'On travaille avec les TPE et les PME', suite: 'Pas avec les grands groupes : à deux, on ne sait pas les servir correctement, et on préfère le dire.' },
 ];

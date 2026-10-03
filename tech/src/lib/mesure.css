@@ -1,0 +1,105 @@
+/* ════════════════════════════════════════════════════════════
+   LE BANDEAU DE LA MESURE D'AUDIENCE (voir mesure.js).
+
+   Une carte posée dans le coin : elle ne cache pas la page et ne la décale
+   pas. Elle arrive de la profondeur, comme le reste du site. Ses couleurs
+   suivent la marque de la page (--indigo est l'action de la marque,
+   --cream-light son fond clair, --ink son texte). Les deux boutons sont
+   identiques : refuser ne doit pas être moins visible qu'accepter.
+   ════════════════════════════════════════════════════════════ */
+.mesure {
+  position: fixed;
+  z-index: 9000;
+  left: max(16px, env(safe-area-inset-left));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: min(400px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 1.15rem 1.25rem 1.25rem;
+  border-radius: 16px;
+  background: var(--cream-light, #f7f5f0);
+  color: var(--ink, #0e0b1f);
+  font-family: var(--font, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-align: left;
+  box-shadow: 0 24px 60px -24px rgba(14, 11, 31, 0.5), 0 2px 8px rgba(14, 11, 31, 0.1);
+  opacity: 0;
+  transform: perspective(900px) translate3d(0, 28px, -90px) rotateX(10deg);
+  transform-origin: 50% 100%;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mesure--la { opacity: 1; transform: none; }
+
+.mesure__titre {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.mesure__texte { margin: 0; color: var(--muted-fort, #5c5951); }
+.mesure__plus { color: var(--indigo, #1c0cb3); font-weight: 500; }
+
+.mesure__choix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.mesure__bouton {
+  appearance: none;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  border: 1.5px solid var(--indigo, #1c0cb3);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--indigo, #1c0cb3);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.mesure__bouton:hover { background-color: var(--indigo, #1c0cb3); color: var(--cream-light, #f7f5f0); }
+.mesure__bouton:focus-visible { outline: 2px solid var(--indigo, #1c0cb3); outline-offset: 3px; }
+
+@media (max-width: 520px) {
+  .mesure {
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: auto;
+  }
+}
+
+/* Le bouton « Cookies » du pied de page : il rouvre la question, il ne mène
+   nulle part, d'où un bouton, habillé comme les liens légaux voisins
+   (trait puis fond qui monte au survol). */
+.mesure-lien {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font: inherit;
+  color: rgba(240, 238, 232, 0.68);
+  cursor: pointer;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  box-shadow: inset 0 0 0 var(--lien-fond);
+  border-radius: 3px;
+  transition: box-shadow 0.22s ease, background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.12s, color 0.25s ease;
+}
+.mesure-lien:hover,
+.mesure-lien:focus-visible {
+  color: var(--cream, #f0eee8);
+  background-size: 100% 2px;
+  box-shadow: inset 0 -3em 0 var(--lien-fond);
+  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.22s, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mesure, .mesure-lien { transition: none; }
+  .mesure { transform: none; }
+}

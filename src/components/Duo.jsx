@@ -8,9 +8,8 @@ import { DUO } from '../data/duo';
    QUI VOUS AUREZ EN FACE — deux visages, et ce que chacun mène.
 
    « Pourquoi vous faire confiance ? » est la question qu'un dirigeant se
-   pose juste avant de décrocher. On n'a pas encore de clients à citer, et
-   on ne va pas en inventer : alors on montre les deux personnes qui
-   feront le travail, ce que chacune mène, et on le dit franchement.
+   pose juste avant de décrocher. La réponse est ici : les deux personnes
+   qui feront le travail, et ce que chacune mène.
 
    Les portraits se dévoilent l'un après l'autre, de bas en haut, puis
    flottent à peine. Le nœud entre eux se relie quand les deux sont là :
@@ -21,7 +20,7 @@ const BASE = import.meta.env.BASE_URL;
 
 export default function Duo({
   titre = 'Deux personnes sur votre dossier, du premier échange à la fin.',
-  franchise = 'Reskope démarre. On n’a pas encore de clients à vous citer, et on ne va pas en inventer : on vous montre la méthode en entier, et un exemple complet.',
+  franchise = '',
   lien = true,
 }) {
   const racine = useRef(null);
@@ -81,7 +80,7 @@ export default function Duo({
           {franchise}
           {lien && (
             <>
-              {' '}
+              {franchise && ' '}
               <Link to="/qui-on-est" className="duo__lien">Qui on est<span aria-hidden="true"> →</span></Link>
             </>
           )}

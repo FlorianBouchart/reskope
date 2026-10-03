@@ -12,6 +12,7 @@ import { PORTES_CREATION } from '../data/offres';
 import { fiche } from '../data/seo';
 import { EspacesTuiles } from './Espaces';
 import { MARQUES } from '../data/marques';
+import { rouvrirMesure } from '../lib/mesure';
 import { useMarque } from '../lib/useMarque';
 
 /* FOOTER — L'UNIVERS de clôture (plein écran).
@@ -225,6 +226,7 @@ export default function Footer() {
           <Link to="/confidentialite">{f.privacy}</Link>
           <Link to="/cgu">{f.terms}</Link>
           <Link to="/cgv">{f.sales}</Link>
+          <button type="button" className="mesure-lien" onClick={rouvrirMesure}>Cookies</button>
         </nav>
         <p>© {new Date().getFullYear()} {marque ? `Reskope ${marque.nom} · ${marque.fr.signature}` : 'Reskope · On vous aide à décider, et on construit la suite.'}</p>
       </div>

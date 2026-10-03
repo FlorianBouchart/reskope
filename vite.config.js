@@ -68,14 +68,20 @@ const spaFallback = () => ({
    Sans ces trois entrées, le navigateur bloque le script et le bouton retombe
    silencieusement sur le formulaire de contact. */
 const CAL_SRC = 'https://app.cal.com https://cal.com'
+/* Google Analytics, chargé seulement après l'accord du visiteur
+   (src/lib/mesure.js) : le script vient de googletagmanager.com, les
+   mesures partent vers google-analytics.com (serveurs régionaux compris).
+   Sans ces entrées, le navigateur bloque tout, sans un mot. */
+const GA_SCRIPT = 'https://www.googletagmanager.com'
+const GA_CONNECT = 'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com'
 
 const CSP = [
   "default-src 'self'",
-  `script-src 'self' ${CAL_SRC}`,
+  `script-src 'self' ${CAL_SRC} ${GA_SCRIPT}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self'",
-  `connect-src 'self' https://formsubmit.co ${CAL_SRC}`,
+  `connect-src 'self' https://formsubmit.co ${CAL_SRC} ${GA_CONNECT}`,
   `frame-src 'self' ${CAL_SRC}`,
   "form-action 'self' https://formsubmit.co",
   "base-uri 'self'",

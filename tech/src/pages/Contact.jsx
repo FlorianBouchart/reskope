@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Page from '../components/Page';
 import MorphTitle from '../components/MorphTitle';
 import Quiz from '../components/Quiz';
@@ -10,6 +10,7 @@ import { gsap, useGSAP } from '../lib/gsap';
 import { useLang } from '../i18n';
 import { useProfil } from '../profil';
 import { CONTACT_TPE } from '../data/profils';
+import LienLegal from '../components/LienLegal';
 import { CONTACT, FORMSUBMIT_URL } from '../data/site';
 
 /* CONTACT — clair, net, fonctionnel.
@@ -274,7 +275,7 @@ export default function Contact() {
                     <span className="btn__arrow" aria-hidden="true">→</span>
                   </button>
                   <p className="ctc__consent">
-                    {c.consent} <Link to="/confidentialite">{c.consentLink}</Link>.
+                    {c.consent} <LienLegal to="/confidentialite">{c.consentLink}</LienLegal>.
                   </p>
                 </form>
               )}

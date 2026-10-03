@@ -6,6 +6,7 @@ import './styles/marques.css';
 import App from './App.jsx';
 import { LangProvider } from './i18n.jsx';
 import { ProfilProvider, useProfil, BASE } from './profil.jsx';
+import { lancerMesure } from './lib/mesure';
 
 /* ============================================================
    Le site existe en deux versions, et la version vit dans l'adresse :
@@ -59,3 +60,7 @@ racine.render(
     </ProfilProvider>
   </LangProvider>
 );
+
+/* La mesure d'audience : rien n'est chargé sans l'accord du visiteur
+   (voir src/lib/mesure.js). */
+lancerMesure();
