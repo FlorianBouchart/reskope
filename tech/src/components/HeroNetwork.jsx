@@ -362,128 +362,117 @@ function altitude() {
   };
 }
 
-/* ── Le sillage : la vitesse du défilement, en particules ─────
-   Retour du 04/10/2026, seconde version. Les particules naissent du bord
-   vers lequel on va : on descend, elles montent du bas de l'écran, là où
-   la page arrive ; on remonte, elles tombent du haut. Elles sont plus
-   nombreuses contre ce bord et s'éteignent en avançant. Leur nombre et leur
-   vitesse suivent le défilement : un défilement lent en lâche quelques-unes,
-   un défilement rapide fait un vrai sillage, et rien ne bouge à l'arrêt.
-   Des nœuds reliés entre eux et des cubes en fil de fer, aux couleurs de
-   la marque ; Define a plus de cubes (la mise en ordre), Create moins. */
-const CUBES = { reskope: 0.3, create: 0.15, define: 0.6, elevate: 0.4 };
+/* ── Le sillage : un flou fait de particules ─────────────────
+   Retour du 04/10/2026, troisième version : « mets plein de particules qui,
+   en fait, forment du flou », plus nombreuses et moins opaques, sans gêner
+   le regard. Le bord vers lequel on défile (le bas en descendant, le haut
+   en remontant) se couvre d'un voile : des centaines de points doux, flous
+   par eux-mêmes (un dégradé radial dessiné une fois), étirés par la vitesse
+   comme un flou de mouvement, très transparents, serrés contre le bord et
+   qui s'éteignent en avançant. Leur nombre, leur vitesse et leur course
+   suivent le défilement ; rien à l'arrêt. Quelques cubes en fil de fer,
+   rares et pâles, gardent la signature de la marque. */
 const SOMMETS = [[-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1], [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]];
 const ARETES = [[0, 1], [1, 3], [3, 2], [2, 0], [4, 5], [5, 7], [7, 6], [6, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+/* Un point flou, dessiné une fois par couleur : la tache d'un objet hors de
+   la mise au point. Le dessiner ensuite coûte une copie d'image. */
+const taches = new Map();
+function tache(couleur) {
+  if (taches.has(couleur)) return taches.get(couleur);
+  const t = document.createElement('canvas');
+  t.width = t.height = 64;
+  const g = t.getContext('2d');
+  const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  r.addColorStop(0, `rgba(${couleur},1)`);
+  r.addColorStop(0.35, `rgba(${couleur},0.55)`);
+  r.addColorStop(1, `rgba(${couleur},0)`);
+  g.fillStyle = r;
+  g.fillRect(0, 0, 64, 64);
+  taches.set(couleur, t);
+  return t;
+}
 function sillage() {
   const parts = [];
-  let part = 0.3;
   let reserve = 0;
-  let max = 48;
+  let max = 240;
   return {
-    marque(m) { part = CUBES[m] ?? 0.3; },
-    taille(w) { max = w < 700 ? 26 : 44; },
+    marque() {},
+    taille(w) { max = w < 700 ? 140 : 320; },
     /* v : vitesse du défilement, en pixels par image à 60 images/s (positive
        vers le bas) ; f : images écoulées depuis le dernier dessin. */
     dessiner(ctx, w, h, v, f, c) {
       const vit = Math.min(Math.abs(v), 70);
       const sens = Math.sign(v);
-      if (vit > 0.6 && sens) {
-        reserve = Math.min(reserve + Math.min(2.2, vit * 0.075) * f, 3);
+      if (vit > 0.5 && sens) {
+        reserve = Math.min(reserve + Math.min(9, vit * 0.34) * f, 14);
         while (reserve >= 1 && parts.length < max) {
           reserve -= 1;
-          const z = 0.22 + 0.78 * Math.pow(Math.random(), 0.8);
-          /* La course : jusqu'à 45 % de l'écran pour un défilement rapide,
-             quelques dizaines de pixels pour un défilement lent. Le frein
-             (0,93 par image) fait le reste : elles ralentissent et s'éteignent
-             près du bord d'où elles viennent, là où elles sont le plus. */
-          const course = h * (0.15 + 0.3 * z) * Math.min(1, vit / 30) + 40;
+          const z = Math.random();
+          const gros = Math.random() < 0.45;
+          /* Le voile reste près du bord : jusqu'à un quart de l'écran pour
+             un défilement rapide, quelques dizaines de pixels sinon. */
+          const course = h * (0.05 + 0.2 * z) * Math.min(1, vit / 28) + 16;
           parts.push({
-            x: hasard(0, w),
-            y: sens > 0 ? h + hasard(4, 30) : -hasard(4, 30),
-            z,
-            vy: -sens * course * 0.07 * hasard(0.85, 1.15),
+            x: hasard(-10, w + 10),
+            y: sens > 0 ? h + hasard(2, 24) : -hasard(2, 24),
+            dx: hasard(-0.25, 0.25),
+            vy: -sens * course * 0.08 * hasard(0.8, 1.2),
             course,
             parcouru: 0,
             age: 0,
-            cube: Math.random() < part,
+            taille: gros ? 14 + 22 * z : 2 + 5 * z,
+            force: gros ? 0.05 + 0.07 * z : 0.1 + 0.14 * z,
+            cube: !gros && Math.random() < 0.035,
             rx: hasard(0, 6.28),
             ry: hasard(0, 6.28),
-            tour: hasard(0.5, 1.4) * (Math.random() < 0.5 ? -1 : 1),
           });
         }
       } else reserve = 0;
       if (!parts.length) return;
-      const frein = Math.pow(0.93, f);
+      const frein = Math.pow(0.92, f);
+      const flou = tache(c.vive);
       for (let i = parts.length - 1; i >= 0; i--) {
         const p = parts[i];
         p.parcouru += Math.abs(p.vy * f);
         p.y += p.vy * f;
+        p.x += p.dx * f;
         p.vy *= frein;
         p.age += f;
-        const spin = (0.02 + Math.abs(p.vy) * 0.004) * p.tour * f;
-        p.rx += spin;
-        p.ry += spin * 0.8;
-        if (p.parcouru > p.course * 0.96 || p.age > 160 || p.y < -60 || p.y > h + 60) parts.splice(i, 1);
-      }
-      /* L'éclat suit le chemin parcouru : pleine au bord d'où elle sort, la
-         particule s'éteint en avançant et disparaît quand elle s'arrête. */
-      const eclat = (p) => Math.pow(Math.max(0, 1 - p.parcouru / p.course), 1.4) * Math.min(1, p.age / 3) * (0.75 + 0.5 * Math.abs(p.x / w - 0.5));
-      /* Le réseau : seules les particules d'une même profondeur se relient,
-         elles vont à la même vitesse et le lien ne clignote pas. */
-      ctx.lineWidth = 0.7;
-      for (let i = 0; i < parts.length; i++) {
-        const a = parts[i];
-        for (let j = i + 1; j < parts.length; j++) {
-          const b = parts[j];
-          if (Math.abs(a.z - b.z) > 0.2) continue;
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d > 120) continue;
-          ctx.strokeStyle = rgba(c.trame, (1 - d / 120) * 0.22 * Math.min(eclat(a), eclat(b)) * Math.min(a.z, b.z));
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
+        p.rx += 0.03 * f;
+        p.ry += 0.024 * f;
+        if (p.parcouru > p.course * 0.96 || p.age > 150 || p.y < -60 || p.y > h + 60) parts.splice(i, 1);
       }
       for (const p of parts) {
-        const e = eclat(p);
-        /* La traînée part de la particule vers le bord d'où elle vient. */
-        const queue = Math.max(-130, Math.min(130, -p.vy * 3.2));
-        if (Math.abs(queue) > 2) {
-          const g = ctx.createLinearGradient(p.x, p.y, p.x, p.y + queue);
-          g.addColorStop(0, rgba(c.vive, (0.22 + 0.4 * p.z) * e));
-          g.addColorStop(1, rgba(c.vive, 0));
-          ctx.strokeStyle = g;
-          ctx.lineWidth = 0.6 + 1.2 * p.z;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p.x, p.y + queue);
-          ctx.stroke();
-        }
-        const alpha = (0.38 + 0.55 * p.z) * e;
+        /* Pleine contre le bord, elle s'éteint en avançant. */
+        const e = Math.pow(Math.max(0, 1 - p.parcouru / p.course), 1.2) * Math.min(1, p.age / 3);
+        if (e <= 0.01) continue;
         if (p.cube) {
-          const s = 3 + 6 * p.z;
+          const s = 3 + 4 * p.taille / 7;
           const cx = Math.cos(p.rx), sx = Math.sin(p.rx), cy = Math.cos(p.ry), sy = Math.sin(p.ry);
           const pts = SOMMETS.map(([x, y, z]) => {
             const x1 = x * cy + z * sy;
             const z1 = -x * sy + z * cy;
             return [p.x + x1 * s, p.y + (y * cx - z1 * sx) * s];
           });
-          ctx.strokeStyle = rgba(c.vive, alpha);
-          ctx.lineWidth = 0.8 + 0.4 * p.z;
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = rgba(c.vive, 0.22 * e);
+          ctx.lineWidth = 0.8;
           ctx.beginPath();
           for (const [a, b] of ARETES) {
             ctx.moveTo(pts[a][0], pts[a][1]);
             ctx.lineTo(pts[b][0], pts[b][1]);
           }
           ctx.stroke();
-        } else {
-          ctx.fillStyle = rgba(c.vive, alpha);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 0.9 + 1.9 * p.z, 0, Math.PI * 2);
-          ctx.fill();
+          continue;
         }
+        /* Étirée dans le sens du mouvement : un flou de mouvement. */
+        const etire = 1 + Math.min(3, Math.abs(p.vy) * 0.14);
+        const lw = p.taille;
+        const lh = p.taille * etire;
+        ctx.globalAlpha = p.force * e;
+        ctx.drawImage(flou, p.x - lw / 2, p.y - lh / 2, lw, lh);
       }
+      ctx.globalAlpha = 1;
     },
   };
 }

@@ -20,7 +20,9 @@ let tick = null;
    haut) gardent leur durée et leur courbe. Écrit pour Lenis 1.3.x : à
    revérifier si la version change (animate.isRunning, .value, .to, .lerp,
    .duration, .easing, .stop(), .onUpdate). */
-const RESSORT = { raideur: 56, amorti: 11.1 };
+/* Plus lourd le 04/10 au soir (« pas encore assez lourd ») : pulsation
+   5,2 au lieu de 7,5, même amortissement relatif (0,75). */
+const RESSORT = { raideur: 27, amorti: 7.8 };
 function tirerALaMain(instance) {
   const anim = instance.animate;
   if (!anim || typeof anim.advance !== 'function') return;

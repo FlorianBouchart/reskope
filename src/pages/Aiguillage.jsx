@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Page from '../components/Page';
 import ReseauTaille from '../components/ReseauTaille';
-import NetWord from '../components/NetWord';
 import Duo from '../components/Duo';
 import Booking from '../components/Booking';
 import { gsap, useGSAP } from '../lib/gsap';
@@ -58,7 +57,7 @@ function Carte({ e }) {
       <span className="aig__reseau" aria-hidden="true"><ReseauTaille n={e.noeuds} /></span>
       <h3 className="aig__marque">
         <span className="aig__mere" aria-hidden="true">Reskope</span>
-        <span className="aig__nom" aria-hidden="true"><NetWord className="aig__netword" heightEm={1}>{m.nom}</NetWord></span>
+        <span className="aig__nom" aria-hidden="true">{m.nom}</span>
         <span className="sr-only">{nom}</span>
       </h3>
       <p className="aig__qui">{m.fr.qui}</p>

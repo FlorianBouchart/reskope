@@ -13469,3 +13469,47 @@ main:has(> [data-nav-dark]:last-child) + .crumb {
 }
 .crumb { padding-block: 1.25rem clamp(1.9rem, 4.5vh, 2.6rem); }
 .crumb:has(+ .footer2--universe) { border-bottom: var(--couture-r) solid transparent; }
+
+/* ── Les tuiles d'espace : une bande par marque (04/10/2026) ──
+   Sur ordinateur, trois petites colonnes empilaient le logo, la ligne et
+   « Entrer » sans air, et « Reskope Elevate » débordait sur un portable
+   étroit. Une bande horizontale par marque, sur tous les écrans : le logo
+   (comme l'officiel : « Reskope » en indigo, la marque dans sa couleur),
+   à qui elle s'adresse, et l'entrée, sur une même ligne. */
+.espt { grid-template-columns: 1fr; gap: 0.5rem; }
+.espt__tuile {
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: 'point nom sous etat';
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0;
+  min-height: 52px;
+  padding: 0.8rem 1.2rem;
+}
+.espt__nom { font-size: 1.05rem; }
+/* marques.css, chargé après, l'éclaircissait (opacité 0,62) : deux classes. */
+.espt__tuile .espt__mere { font-weight: 600; opacity: 1; color: var(--reskope); }
+.espt__tuile.espt--soleil .espt__nom { color: var(--create-action); }
+.espt__tuile.espt--menthe .espt__nom { color: var(--define-action); }
+.espt__tuile.espt--ciel .espt__nom { color: var(--elevate-action); }
+.espt__sous { font-size: 0.86rem; }
+.espt__etat { margin-top: 0; white-space: nowrap; }
+.espt__tuile.is-actif .espt__mere,
+.espt__tuile.is-actif .espt__nom { color: var(--cream); }
+/* Sur le fond sombre du pied de page : les teintes claires de chaque marque. */
+.espt--sombre .espt__mere { color: var(--cream); }
+.espt--sombre .espt__tuile.espt--soleil .espt__nom { color: var(--create-clair); }
+.espt--sombre .espt__tuile.espt--menthe .espt__nom { color: var(--define-clair); }
+.espt--sombre .espt__tuile.espt--ciel .espt__nom { color: var(--elevate-clair); }
+.espt--sombre .espt__tuile.is-actif .espt__mere { color: var(--reskope); }
+.espt--sombre .espt__tuile.is-actif.espt--soleil .espt__nom { color: var(--create-action); }
+.espt--sombre .espt__tuile.is-actif.espt--menthe .espt__nom { color: var(--define-action); }
+.espt--sombre .espt__tuile.is-actif.espt--ciel .espt__nom { color: var(--elevate-action); }
+@media (max-width: 560px) {
+  .espt__tuile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'point nom etat' 'point sous etat';
+    gap: 0.1rem 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+}

@@ -2749,3 +2749,63 @@ main:has(> [data-nav-dark]:last-child) + .crumb {
 }
 .crumb { padding-block: 1.25rem clamp(1.9rem, 4.5vh, 2.6rem); }
 .crumb:has(+ .footer2--universe) { border-bottom: var(--couture-r) solid transparent; }
+
+/* ════════════════════════════════════════════════════════════
+   LE LOGO D'UNE MARQUE, SUR UNE SEULE BANDE (04/10/2026)
+   Retour : sur ordinateur, « Reskope » et le nom de la marque n'étaient
+   toujours pas sur la même bande (dans les cartes, « Reskope » petit et
+   « CREATE » grand en police réseau). On reprend le logo officiel : même
+   police, même taille, même ligne de base, « Reskope » en indigo et la
+   marque dans sa couleur.
+   ════════════════════════════════════════════════════════════ */
+/* (.aig__carte h3 remet la police à zéro : il faut deux classes pour la régler) */
+.aig__carte .aig__marque { align-items: baseline; gap: 0.3em; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+.aig__marque .aig__mere { font-size: 1em; font-weight: 600; letter-spacing: inherit; color: var(--reskope); }
+.aig__marque .aig__nom { font-size: 1em; color: var(--c-action); }
+@media (min-width: 960px) {
+  .aig__carte .aig__marque { font-size: clamp(1.45rem, 1.9vw, 1.8rem); }
+}
+
+/* ── Les tuiles d'espace : une bande par marque (04/10/2026) ──
+   Sur ordinateur, trois petites colonnes empilaient le logo, la ligne et
+   « Entrer » sans air, et « Reskope Elevate » débordait sur un portable
+   étroit. Une bande horizontale par marque, sur tous les écrans : le logo
+   (comme l'officiel : « Reskope » en indigo, la marque dans sa couleur),
+   à qui elle s'adresse, et l'entrée, sur une même ligne. */
+.espt { grid-template-columns: 1fr; gap: 0.5rem; }
+.espt__tuile {
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: 'point nom sous etat';
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0;
+  min-height: 52px;
+  padding: 0.8rem 1.2rem;
+}
+.espt__nom { font-size: 1.05rem; }
+/* marques.css, chargé après, l'éclaircissait (opacité 0,62) : deux classes. */
+.espt__tuile .espt__mere { font-weight: 600; opacity: 1; color: var(--reskope); }
+.espt__tuile.espt--soleil .espt__nom { color: var(--create-action); }
+.espt__tuile.espt--menthe .espt__nom { color: var(--define-action); }
+.espt__tuile.espt--ciel .espt__nom { color: var(--elevate-action); }
+.espt__sous { font-size: 0.86rem; }
+.espt__etat { margin-top: 0; white-space: nowrap; }
+.espt__tuile.is-actif .espt__mere,
+.espt__tuile.is-actif .espt__nom { color: var(--cream); }
+/* Sur le fond sombre du pied de page : les teintes claires de chaque marque. */
+.espt--sombre .espt__mere { color: var(--cream); }
+.espt--sombre .espt__tuile.espt--soleil .espt__nom { color: var(--create-clair); }
+.espt--sombre .espt__tuile.espt--menthe .espt__nom { color: var(--define-clair); }
+.espt--sombre .espt__tuile.espt--ciel .espt__nom { color: var(--elevate-clair); }
+.espt--sombre .espt__tuile.is-actif .espt__mere { color: var(--reskope); }
+.espt--sombre .espt__tuile.is-actif.espt--soleil .espt__nom { color: var(--create-action); }
+.espt--sombre .espt__tuile.is-actif.espt--menthe .espt__nom { color: var(--define-action); }
+.espt--sombre .espt__tuile.is-actif.espt--ciel .espt__nom { color: var(--elevate-action); }
+@media (max-width: 560px) {
+  .espt__tuile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'point nom etat' 'point sous etat';
+    gap: 0.1rem 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+}
