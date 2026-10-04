@@ -1487,9 +1487,10 @@ a.esp__seg:hover { background: color-mix(in srgb, var(--indigo) 8%, transparent)
   text-wrap: balance;
 }
 .aig__q {
-  max-width: 16ch;
+  max-width: 21ch;
   margin: 0 auto;
   text-align: center;
+  text-wrap: balance;
   font-size: clamp(2.2rem, 5.6vw, 4.6rem);
   font-weight: 600;
   line-height: 1;
@@ -1503,7 +1504,19 @@ a.esp__seg:hover { background: color-mix(in srgb, var(--indigo) 8%, transparent)
   line-height: 1.5;
   color: var(--muted);
 }
+/* La question, au-dessus des trois cartes : elle aiguille, elle ne titre
+   plus la page (le h1 dit ce qu'on fait, et où). */
+.aig__choix-titre {
+  margin: clamp(2rem, 5vh, 3.2rem) auto 0;
+  text-align: center;
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
 .aig__choix-cadre { position: relative; margin-top: clamp(1.4rem, 3.6vh, 2.8rem); perspective: 1100px; }
+.aig__choix-titre + .aig__choix-cadre { margin-top: clamp(1rem, 2.4vh, 1.6rem); }
 .aig__fil { display: none; }
 .aig__choix {
   display: grid;
@@ -2462,7 +2475,7 @@ button:focus-visible .croix__bras { transform: translate(var(--dx), var(--dy)); 
 
 /* La carte devient un article : son lien « Entrer » la recouvre entièrement
    (toute la carte reste cliquable), ses offres passent au-dessus. */
-.aig__carte h2, .aig__carte p { margin: 0; font: inherit; }
+.aig__carte h3, .aig__carte p { margin: 0; font: inherit; }
 .aig__carte { grid-template-areas: 'reseau marque fleche' 'reseau moment fleche' 'reseau qui fleche' 'offres offres offres'; }
 .aig__entrer::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
 .aig__carte:focus-within { border-color: var(--c-vif); box-shadow: 0 30px 56px -34px color-mix(in srgb, var(--c-encre) 60%, transparent); }
@@ -2521,12 +2534,15 @@ button:focus-visible .croix__bras { transform: translate(var(--dx), var(--dy)); 
 .aig__preuve-note { display: grid; justify-items: center; gap: 0.25rem; margin: 0.6rem 0 0.4rem; color: var(--muted-fort); }
 .aig__preuve-chiffre { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 600; line-height: 0.95; letter-spacing: -0.05em; color: var(--indigo); font-variant-numeric: tabular-nums; }
 
-/* Sur ordinateur, les trois cartes et leurs offres tiennent dans le premier
-   écran : un titre un peu moins haut, des réseaux plus discrets. */
+/* Sur ordinateur, le titre, la question et les trois cartes tiennent dans le
+   premier écran : sous-titre sur deux lignes, réseaux plus discrets. */
 @media (min-width: 960px) {
   .aig__q { font-size: clamp(2.2rem, 5vw, 4rem); }
-  .aig__reseau { width: clamp(4.6rem, 6vw, 6rem); height: clamp(4.6rem, 6vw, 6rem); margin-bottom: 0.5rem; }
+  .aig__sous { max-width: 64ch; }
+  .aig__reseau { width: clamp(3.8rem, 4.6vw, 4.8rem); height: clamp(3.8rem, 4.6vw, 4.8rem); margin-bottom: 0.4rem; }
   .aig__choix-cadre { margin-top: clamp(1.2rem, 2.6vh, 2rem); }
+  .aig__choix-titre { margin-top: clamp(1.1rem, 2.6vh, 1.6rem); font-size: clamp(1.3rem, 1.9vw, 1.6rem); }
+  .aig__choix-titre + .aig__choix-cadre { margin-top: clamp(0.7rem, 1.6vh, 1rem); }
   .aig__offres { margin: 0.8rem 0 1rem; }
   .aig__offres a { padding-block: 0.2rem; }
 }

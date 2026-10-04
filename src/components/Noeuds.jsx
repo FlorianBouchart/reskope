@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* ════════════════════════════════════════════════════════════
@@ -22,7 +23,7 @@ export default function Noeuds({ items, etat = 'plein', className = '', grand = 
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ scrollTrigger: { trigger: racine.current, start: 'top 86%' } });
     tl.fromTo(q('.nds__fil'), { scaleY: 0 }, { scaleY: 1, duration: 0.3 + items.length * 0.14, ease: 'power2.inOut' }, 0);
-    tl.from(q('.nds__item'), {
+    if (REVELATIONS) tl.from(q('.nds__item'), {
       z: -90, transformPerspective: 900, y: 30, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
       duration: 1.05, ease: 'expo.out', stagger: 0.12,
     }, 0.05);

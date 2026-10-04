@@ -49,14 +49,14 @@ export const PAGES = [
     route: '/', priorite: '1.0', freq: 'weekly', fil: 'Accueil',
     titre: 'Cabinet de conseil à Valenciennes et Lille',
     description: 'Reskope, cabinet de conseil : création et reprise d’entreprise, business plan, étude terrain, site internet et outils numériques des TPE et PME.',
-    h1: 'Où en est votre entreprise ?',
+    h1: 'Cabinet de conseil à Valenciennes et Lille',
     resume: 'Reskope accompagne trois personnes, et parle à chacune de ce qui la concerne : celle qui crée ou reprend une entreprise (trouver ses clients, construire son business plan, convaincre la banque), le dirigeant d’une TPE de 1 à 10 personnes (être trouvé, être joignable, gagner du temps), et celui d’une PME de 10 à 250 personnes (des outils qui se parlent, des équipes qui gagnent du temps). Thomy et Florian, à Valenciennes et à Lille.',
   },
   {
     route: '/creation', espace: 'creation', priorite: '1.0', freq: 'weekly', fil: 'Créer ou reprendre',
     titre: 'Conseil création d’entreprise, Valenciennes, Lille',
     description: 'Création ou reprise d’entreprise à Valenciennes et Lille : Reskope rencontre vos futurs clients, nourrit votre business plan et vous prépare à la banque.',
-    h1: 'On trouve le client qui fera vivre votre projet.',
+    h1: 'Accompagnement à la création d’entreprise à Valenciennes et Lille',
     resume: 'Pour la personne qui crée ou reprend une entreprise, d’un coffee shop à un logiciel : on va rencontrer vos futurs clients, et vous repartez avec le portrait de votre client idéal, l’endroit où le trouver et ce qu’il faut lui dire. Avec ses réponses, on construit votre business plan, de l’offre et du prix au prévisionnel et au financement, et on vous accompagne sur votre marque et votre communication. On fait ce que vous n’avez pas envie de faire, à un prix fixe, écrit avant de commencer.',
   },
   {

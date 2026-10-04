@@ -51,14 +51,17 @@ export function makeScrub(getProgress, render, { smooth = 0.16 } = {}) {
   let target = cur;
   let raf;
   render(cur);
-  const onScroll = () => {
-    target = getProgress();
-  };
+  /* La boucle s'endort quand la valeur est arrivée ; le défilement la
+     réveille. Rien ne tourne pendant qu'on lit. */
   const tick = () => {
     cur += (target - cur) * smooth;
     if (Math.abs(target - cur) < 0.0004) cur = target;
     render(cur);
-    raf = requestAnimationFrame(tick);
+    raf = cur === target ? 0 : requestAnimationFrame(tick);
+  };
+  const onScroll = () => {
+    target = getProgress();
+    if (!raf) raf = requestAnimationFrame(tick);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);

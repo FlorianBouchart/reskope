@@ -11,6 +11,7 @@ import { GLYPH_SHAPES } from '../lib/net3d';
 import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
 import { DUO } from '../data/duo';
+import { REVELATIONS } from '../lib/mouvement';
 import { POLES } from '../data/offres';
 
 /* ════════════════════════════════════════════════════════════
@@ -71,13 +72,13 @@ export default function QuiOnEst() {
        se révèle ligne à ligne. */
     const splits = [];
     const lead = root.querySelector('.astory__lead');
-    if (lead) {
+    if (lead && REVELATIONS) {
       gsap.from(lead, {
         z: -170, transformPerspective: 900, y: 48, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.3, ease: 'expo.out',
         scrollTrigger: { trigger: lead, start: 'top 86%' },
       });
     }
-    root.querySelectorAll('.astory__p').forEach((p) => {
+    if (REVELATIONS) root.querySelectorAll('.astory__p').forEach((p) => {
       try {
         // aria: 'none' : par défaut SplitText pose un aria-label sur l'élément découpé,
         // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
@@ -93,7 +94,7 @@ export default function QuiOnEst() {
 
     /* Les engagements : l'engagement monte derrière son masque, et la
        justification s'éclaire mot à mot pendant qu'on descend. */
-    root.querySelectorAll('.serment').forEach((el) => {
+    if (REVELATIONS) root.querySelectorAll('.serment').forEach((el) => {
       const dit = el.querySelector('.serment__dit');
       const suite = el.querySelector('.serment__suite');
       const tl = gsap.timeline({

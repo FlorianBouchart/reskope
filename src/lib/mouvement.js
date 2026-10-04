@@ -13,6 +13,16 @@ import { instant } from './scrub';
    Une seule grammaire pour tout le site (copie identique dans tech/). Les
    scènes en volume (réseaux, R, 3D) gardent leur propre chorégraphie.
    ════════════════════════════════════════════════════════════ */
+/* LES APPARITIONS AU DÉFILEMENT : COUPÉES (04/10/2026).
+   Retour d'un premier lecteur : « trop d'animations, trop lourd ». Un
+   paragraphe, une liste, une FAQ qui « poppent » quand on arrive dessus,
+   c'est du bruit : le contenu est simplement là. Ce qui reste animé, ce
+   sont les scènes qui en mettent plein la vue (le R qui se forme, les
+   réseaux, la frise, le vol de la méthode, les portraits) et l'entrée de
+   chaque page. Le premium passe par le défilement lui-même (Lenis, lourd
+   et soyeux). Remettre à true pour retrouver les apparitions. */
+export const REVELATIONS = false;
+
 export const MISE_AU_POINT = {
   z: -120,
   y: 22,
@@ -28,7 +38,7 @@ export const MISE_AU_POINT = {
 /** Fait apparaître des éléments à la manière Reskope. `declencheur` : l'élément
     dont l'entrée à l'écran lance l'apparition (sinon, tout de suite). */
 export function apparaitre(cibles, { declencheur, start = 'top 86%', ...autres } = {}) {
-  if (instant()) return null;
+  if (instant() || (declencheur && !REVELATIONS)) return null;
   return gsap.from(cibles, {
     ...MISE_AU_POINT,
     stagger: 0.08,

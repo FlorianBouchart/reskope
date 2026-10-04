@@ -7,6 +7,7 @@ import { Reveal, RevealItem } from './Reveal';
 import { Link } from 'react-router-dom';
 import { useLang } from '../i18n';
 import { CONTACT, FORMULAIRE } from '../data/site';
+import { REVELATIONS } from '../lib/mouvement';
 import { openCalModal, CAL_FALLBACK_URL, isCalConfigured } from '../lib/cal';
 
 /* PRENDRE RENDEZ-VOUS — la scène reste entièrement dans la DA Reskope ;
@@ -18,7 +19,8 @@ export default function Booking({ c }) {
   const [state, setState] = useState('idle'); // idle | loading | ready | error
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     gsap.from(rootRef.current.querySelectorAll('.bk__reveal'), { z: -90, transformPerspective: 900, y: 26, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.08,
       scrollTrigger: { trigger: rootRef.current, start: 'top 74%' },
     });

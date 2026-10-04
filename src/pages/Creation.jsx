@@ -16,6 +16,7 @@ import Questions from '../components/Questions';
 import SwapLabel from '../components/SwapLabel';
 import { gsap, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
+import { REVELATIONS } from '../lib/mouvement';
 import { PRIX, PORTES_CREATION } from '../data/offres';
 
 /* ════════════════════════════════════════════════════════════
@@ -38,8 +39,8 @@ import { PRIX, PORTES_CREATION } from '../data/offres';
 
 const HERO = {
   heroEyebrow: 'Reskope Create · créer ou reprendre une entreprise',
-  heroTitle: 'On trouve le client qui fera vivre votre projet.',
-  heroDit: 'Vous créez ou reprenez une entreprise. On va rencontrer vos futurs clients, on construit votre business plan avec leurs réponses, et vous savez qui cibler, et comment.',
+  heroTitle: 'Accompagnement à la création d’entreprise à Valenciennes et Lille',
+  heroDit: 'On trouve le client qui fera vivre votre projet : on rencontre vos futurs clients, on construit votre business plan avec leurs réponses, et vous savez qui cibler, et comment.',
   primary: 'Parlons de votre projet',
   ghost: 'Toutes nos offres',
   ghostTo: '/nos-offres',
@@ -60,7 +61,8 @@ const QUESTIONS = [
 function Livrable() {
   const racine = useRef(null);
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.liv__titre, .liv__dit'), {
       z: -150, transformPerspective: 900, y: 50, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,

@@ -61,6 +61,7 @@ export default function Nav() {
   const layerRef = useRef(null);
   const panelRef = useRef(null);
   const menuTl = useRef(null);
+  const ouvertRef = useRef(false);
   const fermerRef = useRef(null);
 
   /* Nav qui se masque au défilement vers le bas, réapparaît vers le haut.
@@ -120,11 +121,14 @@ export default function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
+    // Le fond animé s'arrête pendant que le menu le recouvre (HeroNetwork).
+    document.documentElement.toggleAttribute('data-menu-ouvert', open);
     lockScroll(open);
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.removeAttribute('data-menu-ouvert');
       lockScroll(false);
       window.removeEventListener('keydown', onKey);
     };
@@ -133,41 +137,55 @@ export default function Nav() {
   /* Chorégraphie d'ouverture (fermeture = reverse accéléré).
      Elle dépend du PROFIL autant que de la langue : le menu perd une
      entrée quand une page ne concerne pas le visiteur, et une timeline
-     construite sur l'ancienne liste laisse une ligne figée. */
+     construite sur l'ancienne liste laisse une ligne figée.
+     Sur téléphone, une seule entrée : le panneau se pose d'un fondu court,
+     tout est déjà en place dedans. Les couches qui glissent, les lignes une
+     à une et la croix qui se construit restent aux grands écrans : sur un
+     téléphone, c'était trop lourd (retour d'usage, octobre 2026).
+     gsap.matchMedia reconstruit la bonne version si la fenêtre change. */
   useGSAP(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const rows = menuRef.current.querySelectorAll('.menu2__row');
-    const head = menuRef.current.querySelector('.menu2__head');
-    const foot = menuRef.current.querySelector('.menu2__foot');
-    const decor = menuRef.current.querySelector('.menu2__decor');
-    const croixCoeur = fermerRef.current.querySelector('.croix__coeur');
-    const croixLiens = fermerRef.current.querySelectorAll('.croix__lien');
-    const croixNoeuds = fermerRef.current.querySelectorAll('.croix__n');
-
-    const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
-    tl.set(menuRef.current, { visibility: 'visible' }, 0);
-    if (reduce) {
-      tl.set([layerRef.current, panelRef.current], { xPercent: 0 }, 0)
-        .fromTo(menuRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.25 }, 0);
-    } else {
-      tl.fromTo(backdropRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: 'power2.out' }, 0)
-        .fromTo(layerRef.current, { xPercent: 101 }, { xPercent: 0, duration: 0.6, ease: 'power4.inOut' }, 0)
-        .fromTo(panelRef.current, { xPercent: 103 }, { xPercent: 0, duration: 0.72, ease: 'power4.inOut' }, 0.1)
-        .fromTo(head, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.44)
-        .fromTo(rows, { yPercent: 130 }, { yPercent: 0, duration: 0.75, stagger: 0.06 }, 0.42)
-        .fromTo(foot, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.68)
-        .fromTo(fermerRef.current, { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0.45)
-        /* La croix se construit comme un réseau : le nœud central, puis les
-           liens qui en partent, puis un nœud au bout de chacun. */
-        .fromTo(croixCoeur, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.35, ease: 'back.out(2.4)' }, 0.55)
-        .fromTo(croixLiens, { strokeDashoffset: 11 }, { strokeDashoffset: 0, duration: 0.4, ease: 'power2.out', stagger: 0.04 }, 0.62)
-        .fromTo(croixNoeuds, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.35, ease: 'back.out(2.4)', stagger: 0.04 }, 0.8)
-        .fromTo(decor, { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 0.55, scale: 1, duration: 0.7, ease: 'power2.out' }, 0.6);
-    }
-    menuTl.current = tl;
+    const mm = gsap.matchMedia();
+    // Une condition au moins doit être vraie pour que matchMedia appelle la fonction : « grand » est le complément exact de « petit ».
+    mm.add({ petit: '(max-width: 880px)', grand: 'not all and (max-width: 880px)', reduit: '(prefers-reduced-motion: reduce)' }, ({ conditions }) => {
+      const menu = menuRef.current;
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
+      tl.set(menu, { visibility: 'visible' }, 0);
+      if (conditions.reduit) {
+        tl.set([layerRef.current, panelRef.current], { xPercent: 0 }, 0)
+          .fromTo(menu, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.25 }, 0);
+      } else if (conditions.petit) {
+        tl.fromTo(panelRef.current, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.32, ease: 'power3.out' }, 0);
+      } else {
+        const rows = menu.querySelectorAll('.menu2__row');
+        const head = menu.querySelector('.menu2__head');
+        const foot = menu.querySelector('.menu2__foot');
+        const decor = menu.querySelector('.menu2__decor');
+        const croixCoeur = fermerRef.current.querySelector('.croix__coeur');
+        const croixLiens = fermerRef.current.querySelectorAll('.croix__lien');
+        const croixNoeuds = fermerRef.current.querySelectorAll('.croix__n');
+        tl.fromTo(backdropRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: 'power2.out' }, 0)
+          .fromTo(layerRef.current, { xPercent: 101 }, { xPercent: 0, duration: 0.6, ease: 'power4.inOut' }, 0)
+          .fromTo(panelRef.current, { xPercent: 103 }, { xPercent: 0, duration: 0.72, ease: 'power4.inOut' }, 0.1)
+          .fromTo(head, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.44)
+          .fromTo(rows, { yPercent: 130 }, { yPercent: 0, duration: 0.75, stagger: 0.06 }, 0.42)
+          .fromTo(foot, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.68)
+          .fromTo(fermerRef.current, { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0.45)
+          /* La croix se construit comme un réseau : le nœud central, puis les
+             liens qui en partent, puis un nœud au bout de chacun. */
+          .fromTo(croixCoeur, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.35, ease: 'back.out(2.4)' }, 0.55)
+          .fromTo(croixLiens, { strokeDashoffset: 11 }, { strokeDashoffset: 0, duration: 0.4, ease: 'power2.out', stagger: 0.04 }, 0.62)
+          .fromTo(croixNoeuds, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.35, ease: 'back.out(2.4)', stagger: 0.04 }, 0.8)
+          .fromTo(decor, { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 0.55, scale: 1, duration: 0.7, ease: 'power2.out' }, 0.6);
+      }
+      menuTl.current = tl;
+      /* Reconstruit menu ouvert (fenêtre redimensionnée) : on reste ouvert. */
+      if (ouvertRef.current) tl.progress(1);
+    });
+    return () => mm.revert();
   }, { scope: menuRef, dependencies: [lang, profil] });
 
   useEffect(() => {
+    ouvertRef.current = open;
     const tl = menuTl.current;
     if (!tl) return undefined;
     if (open) tl.timeScale(1).play();

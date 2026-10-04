@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
+import { REVELATIONS } from '../lib/mouvement';
 import { PORTES_CREATION } from '../data/offres';
 
 /* ════════════════════════════════════════════════════════════
@@ -30,7 +31,8 @@ export default function Chemins({
   const racine = useRef(null);
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
 
     gsap.from(q('.ch__q'), {

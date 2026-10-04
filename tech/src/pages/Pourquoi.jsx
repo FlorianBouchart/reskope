@@ -16,6 +16,7 @@ import ReservePme from '../components/ReservePme';
 import { useProfil, BASE } from '../profil';
 import { pageExiste } from '../data/seo';
 import { PASSERELLE } from '../data/profils';
+import { REVELATIONS } from '../lib/mouvement';
 import { CONSTAT } from '../data/constat';
 
 /* LE CONSTAT — l'étude de marché en expérience (niveau home) :
@@ -123,7 +124,8 @@ function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
   const rootRef = useRef(null);
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     /* Entrée « rideau » : chaque carte se dévoile par balayage (clip-path)
        en se posant, avec un léger flou qui se dissipe — plus feutré qu'un
        simple slide. Le glyphe et le contenu suivent en cascade interne. */

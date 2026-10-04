@@ -56,11 +56,11 @@ function Carte({ e }) {
     <article className={`aig__carte aig--${m.id}`} data-cursor-label="Entrer" data-incliner>
       <span className="aig__ciel" aria-hidden="true" />
       <span className="aig__reseau" aria-hidden="true"><ReseauTaille n={e.noeuds} /></span>
-      <h2 className="aig__marque">
+      <h3 className="aig__marque">
         <span className="aig__mere" aria-hidden="true">Reskope</span>
         <span className="aig__nom" aria-hidden="true"><NetWord className="aig__netword" heightEm={1}>{m.nom}</NetWord></span>
         <span className="sr-only">{nom}</span>
-      </h2>
+      </h3>
       <p className="aig__moment">{m.fr.moment}</p>
       <p className="aig__qui">{m.fr.qui}</p>
       {e.repere && <p className="aig__repere">{e.repere}</p>}
@@ -99,7 +99,7 @@ export default function Aiguillage() {
     const tl = gsap.timeline({ delay: 0.15 });
     tl.from(q('.aig__surtitre'), { z: -70, transformPerspective: 900, y: 16, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0)
       .from(q('.aig__q'), { z: -170, transformPerspective: 900, y: 50, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0)
-      .from(q('.aig__sous, .aig__actions, .aig__rassure'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
+      .from(q('.aig__sous, .aig__actions, .aig__rassure, .aig__choix-titre'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
       .from(q('.aig__carte'), {
         z: -130, transformPerspective: 900, y: 70, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,
       }, 0.35)
@@ -119,11 +119,14 @@ export default function Aiguillage() {
     <Page className="aig">
       <div ref={racine}>
         <section className="aig__in container" aria-labelledby="aig-q">
-          <p className="eyebrow aig__surtitre">Reskope, cabinet de conseil à Valenciennes et Lille</p>
-          <h1 className="aig__q" id="aig-q">Où en est votre entreprise&nbsp;?</h1>
+          {/* Le titre dit ce qu'on fait et où, en quelques mots : c'est ce que
+              cherche quelqu'un qui arrive de Google (« cabinet conseil
+              valenciennes »). La question vient juste au-dessus des cartes. */}
+          <p className="eyebrow aig__surtitre">Reskope · création d’entreprise, TPE et PME</p>
+          <h1 className="aig__q" id="aig-q">Cabinet de conseil à Valenciennes et Lille</h1>
           <p className="aig__sous">
-            Le travail d’un cabinet de conseil, au prix d’une petite équipe. Choisissez votre situation&nbsp;: on ne vous
-            montre que ce qui vous concerne.
+            La rigueur d’un cabinet, au prix d’une petite équipe. Choisissez votre situation&nbsp;: on ne vous montre que
+            ce qui vous concerne.
           </p>
           <div className="aig__actions">
             <button type="button" className="btn btn--primary" onClick={reserver}>
@@ -140,10 +143,11 @@ export default function Aiguillage() {
             <span>Thomy et Florian vous répondent sous 24 h · sans engagement · prix fixe</span>
           </p>
 
+          <h2 className="aig__choix-titre" id="aig-choix">Où en est votre entreprise&nbsp;?</h2>
           <div className="aig__choix-cadre">
             {/* Le fil qui relie les trois marques : le même réseau, qui grandit. */}
             <span className="aig__fil" aria-hidden="true" />
-            <ul className="aig__choix">
+            <ul className="aig__choix" aria-labelledby="aig-choix">
               {ESPACES.map((e) => (
                 <li key={e.id}><Carte e={e} /></li>
               ))}

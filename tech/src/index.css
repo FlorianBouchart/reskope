@@ -5842,15 +5842,18 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
   width: 100%;
   will-change: transform;
 }
+/* Le titre dit ce qu'on fait et où (« Accompagnement à la création
+   d'entreprise à Valenciennes et Lille ») : plus long qu'une phrase choc,
+   donc un peu moins haut, toujours grand et gras, trois lignes au plus. */
 .heroform__title {
-  margin: 0 0 clamp(1.8rem, 4vh, 2.8rem);
-  font-size: clamp(2.7rem, 6.7vw, 7.4rem);
+  margin: 0 0 clamp(1.4rem, 3.2vh, 2.2rem);
+  font-size: clamp(2.4rem, 4.9vw, 5.6rem);
   font-weight: 600;
-  line-height: 0.99;
-  letter-spacing: -0.045em;
+  line-height: 1;
+  letter-spacing: -0.04em;
   color: var(--ink);
   text-wrap: balance;
-  max-width: 26ch;
+  max-width: 24ch;
   cursor: default;
 }
 /* Calque de morph : la version police RÉSEAU est SUPERPOSÉE au titre —
@@ -6010,7 +6013,7 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
     width: min(58vw, 300px);
   }
   .heroform__title {
-    font-size: clamp(2.5rem, 10.5vw, 4rem);
+    font-size: clamp(2.05rem, 8.4vw, 3.2rem);
   }
   .heroform__title--net {
     display: none;
@@ -7335,7 +7338,6 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
   align-items: center;
   gap: clamp(0.9rem, 2vw, 1.5rem);
   padding: clamp(0.7rem, 1.9vh, 1.15rem) 0.3rem;
-  will-change: transform;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .menu2__num {
@@ -7427,8 +7429,11 @@ html.eco-theme .langtoggle__opt:not(.is-on):hover {
   pointer-events: none;
 }
 @media (max-width: 880px) {
-  .menu2__layer {
-    width: 100vw;
+  /* Sur téléphone, le panneau couvre tout : ni lame ni voile flouté
+     dessous, rien à calculer pour rien. */
+  .menu2__layer,
+  .menu2__backdrop {
+    display: none;
   }
   .menu2__panel {
     width: 100vw;

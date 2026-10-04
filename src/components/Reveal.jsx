@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* Reveal au scroll, piloté par IntersectionObserver (fiable sur mobile :
@@ -24,7 +25,7 @@ export function Reveal({
     const items = root.querySelectorAll('.reveal-item');
     if (!items.length) return;
 
-    if (instant()) {
+    if (instant() || !REVELATIONS) {
       gsap.set(items, { opacity: 1, y: 0 });
       return;
     }

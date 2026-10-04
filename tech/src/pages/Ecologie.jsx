@@ -8,6 +8,7 @@ import CubeGlyph from '../components/CubeGlyph';
 import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { useLang } from '../i18n';
 import { cheminFeuille } from '../lib/feuille';
+import { REVELATIONS } from '../lib/mouvement';
 import { CONTACT } from '../data/site';
 
 const reduced = () =>
@@ -178,8 +179,8 @@ export default function Ecologie() {
 
     /* Stats : entrée rideau + le FIL qui les relie se dessine */
     const facts = root.querySelectorAll('.eco-fact');
-    gsap.set(facts, { clipPath: 'inset(0% 0% 100% 0% round 14px)', y: 44, autoAlpha: 0, filter: 'blur(8px)' });
-    gsap.to(facts, {
+    if (REVELATIONS) gsap.set(facts, { clipPath: 'inset(0% 0% 100% 0% round 14px)', y: 44, autoAlpha: 0, filter: 'blur(8px)' });
+    if (REVELATIONS) gsap.to(facts, {
       clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, autoAlpha: 1, filter: 'blur(0px)',
       duration: 1, ease: 'power4.out', stagger: 0.14,
       scrollTrigger: { trigger: root.querySelector('.eco-facts-wrap'), start: 'top 80%' },

@@ -21,7 +21,7 @@ export function initSmoothScroll() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
 
   lenis = new Lenis({
-    lerp: 0.1,            // interpolation continue = scroll soyeux mais « ferme » (Noomo)
+    lerp: 0.07,           // un défilement qui a du poids : il glisse et se pose, sans traîner (0,1 avant le 04/10/2026)
     smoothWheel: true,
     wheelMultiplier: 1,
     touchMultiplier: 1.5,

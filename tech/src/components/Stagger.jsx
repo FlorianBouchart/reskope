@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* Groupe d'éléments qui entrent UN PAR UN au scroll (montée + focus-in),
@@ -26,7 +27,7 @@ export default function Stagger({
       if (!root) return;
       const items = root.querySelectorAll(sel);
       if (!items.length) return;
-      if (instant()) {
+      if (instant() || !REVELATIONS) {
         gsap.set(items, { opacity: 1, y: 0, filter: 'none' });
         return;
       }

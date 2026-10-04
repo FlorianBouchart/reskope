@@ -434,9 +434,14 @@ export default function HeroNetwork() {
       };
     }
 
+    /* Sur un écran tactile, une image sur deux : le réseau dérive
+       lentement, l'œil ne fait pas la différence, la batterie si. */
+    const tactile = window.matchMedia('(pointer: coarse)').matches;
+    let saute = false;
     const boucle = () => {
-      dessiner(true);
       raf = requestAnimationFrame(boucle);
+      if (tactile && (saute = !saute)) return;
+      dessiner(true);
     };
     const onPointer = (e) => {
       if (e.pointerType !== 'mouse') return;
@@ -444,30 +449,32 @@ export default function HeroNetwork() {
       souris.y = e.clientY;
     };
     const oublier = () => { souris.x = -9999; souris.y = -9999; };
-    const onVisibilite = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(raf);
-        raf = null;
-      } else if (!raf) {
-        raf = requestAnimationFrame(boucle);
-      }
+    /* Il s'arrête quand l'onglet est caché, et quand le menu ouvert le
+       recouvre (html[data-menu-ouvert], posé par la navigation). */
+    const regler = () => {
+      const tourner = !document.hidden && !document.documentElement.hasAttribute('data-menu-ouvert');
+      if (tourner && !raf) raf = requestAnimationFrame(boucle);
+      else if (!tourner && raf) { cancelAnimationFrame(raf); raf = null; }
     };
+    const menu = new MutationObserver(regler);
+    menu.observe(document.documentElement, { attributes: true, attributeFilter: ['data-menu-ouvert'] });
 
     window.addEventListener('pointermove', onPointer, { passive: true });
     document.documentElement.addEventListener('pointerleave', oublier);
     window.addEventListener('blur', oublier);
     window.addEventListener('resize', resize);
-    document.addEventListener('visibilitychange', onVisibilite);
-    raf = requestAnimationFrame(boucle);
+    document.addEventListener('visibilitychange', regler);
+    regler();
 
     return () => {
       cancelAnimationFrame(raf);
       veille.disconnect();
+      menu.disconnect();
       window.removeEventListener('pointermove', onPointer);
       document.documentElement.removeEventListener('pointerleave', oublier);
       window.removeEventListener('blur', oublier);
       window.removeEventListener('resize', resize);
-      document.removeEventListener('visibilitychange', onVisibilite);
+      document.removeEventListener('visibilitychange', regler);
     };
   }, []);
 

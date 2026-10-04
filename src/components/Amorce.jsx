@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* ════════════════════════════════════════════════════════════
@@ -44,7 +45,8 @@ export default function Amorce({
   const racine = useRef(null);
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.am__lead, .am__sous'), {
       ...(ENTREES[entree] || ENTREES.profondeur), autoAlpha: 0,

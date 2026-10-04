@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* ════════════════════════════════════════════════════════════
@@ -22,7 +23,8 @@ export default function Verbatims({ sujets, total = 11 }) {
   const max = Math.max(...sujets.map((s) => s.n));
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
     q('.vb__sujet').forEach((col, k) => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: col, start: 'top 82%' } });

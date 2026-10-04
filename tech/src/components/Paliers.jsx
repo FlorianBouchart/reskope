@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
 import { instant, mouvementRefuse } from '../lib/scrub';
+import { REVELATIONS } from '../lib/mouvement';
 import { projeter, VIEWBOX } from '../lib/figures';
 
 /* ============================================================
@@ -91,8 +92,9 @@ export default function Paliers({ tiers }) {
         opacity: 0, duration: 0.4, ease: 'none', stagger: 0.012,
       }, i * 0.14)
         .from(it.querySelectorAll('.axo__v'), { z: -90, transformPerspective: 900, y: 4.5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'back.out(1.6)', stagger: 0.05,
-        }, i * 0.14 + 0.12)
-        .from(it.querySelectorAll('.plr__t'), {
+        }, i * 0.14 + 0.12);
+      if (!REVELATIONS) return;
+      tl.from(it.querySelectorAll('.plr__t'), {
           yPercent: 112, duration: 0.65, ease: 'power4.out',
         }, i * 0.14 + 0.22)
         .from(it.querySelectorAll('.plr__d, .plr__ex'), { z: -90, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.55, ease: 'expo.out', stagger: 0.06,

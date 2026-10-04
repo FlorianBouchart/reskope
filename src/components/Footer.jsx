@@ -13,6 +13,7 @@ import { fiche } from '../data/seo';
 import { EspacesTuiles } from './Espaces';
 import { MARQUES } from '../data/marques';
 import { rouvrirMesure } from '../lib/mesure';
+import { REVELATIONS } from '../lib/mouvement';
 import { useMarque } from '../lib/useMarque';
 
 /* FOOTER — L'UNIVERS de clôture (plein écran).
@@ -62,7 +63,7 @@ export default function Footer() {
       // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
       split = new SplitText(stRef.current, { type: 'lines', mask: 'lines', linesClass: 'footer2__stline', aria: 'none' });
     } catch { split = null; }
-    if (split) {
+    if (split && REVELATIONS) {
       gsap.from(split.lines, {
         yPercent: 115, duration: 0.9, ease: 'power4.out', stagger: 0.09,
         scrollTrigger: { trigger: rootRef.current, start: 'top 78%' },
@@ -72,7 +73,7 @@ export default function Footer() {
     /* Colonnes : chaque ligne monte derrière son propre masque, colonne
        après colonne. Une cascade d'opacité sur trois blocs entiers ne se
        voit pas ; ligne à ligne, si. */
-    gsap.from(rootRef.current.querySelectorAll('.footer2__col > *'), { z: -90, transformPerspective: 900, yPercent: 105, autoAlpha: 0, filter: 'blur(8px)', duration: 0.9, ease: 'expo.out', stagger: 0.035,
+    if (REVELATIONS) gsap.from(rootRef.current.querySelectorAll('.footer2__col > *'), { z: -90, transformPerspective: 900, yPercent: 105, autoAlpha: 0, filter: 'blur(8px)', duration: 0.9, ease: 'expo.out', stagger: 0.035,
       /* Sans clearProps, une ligne pouvait rester sur son décalage de départ
          et se poser sur la suivante — c'est ce qui faisait passer « Carte de
          visite » par-dessus la ville. Une fois montée, la ligne ne garde

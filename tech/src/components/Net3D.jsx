@@ -55,16 +55,28 @@ export default function Net3D({
       return;
     }
 
+    /* Il ne tourne que s'il est à l'écran : un réseau hors champ (le pied
+       de page, l'agenda plus bas, le décor d'un menu fermé) ne coûte rien.
+       Ils tournaient tous en permanence, et un téléphone le sentait. */
     let ay = Math.random() * Math.PI * 2;
-    let raf;
+    let raf = 0;
+    const poser = () => render(0.3 + Math.sin(ay * 0.7) * 0.28 * tiltX, ay); // tumble organique
     const tick = () => {
       ay += 0.0065 * speed;
-      const ax = 0.3 + Math.sin(ay * 0.7) * 0.28 * tiltX; // tumble organique
-      render(ax, ay);
+      poser();
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    poser();
+    if (typeof IntersectionObserver === 'undefined') {
+      raf = requestAnimationFrame(tick);
+      return () => cancelAnimationFrame(raf);
+    }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
+      else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
+    }, { rootMargin: '80px' });
+    io.observe(svg);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, [shape, speed, tiltX, nodeR, focal]);
 
   return (

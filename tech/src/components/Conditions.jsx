@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap, useGSAP } from '../lib/gsap';
 import SwapLabel from './SwapLabel';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* ============================================================
@@ -25,7 +26,8 @@ export default function Conditions({ c }) {
   const racine = useRef(null);
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
 
     /* La question : elle arrive de loin, comme tout le reste du site. */

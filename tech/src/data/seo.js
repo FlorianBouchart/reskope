@@ -91,7 +91,7 @@ const PME = {
   '/': {
     titre: 'Audit numérique de PME, Valenciennes et Lille',
     description: 'Audit et cartographie des outils numériques de votre PME, poste par poste, à Valenciennes et Lille. On relie ce qui ne se parle pas.',
-    h1: 'Vos outils vous coûtent plus que ce que vous croyez.',
+    h1: 'Audit et outils numériques pour PME à Valenciennes et Lille',
     resume: 'On vient compter, poste par poste, ce que vos logiciels vous coûtent vraiment : les abonnements payés sans être ouverts, les outils achetés deux fois pour le même travail, et les informations qu’une personne recopie à la main d’un écran à l’autre. Quatre chantiers, dans l’ordre où ils arrivent : on fait le tour de vos outils quand ça s’est accumulé, on relie ce qui ne se parle pas, on construit ce qui manque, et on forme vos équipes pour que ça tienne sans nous. Vous entrez là où vous en êtes et vous vous arrêtez quand ça vous suffit.',
     mots: ['audit numérique PME', 'cartographie des outils', 'conseil numérique Valenciennes'],
   },
@@ -160,9 +160,9 @@ const PME = {
 /* ── LA VERSION TPE ───────────────────────────────────────── */
 const TPE = {
   '/': {
-    titre: 'Site internet pour TPE, Valenciennes et Lille',
+    titre: 'Création de site internet pour TPE, Valenciennes et Lille',
     description: 'Site vitrine, boutique en ligne, prise de rendez-vous et identité de marque pour les TPE, artisans et commerçants de Valenciennes et de Lille.',
-    h1: 'Ce qui vous manque pour être trouvé et joignable.',
+    h1: 'Création de site internet pour TPE à Valenciennes et Lille',
     resume: 'On construit ce qui manque aux petites entreprises, dans l’ordre où ça arrive : préparer le lancement avant d’ouvrir, mettre l’entreprise en ligne pour qu’on vous trouve, prendre les rendez-vous à votre place pour qu’on vous joigne, et poser l’identité pour qu’on vous reconnaisse. Un site qui dit en une phrase ce que vous faites et pour qui, une boutique si vous vendez. Facturé à la journée, code et accès à votre nom.',
     mots: ['création site internet TPE Valenciennes', 'site internet artisan'],
   },
