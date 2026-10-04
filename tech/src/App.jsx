@@ -7,6 +7,7 @@ import { initContentGuard } from './lib/contentGuard';
 import ScrollToTop from './components/ScrollToTop';
 import Cursor from './components/Cursor';
 import HeroNetwork from './components/HeroNetwork';
+import Sillage from './components/Sillage';
 import PageTransition from './components/PageTransition';
 import Interactions from './components/Interactions';
 import Nav from './components/Nav';
@@ -53,6 +54,8 @@ export default function App() {
           changeait d'une page à l'autre. Il n'y en a plus qu'un, avec la
           densité d'origine du hero, et il est le même partout. */}
       <div className="fond" aria-hidden="true"><HeroNetwork /></div>
+      {/* Le flou du défilement, au-dessus du contenu (voir Sillage.jsx). */}
+      <Sillage />
       <Cursor />
       <PageTransition />
       <Interactions />

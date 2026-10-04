@@ -4773,3 +4773,14 @@ html[data-marque='elevate'] body:has(#root > .pre-seo)::after { background-image
 /* D'une application à l'autre du site (Create d'un côté, Define et Elevate
    de l'autre), le navigateur fond l'ancienne page dans la nouvelle. */
 @view-transition { navigation: auto; }
+
+/* Le sillage du défilement : au-dessus du contenu, sous le menu (45) et
+   l'en-tête (50), transparent aux clics. Voir components/Sillage.jsx. */
+.sillage {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

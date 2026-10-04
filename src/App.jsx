@@ -7,6 +7,7 @@ import { versEntreprises } from './data/seo';
 import ScrollToTop from './components/ScrollToTop';
 import Cursor from './components/Cursor';
 import HeroNetwork from './components/HeroNetwork';
+import Sillage from './components/Sillage';
 import PageTransition from './components/PageTransition';
 import Interactions from './components/Interactions';
 import Nav from './components/Nav';
@@ -83,6 +84,8 @@ export default function App() {
       <ScrollToTop />
       {/* La trame de la marque, posée une seule fois derrière tout le site. */}
       <div className="fond" aria-hidden="true"><HeroNetwork /></div>
+      {/* Le flou du défilement, au-dessus du contenu (voir Sillage.jsx). */}
+      <Sillage />
       <Cursor />
       <PageTransition />
       <Interactions />

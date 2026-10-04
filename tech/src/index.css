@@ -13513,3 +13513,14 @@ main:has(> [data-nav-dark]:last-child) + .crumb {
     padding: 0.7rem 1rem;
   }
 }
+
+/* Le sillage du défilement : au-dessus du contenu, sous le menu (45) et
+   l'en-tête (50), transparent aux clics. Voir components/Sillage.jsx. */
+.sillage {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

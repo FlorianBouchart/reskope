@@ -362,121 +362,6 @@ function altitude() {
   };
 }
 
-/* ── Le sillage : un flou fait de particules ─────────────────
-   Retour du 04/10/2026, troisième version : « mets plein de particules qui,
-   en fait, forment du flou », plus nombreuses et moins opaques, sans gêner
-   le regard. Le bord vers lequel on défile (le bas en descendant, le haut
-   en remontant) se couvre d'un voile : des centaines de points doux, flous
-   par eux-mêmes (un dégradé radial dessiné une fois), étirés par la vitesse
-   comme un flou de mouvement, très transparents, serrés contre le bord et
-   qui s'éteignent en avançant. Leur nombre, leur vitesse et leur course
-   suivent le défilement ; rien à l'arrêt. Quelques cubes en fil de fer,
-   rares et pâles, gardent la signature de la marque. */
-const SOMMETS = [[-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1], [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]];
-const ARETES = [[0, 1], [1, 3], [3, 2], [2, 0], [4, 5], [5, 7], [7, 6], [6, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
-/* Un point flou, dessiné une fois par couleur : la tache d'un objet hors de
-   la mise au point. Le dessiner ensuite coûte une copie d'image. */
-const taches = new Map();
-function tache(couleur) {
-  if (taches.has(couleur)) return taches.get(couleur);
-  const t = document.createElement('canvas');
-  t.width = t.height = 64;
-  const g = t.getContext('2d');
-  const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-  r.addColorStop(0, `rgba(${couleur},1)`);
-  r.addColorStop(0.35, `rgba(${couleur},0.55)`);
-  r.addColorStop(1, `rgba(${couleur},0)`);
-  g.fillStyle = r;
-  g.fillRect(0, 0, 64, 64);
-  taches.set(couleur, t);
-  return t;
-}
-function sillage() {
-  const parts = [];
-  let reserve = 0;
-  let max = 240;
-  return {
-    marque() {},
-    taille(w) { max = w < 700 ? 140 : 320; },
-    /* v : vitesse du défilement, en pixels par image à 60 images/s (positive
-       vers le bas) ; f : images écoulées depuis le dernier dessin. */
-    dessiner(ctx, w, h, v, f, c) {
-      const vit = Math.min(Math.abs(v), 70);
-      const sens = Math.sign(v);
-      if (vit > 0.5 && sens) {
-        reserve = Math.min(reserve + Math.min(9, vit * 0.34) * f, 14);
-        while (reserve >= 1 && parts.length < max) {
-          reserve -= 1;
-          const z = Math.random();
-          const gros = Math.random() < 0.45;
-          /* Le voile reste près du bord : jusqu'à un quart de l'écran pour
-             un défilement rapide, quelques dizaines de pixels sinon. */
-          const course = h * (0.05 + 0.2 * z) * Math.min(1, vit / 28) + 16;
-          parts.push({
-            x: hasard(-10, w + 10),
-            y: sens > 0 ? h + hasard(2, 24) : -hasard(2, 24),
-            dx: hasard(-0.25, 0.25),
-            vy: -sens * course * 0.08 * hasard(0.8, 1.2),
-            course,
-            parcouru: 0,
-            age: 0,
-            taille: gros ? 14 + 22 * z : 2 + 5 * z,
-            force: gros ? 0.05 + 0.07 * z : 0.1 + 0.14 * z,
-            cube: !gros && Math.random() < 0.035,
-            rx: hasard(0, 6.28),
-            ry: hasard(0, 6.28),
-          });
-        }
-      } else reserve = 0;
-      if (!parts.length) return;
-      const frein = Math.pow(0.92, f);
-      const flou = tache(c.vive);
-      for (let i = parts.length - 1; i >= 0; i--) {
-        const p = parts[i];
-        p.parcouru += Math.abs(p.vy * f);
-        p.y += p.vy * f;
-        p.x += p.dx * f;
-        p.vy *= frein;
-        p.age += f;
-        p.rx += 0.03 * f;
-        p.ry += 0.024 * f;
-        if (p.parcouru > p.course * 0.96 || p.age > 150 || p.y < -60 || p.y > h + 60) parts.splice(i, 1);
-      }
-      for (const p of parts) {
-        /* Pleine contre le bord, elle s'éteint en avançant. */
-        const e = Math.pow(Math.max(0, 1 - p.parcouru / p.course), 1.2) * Math.min(1, p.age / 3);
-        if (e <= 0.01) continue;
-        if (p.cube) {
-          const s = 3 + 4 * p.taille / 7;
-          const cx = Math.cos(p.rx), sx = Math.sin(p.rx), cy = Math.cos(p.ry), sy = Math.sin(p.ry);
-          const pts = SOMMETS.map(([x, y, z]) => {
-            const x1 = x * cy + z * sy;
-            const z1 = -x * sy + z * cy;
-            return [p.x + x1 * s, p.y + (y * cx - z1 * sx) * s];
-          });
-          ctx.globalAlpha = 1;
-          ctx.strokeStyle = rgba(c.vive, 0.22 * e);
-          ctx.lineWidth = 0.8;
-          ctx.beginPath();
-          for (const [a, b] of ARETES) {
-            ctx.moveTo(pts[a][0], pts[a][1]);
-            ctx.lineTo(pts[b][0], pts[b][1]);
-          }
-          ctx.stroke();
-          continue;
-        }
-        /* Étirée dans le sens du mouvement : un flou de mouvement. */
-        const etire = 1 + Math.min(3, Math.abs(p.vy) * 0.14);
-        const lw = p.taille;
-        const lh = p.taille * etire;
-        ctx.globalAlpha = p.force * e;
-        ctx.drawImage(flou, p.x - lw / 2, p.y - lh / 2, lw, lh);
-      }
-      ctx.globalAlpha = 1;
-    },
-  };
-}
-
 const COMPORTEMENTS = { reskope: derive, create: eclosion, define: rangement, elevate: altitude };
 
 const couleurs = () => {
@@ -505,11 +390,6 @@ export default function HeroNetwork() {
     let marque = null;
     let vie = null;
     let c = couleurs();
-    const flux = sillage();
-    /* La vitesse du défilement, mesurée à chaque image dessinée. */
-    let dernierY = window.scrollY;
-    let dernierT = performance.now();
-    let vit = 0;
 
     const resize = () => {
       w = parent.offsetWidth;
@@ -520,7 +400,6 @@ export default function HeroNetwork() {
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       vie?.taille(w, h);
-      flux.taille(w, h);
     };
 
     /* La marque change (on passe de l'accueil à Create sans recharger) :
@@ -531,26 +410,13 @@ export default function HeroNetwork() {
       if (m === marque && vie) return;
       marque = m;
       vie = (COMPORTEMENTS[m] || derive)();
-      flux.marque(m);
       vie.taille(w, h);
       if (fige) dessiner(false);
     };
 
     const dessiner = (bouger) => {
-      const t = performance.now();
       ctx.clearRect(0, 0, w, h);
-      vie?.dessiner(ctx, w, h, t, souris, bouger, c);
-      if (!bouger) return;
-      const y = window.scrollY;
-      let dy = y - dernierY;
-      /* Un saut (changement de page, ancre instantanée) n'est pas une vitesse. */
-      if (Math.abs(dy) > 600) dy = 0;
-      const ecoule = Math.min(Math.max(t - dernierT, 8), 100);
-      vit += ((dy / ecoule) * 16.67 - vit) * 0.35;
-      if (Math.abs(vit) < 0.05) vit = 0;
-      dernierY = y;
-      dernierT = t;
-      flux.dessiner(ctx, w, h, vit, ecoule / 16.67, c);
+      vie?.dessiner(ctx, w, h, performance.now(), souris, bouger, c);
     };
 
     resize();
