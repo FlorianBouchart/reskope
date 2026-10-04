@@ -13445,3 +13445,27 @@ html[data-marque='elevate'] body:has(#root > .pre-seo)::after { background-image
   .espt__nom { font-size: 1.02rem; }
   .espt__etat { margin-top: 0; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   LES COUTURES AU BAS DE LA PAGE (04/10/2026)
+   Le pied est hors de <main> : les règles « deux bandes sombres restent
+   bord à bord » ne voyaient pas qu'une section sombre (l'agenda) finissait
+   la page. Le pied arrondi se posait alors sur la bande transparente de
+   <main>, et le crème de la page apparaissait dans ses coins, entre deux
+   indigos. Désormais la dernière section sombre s'allonge sous le pied :
+   ses coins arrondis se posent sur son indigo, comme un calque.
+   Et le fil d'Ariane garde sa place : la règle « pas de filets » lui
+   retirait la bordure transparente sur laquelle le pied se pose, et le pied
+   le recouvrait aux trois quarts. Il reprend cette hauteur, avec plus d'air
+   en dessous. */
+main:has(> [data-nav-dark]:last-child):has(+ .footer2--universe) { border-bottom: 0; }
+main:has(+ .footer2--universe) > [data-nav-dark]:last-child,
+main:has(+ .crumb) > [data-nav-dark]:last-child { border-bottom: var(--couture-r) solid transparent; }
+/* Une section sombre suivie du fil d'Ariane : le fil remonte sur elle, arrondi. */
+main:has(> [data-nav-dark]:last-child) + .crumb {
+  border-start-start-radius: var(--couture-r);
+  border-start-end-radius: var(--couture-r);
+  margin-top: calc(-1 * var(--couture-r));
+}
+.crumb { padding-block: 1.25rem clamp(1.9rem, 4.5vh, 2.6rem); }
+.crumb:has(+ .footer2--universe) { border-bottom: var(--couture-r) solid transparent; }

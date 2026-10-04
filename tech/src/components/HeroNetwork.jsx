@@ -362,57 +362,74 @@ function altitude() {
   };
 }
 
-/* ── La vitesse : des particules qui suivent le défilement ─────
-   Retour du 04/10/2026 : plutôt que du flou, « des particules en trois
-   dimensions, en cube ou en réseau, qui font sentir la vitesse quand on
-   descend et quand on remonte ». Invisibles au repos : elles apparaissent
-   avec la vitesse du défilement, filent dans son sens (le premier plan plus
-   vite que le fond), laissent une traînée, et s'éteignent quand la page
-   s'arrête. Des nœuds reliés entre eux et des cubes en fil de fer, aux
-   couleurs de la marque ; Define a plus de cubes (la mise en ordre), Create
-   en a moins (des graines). */
+/* ── Le sillage : la vitesse du défilement, en particules ─────
+   Retour du 04/10/2026, seconde version. Les particules naissent du bord
+   vers lequel on va : on descend, elles montent du bas de l'écran, là où
+   la page arrive ; on remonte, elles tombent du haut. Elles sont plus
+   nombreuses contre ce bord et s'éteignent en avançant. Leur nombre et leur
+   vitesse suivent le défilement : un défilement lent en lâche quelques-unes,
+   un défilement rapide fait un vrai sillage, et rien ne bouge à l'arrêt.
+   Des nœuds reliés entre eux et des cubes en fil de fer, aux couleurs de
+   la marque ; Define a plus de cubes (la mise en ordre), Create moins. */
 const CUBES = { reskope: 0.3, create: 0.15, define: 0.6, elevate: 0.4 };
 const SOMMETS = [[-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1], [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]];
 const ARETES = [[0, 1], [1, 3], [3, 2], [2, 0], [4, 5], [5, 7], [7, 6], [6, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
-function vitesse() {
+function sillage() {
   const parts = [];
   let part = 0.3;
-  let vis = 0;
-  const placer = (p, w, h, y) => Object.assign(p, {
-    x: hasard(0, w),
-    y: y ?? hasard(0, h),
-    z: 0.25 + 0.75 * Math.pow(Math.random(), 0.7),
-    cube: Math.random() < part,
-    rx: hasard(0, 6.28),
-    ry: hasard(0, 6.28),
-    sens: Math.random() < 0.5 ? -1 : 1,
-  });
+  let reserve = 0;
+  let max = 48;
   return {
-    marque(m) {
-      part = CUBES[m] ?? 0.3;
-      parts.forEach((p) => { p.cube = Math.random() < part; });
-    },
-    taille(w, h) {
-      const n = Math.max(12, Math.min(24, Math.round((w * h) / 60000)));
-      while (parts.length < n) parts.push(placer({}, w, h));
-      parts.length = n;
-      parts.forEach((p) => { if (p.x > w || p.y > h) placer(p, w, h); });
-    },
-    /* v : vitesse du défilement, en pixels par image (positive vers le bas). */
-    dessiner(ctx, w, h, v, c) {
-      const e = Math.min(1, Math.abs(v) / 18);
-      vis += (e * e * (3 - 2 * e) - vis) * 0.14;
-      if (vis < 0.012) return;
-      const k = Math.max(-60, Math.min(60, v));
-      for (const p of parts) {
-        p.y -= k * (0.3 + 1.1 * p.z);
-        p.rx += 0.004 + Math.abs(k) * 0.0022 * p.sens;
-        p.ry += 0.006 + Math.abs(k) * 0.003;
-        if (p.y < -70) placer(p, w, h, h + hasard(10, 70));
-        else if (p.y > h + 70) placer(p, w, h, -hasard(10, 70));
+    marque(m) { part = CUBES[m] ?? 0.3; },
+    taille(w) { max = w < 700 ? 26 : 44; },
+    /* v : vitesse du défilement, en pixels par image à 60 images/s (positive
+       vers le bas) ; f : images écoulées depuis le dernier dessin. */
+    dessiner(ctx, w, h, v, f, c) {
+      const vit = Math.min(Math.abs(v), 70);
+      const sens = Math.sign(v);
+      if (vit > 0.6 && sens) {
+        reserve = Math.min(reserve + Math.min(2.2, vit * 0.075) * f, 3);
+        while (reserve >= 1 && parts.length < max) {
+          reserve -= 1;
+          const z = 0.22 + 0.78 * Math.pow(Math.random(), 0.8);
+          /* La course : jusqu'à 45 % de l'écran pour un défilement rapide,
+             quelques dizaines de pixels pour un défilement lent. Le frein
+             (0,93 par image) fait le reste : elles ralentissent et s'éteignent
+             près du bord d'où elles viennent, là où elles sont le plus. */
+          const course = h * (0.15 + 0.3 * z) * Math.min(1, vit / 30) + 40;
+          parts.push({
+            x: hasard(0, w),
+            y: sens > 0 ? h + hasard(4, 30) : -hasard(4, 30),
+            z,
+            vy: -sens * course * 0.07 * hasard(0.85, 1.15),
+            course,
+            parcouru: 0,
+            age: 0,
+            cube: Math.random() < part,
+            rx: hasard(0, 6.28),
+            ry: hasard(0, 6.28),
+            tour: hasard(0.5, 1.4) * (Math.random() < 0.5 ? -1 : 1),
+          });
+        }
+      } else reserve = 0;
+      if (!parts.length) return;
+      const frein = Math.pow(0.93, f);
+      for (let i = parts.length - 1; i >= 0; i--) {
+        const p = parts[i];
+        p.parcouru += Math.abs(p.vy * f);
+        p.y += p.vy * f;
+        p.vy *= frein;
+        p.age += f;
+        const spin = (0.02 + Math.abs(p.vy) * 0.004) * p.tour * f;
+        p.rx += spin;
+        p.ry += spin * 0.8;
+        if (p.parcouru > p.course * 0.96 || p.age > 160 || p.y < -60 || p.y > h + 60) parts.splice(i, 1);
       }
+      /* L'éclat suit le chemin parcouru : pleine au bord d'où elle sort, la
+         particule s'éteint en avançant et disparaît quand elle s'arrête. */
+      const eclat = (p) => Math.pow(Math.max(0, 1 - p.parcouru / p.course), 1.4) * Math.min(1, p.age / 3) * (0.75 + 0.5 * Math.abs(p.x / w - 0.5));
       /* Le réseau : seules les particules d'une même profondeur se relient,
-         elles filent à la même vitesse et le lien ne clignote pas. */
+         elles vont à la même vitesse et le lien ne clignote pas. */
       ctx.lineWidth = 0.7;
       for (let i = 0; i < parts.length; i++) {
         const a = parts[i];
@@ -420,8 +437,8 @@ function vitesse() {
           const b = parts[j];
           if (Math.abs(a.z - b.z) > 0.2) continue;
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d > 130) continue;
-          ctx.strokeStyle = rgba(c.trame, (1 - d / 130) * 0.2 * vis * Math.min(a.z, b.z));
+          if (d > 120) continue;
+          ctx.strokeStyle = rgba(c.trame, (1 - d / 120) * 0.22 * Math.min(eclat(a), eclat(b)) * Math.min(a.z, b.z));
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -429,11 +446,12 @@ function vitesse() {
         }
       }
       for (const p of parts) {
-        /* La traînée part de la particule vers l'endroit d'où elle vient. */
-        const queue = Math.max(-150, Math.min(150, k * (0.3 + 1.1 * p.z) * 2.6));
+        const e = eclat(p);
+        /* La traînée part de la particule vers le bord d'où elle vient. */
+        const queue = Math.max(-130, Math.min(130, -p.vy * 3.2));
         if (Math.abs(queue) > 2) {
           const g = ctx.createLinearGradient(p.x, p.y, p.x, p.y + queue);
-          g.addColorStop(0, rgba(c.vive, (0.2 + 0.4 * p.z) * vis));
+          g.addColorStop(0, rgba(c.vive, (0.22 + 0.4 * p.z) * e));
           g.addColorStop(1, rgba(c.vive, 0));
           ctx.strokeStyle = g;
           ctx.lineWidth = 0.6 + 1.2 * p.z;
@@ -442,7 +460,7 @@ function vitesse() {
           ctx.lineTo(p.x, p.y + queue);
           ctx.stroke();
         }
-        const alpha = (0.3 + 0.5 * p.z) * vis;
+        const alpha = (0.38 + 0.55 * p.z) * e;
         if (p.cube) {
           const s = 3 + 6 * p.z;
           const cx = Math.cos(p.rx), sx = Math.sin(p.rx), cy = Math.cos(p.ry), sy = Math.sin(p.ry);
@@ -498,7 +516,7 @@ export default function HeroNetwork() {
     let marque = null;
     let vie = null;
     let c = couleurs();
-    const flux = vitesse();
+    const flux = sillage();
     /* La vitesse du défilement, mesurée à chaque image dessinée. */
     let dernierY = window.scrollY;
     let dernierT = performance.now();
@@ -538,11 +556,12 @@ export default function HeroNetwork() {
       let dy = y - dernierY;
       /* Un saut (changement de page, ancre instantanée) n'est pas une vitesse. */
       if (Math.abs(dy) > 600) dy = 0;
-      vit += ((dy / Math.max(8, t - dernierT)) * 16.67 - vit) * 0.35;
+      const ecoule = Math.min(Math.max(t - dernierT, 8), 100);
+      vit += ((dy / ecoule) * 16.67 - vit) * 0.35;
       if (Math.abs(vit) < 0.05) vit = 0;
       dernierY = y;
       dernierT = t;
-      flux.dessiner(ctx, w, h, vit, c);
+      flux.dessiner(ctx, w, h, vit, ecoule / 16.67, c);
     };
 
     resize();
