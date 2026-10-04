@@ -130,15 +130,15 @@ export default function PersonaLivrable({ titre = true }) {
     const tl = gsap.timeline(entree ? {
       scrollTrigger: { trigger: racine.current, start: 'top 78%', once: true, onEnter: () => { vu.current = true; } },
     } : {});
-    if (entree) tl.from(racine.current, { z: -120, transformPerspective: 900, rotateX: -3, y: 60, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0);
-    else tl.from(q('.pl-panneau'), { z: -90, transformPerspective: 900, rotateX: -2, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0);
+    if (entree) tl.from(racine.current, { y: 60, autoAlpha: 0, duration: 1.35, ease: 'expo.out' }, 0);
+    else tl.from(q('.pl-panneau'), { autoAlpha: 0, duration: 1.05, ease: 'expo.out' }, 0);
     tl.fromTo(q('.pl-portrait__cadre'),
       { clipPath: 'inset(100% 0% 0% 0% round 18px)' },
       { clipPath: 'inset(0% 0% 0% 0% round 18px)', duration: 1, ease: 'power4.inOut', clearProps: 'clipPath' }, 0.05)
       .from(q('.pl-const__trait'), { attr: { x2: 50, y2: 50 }, duration: 0.8, ease: 'power3.out', stagger: 0.05 }, 0.3)
       .from(q('.pl-const__point'), { scale: 0.2, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.8)', stagger: 0.06 }, 0.35)
       .fromTo(q('.pl-jour__fil'), { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 1, ease: 'power2.inOut' }, 0.45)
-      .from(q('.pl-jour__moment'), { z: -60, transformPerspective: 900, y: 18, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out', stagger: 0.08 }, 0.55)
+      .from(q('.pl-jour__moment'), { y: 18, autoAlpha: 0, duration: 0.85, ease: 'expo.out', stagger: 0.08 }, 0.55)
       .from(q('.pl-zone__client'), { attr: { r: 0 }, duration: 0.5, ease: 'back.out(2)', stagger: 0.04 }, 0.7);
   }, { scope: racine, dependencies: [actif], revertOnUpdate: true });
 

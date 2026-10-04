@@ -169,7 +169,7 @@ export default function CarteOffres({ onChoisir }) {
       gsap.set(p, { strokeDasharray: l, strokeDashoffset: l });
     });
     tl.to(traits, { strokeDashoffset: 0, duration: 0.9, ease: 'power2.inOut', stagger: 0.07 }, 0.9);
-    tl.from(q('.co__nom'), { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', y: 8, duration: 0.5, ease: 'expo.out', stagger: 0.04 }, 0.8);
+    tl.from(q('.co__nom'), { autoAlpha: 0, y: 8, duration: 0.5, ease: 'expo.out', stagger: 0.04 }, 0.8);
     tl.set(traits, { clearProps: 'strokeDasharray,strokeDashoffset' });
   }, { scope: racine, dependencies: [etroit] });
 

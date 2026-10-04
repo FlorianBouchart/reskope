@@ -7,6 +7,7 @@ import { GLYPH_SHAPES, buildR3D } from '../lib/net3d';
 const prefersReduced = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 import Net3D from './Net3D';
+import { scrubLisse } from '../lib/smoothScroll';
 import NetPhrase, { phraseAspect } from './NetPhrase';
 
 /* ============================================================
@@ -101,7 +102,7 @@ export default function HomeCinema({ c }) {
            et quart de plus. */
         end: () => '+=' + SCENES * window.innerHeight * (window.innerWidth <= 880 ? 0.45 : 0.62),
         pin: stageRef.current,
-        scrub: 1,
+        scrub: scrubLisse(1),
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           if (progressRef.current) {

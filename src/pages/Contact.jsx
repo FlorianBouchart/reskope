@@ -117,7 +117,7 @@ export default function Contact() {
     if (instant()) return;
     const root = racine.current;
     gsap.from(root.querySelectorAll('.ctc__reveal'), {
-      z: -120, transformPerspective: 900, y: 36, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.12,
+      y: 36, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.12,
     });
     const fil = root.querySelector('.ctc__fil i');
     const pts = root.querySelectorAll('.ctc__steps li > i');

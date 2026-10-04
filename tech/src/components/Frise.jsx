@@ -5,6 +5,7 @@ import { mouvementRefuse } from '../lib/scrub';
 import { useLang } from '../i18n';
 import { useProfil } from '../profil';
 import { FRISE } from '../data/frise';
+import { scrubLisse } from '../lib/smoothScroll';
 import Explorateur from './Explorateur';
 
 const Sequence = lazy(() => import('./Sequence'));
@@ -97,7 +98,7 @@ export default function Frise() {
       trigger: el.querySelector('.seq__rail'),
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 0.5,
+      scrub: scrubLisse(0.5),
       onUpdate: (self) => {
         avance.current = self.progress;
         /* Une image par mouvement : c'est le défilement qui dessine. */

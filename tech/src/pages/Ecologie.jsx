@@ -9,6 +9,7 @@ import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { useLang } from '../i18n';
 import { cheminFeuille } from '../lib/feuille';
 import { REVELATIONS } from '../lib/mouvement';
+import { scrubLisse } from '../lib/smoothScroll';
 import { CONTACT } from '../data/site';
 
 const reduced = () =>
@@ -157,7 +158,7 @@ export default function Ecologie() {
         gsap.set(split.words, { opacity: 0.13 });
         gsap.to(split.words, {
           opacity: 1, ease: 'none', stagger: 0.35, duration: 0.35,
-          scrollTrigger: { trigger: stanceLead, start: 'top 78%', end: 'top 30%', scrub: 0.8 },
+          scrollTrigger: { trigger: stanceLead, start: 'top 78%', end: 'top 30%', scrub: scrubLisse(0.8) },
         });
       } catch { split = null; }
     }
@@ -179,9 +180,9 @@ export default function Ecologie() {
 
     /* Stats : entrée rideau + le FIL qui les relie se dessine */
     const facts = root.querySelectorAll('.eco-fact');
-    if (REVELATIONS) gsap.set(facts, { clipPath: 'inset(0% 0% 100% 0% round 14px)', y: 44, autoAlpha: 0, filter: 'blur(8px)' });
+    if (REVELATIONS) gsap.set(facts, { clipPath: 'inset(0% 0% 100% 0% round 14px)', y: 44, autoAlpha: 0 });
     if (REVELATIONS) gsap.to(facts, {
-      clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, autoAlpha: 1, filter: 'blur(0px)',
+      clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, autoAlpha: 1,
       duration: 1, ease: 'power4.out', stagger: 0.14,
       scrollTrigger: { trigger: root.querySelector('.eco-facts-wrap'), start: 'top 80%' },
       onComplete: () => gsap.set(facts, { clearProps: 'clipPath,filter' }),
@@ -193,7 +194,7 @@ export default function Ecologie() {
       gsap.fromTo(gain, { opacity: 0.18, x: 36 }, {
         opacity: 1, x: 0, ease: 'power2.out',
         scrollTrigger: {
-          trigger: gain, start: 'top 86%', end: 'top 52%', scrub: 0.6,
+          trigger: gain, start: 'top 86%', end: 'top 52%', scrub: scrubLisse(0.6),
           onUpdate: (self) => gain.classList.toggle('is-on', self.progress > 0.6),
         },
       });

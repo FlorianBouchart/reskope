@@ -65,7 +65,7 @@ function Livrable() {
     if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.liv__titre, .liv__dit'), {
-      z: -150, transformPerspective: 900, y: 50, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,
+      y: 50, autoAlpha: 0, duration: 1.25, ease: 'expo.out', stagger: 0.14,
       scrollTrigger: { trigger: racine.current, start: 'top 80%' },
     });
   }, { scope: racine });

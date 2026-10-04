@@ -4,6 +4,7 @@ import { usePalette3d } from '../lib/palette3d';
 import * as THREE from 'three';
 import { ScrollTrigger, useGSAP } from '../lib/gsap';
 import { R_NODES, R_LINKS } from './Logo';
+import { scrubLisse } from '../lib/smoothScroll';
 import InfoTip from './InfoTip';
 
 /* ============================================================
@@ -268,7 +269,7 @@ export default function ConstatFlow({ cards, film, sourceLabel, calcLabel, local
       trigger: rootRef.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: scrubLisse(1),
       snap: { snapTo: CD, duration: { min: 0.2, max: 0.7 }, delay: 0.06, ease: 'power2.inOut' },
       onUpdate: (self) => {
         const p = self.progress;

@@ -77,14 +77,14 @@ export default function Ciblage() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     if (REVELATIONS) gsap.from(q('.cib__q'), {
-      z: -180, transformPerspective: 900, y: 54, rotateX: -7, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.3, ease: 'expo.out',
+      y: 54, autoAlpha: 0, duration: 1.3, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 78%' },
     });
     const tl = gsap.timeline({ scrollTrigger: { trigger: q('.cib__reseau')[0], start: 'top 80%' } });
-    tl.from(q('.cib__centre'), { z: -140, transformPerspective: 900, scale: 0.5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'back.out(1.6)' }, 0)
+    tl.from(q('.cib__centre'), { scale: 0.5, autoAlpha: 0, duration: 1.15, ease: 'back.out(1.6)' }, 0)
       .from(q('.cib__trait'), { attr: { x2: 50, y2: 50 }, duration: 0.8, ease: 'power3.out', stagger: 0.07 }, 0.3)
       .from(q('.cib__noeud'), { z: -300, scale: 0.3, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.8)', stagger: 0.08 }, 0.4);
-    if (REVELATIONS) tl.from(q('.cib__fin, .cib__cta, .cib__exemple'), { z: -100, transformPerspective: 900, y: 36, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.1, ease: 'expo.out', stagger: 0.1 }, 0.7);
+    if (REVELATIONS) tl.from(q('.cib__fin, .cib__cta, .cib__exemple'), { y: 36, autoAlpha: 0, duration: 1.1, ease: 'expo.out', stagger: 0.1 }, 0.7);
   }, { scope: racine, dependencies: [lang, profil], revertOnUpdate: true });
 
   return (

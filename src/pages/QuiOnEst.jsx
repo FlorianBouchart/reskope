@@ -12,6 +12,7 @@ import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
 import { DUO } from '../data/duo';
 import { REVELATIONS } from '../lib/mouvement';
+import { scrubLisse } from '../lib/smoothScroll';
 import { POLES } from '../data/offres';
 
 /* ════════════════════════════════════════════════════════════
@@ -30,8 +31,7 @@ const PHOTOS = {
 const BIO = [
   'On ne fait pas du conseil à la chaîne. Sur chaque dossier, on s’investit comme s’il s’agissait de notre propre entreprise.',
   'Thomy mène le business plan, la stratégie et le passage devant les financeurs. Elle a accompagné pendant deux ans des créateurs d’entreprise jusqu’à ce rendez-vous, et elle sait ce qu’un financeur lit en premier.',
-  'Florian mène les entretiens avec vos clients, de la première question à la synthèse, puis la partie technique quand la suite en demande : les sites, les outils, et ce qu’on relie entre eux.',
-  'La méthode, il l’a d’abord appliquée à sa propre marque, Desrèves, des accessoires en soie lancés en 2025 : un grand chantier de restructuration, une nouvelle cible, et un business plan noté 18/20, la meilleure note de sa promotion.',
+  'Florian mène les entretiens avec vos clients, de la première question à la synthèse, puis la partie technique quand la suite en demande : les sites, les outils, et ce qu’on relie entre eux. En formation, son business plan a été noté 18/20, la meilleure note de sa promotion.',
   'Aucun des deux ne reste dans son couloir : Florian a lui aussi accompagné des créations d’entreprise et relit les chiffres des dossiers, et Thomy est en appui sur chaque discovery. C’est ce qui fait qu’un dossier avance d’un seul tenant, de la preuve à la décision.',
 ];
 
@@ -54,7 +54,7 @@ export default function QuiOnEst() {
     if (instant()) return;
     const root = racine.current;
     gsap.from(root.querySelectorAll('.ahero__reveal'), {
-      z: -120, transformPerspective: 900, y: 40, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.09, delay: 0.15,
+      y: 40, autoAlpha: 0, duration: 1.25, ease: 'expo.out', stagger: 0.09, delay: 0.15,
     });
     const masks = root.querySelectorAll('.ahero__photo-mask');
     if (masks.length) {
@@ -64,7 +64,7 @@ export default function QuiOnEst() {
       gsap.from(root.querySelectorAll('.ahero__pf-filet'), { scaleX: 0, duration: 0.8, ease: 'power3.inOut', delay: 0.95, stagger: 0.14 });
       gsap.from(root.querySelectorAll('.ahero__pf-nom'), { yPercent: 110, duration: 0.7, ease: 'power4.out', delay: 1.05, stagger: 0.14 });
       gsap.from(root.querySelectorAll('.ahero__pf-role, .ahero__pf-dit'), {
-        z: -60, transformPerspective: 900, y: 12, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out', delay: 1.2, stagger: 0.07,
+        y: 12, autoAlpha: 0, duration: 0.85, ease: 'expo.out', delay: 1.2, stagger: 0.07,
       });
     }
 
@@ -74,7 +74,7 @@ export default function QuiOnEst() {
     const lead = root.querySelector('.astory__lead');
     if (lead && REVELATIONS) {
       gsap.from(lead, {
-        z: -170, transformPerspective: 900, y: 48, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.3, ease: 'expo.out',
+        y: 48, autoAlpha: 0, duration: 1.3, ease: 'expo.out',
         scrollTrigger: { trigger: lead, start: 'top 86%' },
       });
     }
@@ -107,7 +107,7 @@ export default function QuiOnEst() {
         gsap.set(sp.words, { opacity: 0.16 });
         gsap.to(sp.words, {
           opacity: 1, ease: 'none', stagger: 0.28, duration: 0.3,
-          scrollTrigger: { trigger: el, start: 'top 76%', end: 'bottom 62%', scrub: 0.7 },
+          scrollTrigger: { trigger: el, start: 'top 76%', end: 'bottom 62%', scrub: scrubLisse(0.7) },
         });
       } catch {
         tl.fromTo(suite, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0.3);

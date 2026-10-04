@@ -30,7 +30,7 @@ const BASE = import.meta.env.BASE_URL;
      Create pour qui se lance, Define pour une entreprise de 1 à 10
      personnes, Elevate de 10 à 250. Même R, même méthode, un réseau qui
      grandit avec l'entreprise (un nœud, sept, vingt-six) ;
-   - puis, pour qui prend le temps : la preuve (Desrèves), les deux
+   - puis, pour qui prend le temps : un exemple de chantier, les deux
      personnes qui feront le travail, et l'agenda.
 
    Pas de barrière pour autant : un lien profond, un favori ou un moteur
@@ -61,7 +61,6 @@ function Carte({ e }) {
         <span className="aig__nom" aria-hidden="true"><NetWord className="aig__netword" heightEm={1}>{m.nom}</NetWord></span>
         <span className="sr-only">{nom}</span>
       </h3>
-      <p className="aig__moment">{m.fr.moment}</p>
       <p className="aig__qui">{m.fr.qui}</p>
       {e.repere && <p className="aig__repere">{e.repere}</p>}
       <ul className="aig__offres" aria-label={`Ce que ${nom} fait pour vous`}>
@@ -97,11 +96,11 @@ export default function Aiguillage() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ delay: 0.15 });
-    tl.from(q('.aig__surtitre'), { z: -70, transformPerspective: 900, y: 16, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0)
-      .from(q('.aig__q'), { z: -170, transformPerspective: 900, y: 50, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0)
-      .from(q('.aig__sous, .aig__actions, .aig__rassure, .aig__choix-titre'), { z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
+    tl.from(q('.aig__surtitre'), { y: 16, autoAlpha: 0, duration: 1.05, ease: 'expo.out' }, 0)
+      .from(q('.aig__q'), { y: 50, autoAlpha: 0, duration: 1.35, ease: 'expo.out' }, 0)
+      .from(q('.aig__sous, .aig__actions, .aig__rassure, .aig__choix-titre'), { y: 20, autoAlpha: 0, duration: 1.05, ease: 'expo.out', stagger: 0.1 }, 0.25)
       .from(q('.aig__carte'), {
-        z: -130, transformPerspective: 900, y: 70, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out', stagger: 0.14,
+        y: 70, autoAlpha: 0, duration: 1.25, ease: 'expo.out', stagger: 0.14,
       }, 0.35)
       .from(q('.aig__fil'), { scaleX: 0, transformOrigin: 'left center', duration: 1.2, ease: 'power2.inOut' }, 0.8)
       .from(q('.rt__n'), {
@@ -109,7 +108,7 @@ export default function Aiguillage() {
         stagger: { each: 0.012, from: 'start' },
       }, 0.7)
       .from(q('.rt__l'), { autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.01 }, 0.9)
-      .from(q('.aig__offres li'), { z: -60, transformPerspective: 900, y: 10, autoAlpha: 0, filter: 'blur(6px)', clearProps: 'filter', duration: 0.9, ease: 'expo.out', stagger: 0.035 }, 0.75);
+      .from(q('.aig__offres li'), { y: 10, autoAlpha: 0, duration: 0.9, ease: 'expo.out', stagger: 0.035 }, 0.75);
     apparaitre(q('.aig__pourquoi > *'), { declencheur: q('.aig__pourquoi')[0] });
     const p = preuve.current;
     if (p) apparaitre(p.querySelectorAll('.aig__preuve-anim'), { declencheur: p, stagger: 0.1 });
@@ -164,19 +163,17 @@ export default function Aiguillage() {
           </div>
         </section>
 
-        {/* La preuve : la méthode, appliquée d'abord à une vraie marque. */}
+        {/* Un exemple de chantier, mené avec la même méthode. On ne nomme pas la
+            marque et on ne dit pas à qui elle est (demande de Florian, 04/10/2026) :
+            c'est un exemple, pas une vitrine de clients. */}
         <section className="aig__preuve container" ref={preuve} aria-labelledby="aig-preuve">
-          <p className="eyebrow aig__preuve-anim">La preuve</p>
+          <p className="eyebrow aig__preuve-anim">Un exemple de chantier</p>
           <h2 className="aig__preuve-titre aig__preuve-anim" id="aig-preuve">
-            Notre méthode, on l’a d’abord appliquée à notre propre marque.
+            Une marque remise à plat, et une nouvelle cible trouvée sur le terrain.
           </h2>
           <p className="aig__preuve-texte aig__preuve-anim">
-            <strong>Desrèves</strong>, la marque d’accessoires en soie de Florian, lancée en 2025&nbsp;: un grand chantier de
-            restructuration, et une nouvelle cible, trouvée avec la même discovery que celle qu’on vous propose.
-          </p>
-          <p className="aig__preuve-note aig__preuve-anim">
-            <span className="aig__preuve-chiffre">18/20</span>
-            <span>la note de son business plan, la meilleure de la promotion.</span>
+            Une marque d’accessoires de mode&nbsp;: un grand chantier de restructuration, puis une nouvelle cible, trouvée
+            avec la même discovery que celle qu’on vous propose.
           </p>
           <Link to="/exemple" className="lien-fleche aig__preuve-anim">
             Voir un exemple complet de mission <span aria-hidden="true">→</span>

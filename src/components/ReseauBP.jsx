@@ -69,9 +69,9 @@ export default function ReseauBP() {
     if (!pret || instant()) return;
     const q = gsap.utils.selector(racine);
     const tl = gsap.timeline({ scrollTrigger: { trigger: racine.current, start: 'top 78%' } });
-    tl.from(q('.rbp__coeur'), { z: -140, transformPerspective: 900, scale: 0.4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'back.out(1.6)' }, 0)
+    tl.from(q('.rbp__coeur'), { scale: 0.4, autoAlpha: 0, duration: 1.15, ease: 'back.out(1.6)' }, 0)
       .fromTo(q('.rbp__rayon'), { attr: { 'stroke-dashoffset': 1 } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.8, ease: 'power3.out', stagger: 0.08 }, 0.3)
-      .from(q('.rbp__partie'), { z: -120, transformPerspective: 900, y: 30, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.1, ease: 'expo.out', stagger: 0.1 }, 0.4)
+      .from(q('.rbp__partie'), { y: 30, autoAlpha: 0, duration: 1.1, ease: 'expo.out', stagger: 0.1 }, 0.4)
       .from(q('.rbp__dep'), { autoAlpha: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08 }, 1);
     /* L'influx : un trait court qui suit la chaîne, sans fin. */
     q('.rbp__influx').forEach((c, i) => {

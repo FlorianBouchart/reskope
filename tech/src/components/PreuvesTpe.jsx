@@ -83,7 +83,7 @@ function Champ({ item, i }) {
       v: item.n, duration: blocs.length * 0.011 + 0.42, ease: 'none',
       onUpdate() { ecrire(this.targets()[0].v); },
     }, 0.22);
-    if (REVELATIONS) tl.from(el.querySelectorAll('.pv3__t, .pv3__src'), { z: -90, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.85, ease: 'expo.out', stagger: 0.07,
+    if (REVELATIONS) tl.from(el.querySelectorAll('.pv3__t, .pv3__src'), { y: 14, autoAlpha: 0, duration: 0.85, ease: 'expo.out', stagger: 0.07,
     }, 0.5);
   }, { scope: racine, dependencies: [item.n] });
 

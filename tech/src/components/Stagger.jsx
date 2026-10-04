@@ -28,14 +28,13 @@ export default function Stagger({
       const items = root.querySelectorAll(sel);
       if (!items.length) return;
       if (instant() || !REVELATIONS) {
-        gsap.set(items, { opacity: 1, y: 0, filter: 'none' });
+        gsap.set(items, { opacity: 1, y: 0 });
         return;
       }
-      gsap.set(items, { opacity: 0, y, filter: 'blur(8px)' });
+      gsap.set(items, { opacity: 0, y });
       gsap.to(items, {
         opacity: 1,
         y: 0,
-        filter: 'blur(0px)',
         duration: dur,
         ease: 'power3.out',
         stagger,

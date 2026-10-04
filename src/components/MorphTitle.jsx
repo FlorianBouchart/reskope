@@ -45,7 +45,7 @@ export default function MorphTitle({
     gsap.set(sNet.chars, { autoAlpha: 0 });
 
     if (intro) {
-      gsap.from(sBase.chars, { z: -90, transformPerspective: 900, yPercent: 112, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.1,
+      gsap.from(sBase.chars, { yPercent: 112, autoAlpha: 0, duration: 1.1,
         ease: 'expo.out', stagger: 0.012, delay: 0.15,
       });
     }

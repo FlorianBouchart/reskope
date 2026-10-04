@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { scrubLisse } from '../lib/smoothScroll';
 import { instant } from '../lib/scrub';
 
 /* ════════════════════════════════════════════════════════════
@@ -25,13 +26,13 @@ export default function Deroule({ etapes }) {
     const q = gsap.utils.selector(racine);
     gsap.fromTo(q('.drl__axe i'), { scaleY: 0 }, {
       scaleY: 1, ease: 'none',
-      scrollTrigger: { trigger: racine.current, start: 'top 72%', end: 'bottom 70%', scrub: 0.6 },
+      scrollTrigger: { trigger: racine.current, start: 'top 72%', end: 'bottom 70%', scrub: scrubLisse(0.6) },
     });
     q('.drl__pas').forEach((el) => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 80%' } });
       tl.from(el.querySelector('.drl__point'), { scale: 0, duration: 0.45, ease: 'back.out(2.6)' }, 0)
         .from(el.querySelectorAll('.drl__quand, .drl__quoi, .drl__vous'), {
-          z: -110, transformPerspective: 900, y: 34, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out', stagger: 0.09,
+          y: 34, autoAlpha: 0, duration: 1.15, ease: 'expo.out', stagger: 0.09,
         }, 0.05);
     });
   }, { scope: racine });

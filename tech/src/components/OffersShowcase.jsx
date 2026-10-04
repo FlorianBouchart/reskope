@@ -7,6 +7,7 @@ import { ScrollTrigger, useGSAP } from '../lib/gsap';
 import NetWord from './NetWord';
 import Explorateur from './Explorateur';
 import CubeGlyph from './CubeGlyph';
+import { scrubLisse } from '../lib/smoothScroll';
 import { FIGURE_OFFRE, EXPL_MOTS } from '../lib/scenes';
 
 /* ============================================================
@@ -222,7 +223,7 @@ export default function OffersShowcase({ offers, prices, billing, badge, labels,
       trigger: rootRef.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: scrubLisse(1),
       snap: { snapTo: CD, duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power2.inOut' },
       onUpdate: (self) => {
         const p = self.progress;

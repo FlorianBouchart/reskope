@@ -132,7 +132,7 @@ function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
     const cards = rootRef.current.querySelectorAll('.tgt');
     gsap.set(cards, {
       clipPath: 'inset(0% 0% 100% 0% round 18px)',
-      y: 64, autoAlpha: 0, filter: 'blur(10px)',
+      y: 64, autoAlpha: 0,
     });
     cards.forEach((card, i) => {
       const inner = card.querySelectorAll('.tgt__glyph, .tgt__size, .tgt__title, .tgt__desc, .tgt__link');
@@ -142,10 +142,10 @@ function TargetsShow({ eyebrow, title, targets, pont, versTpe }) {
       });
       tl.to(card, {
         clipPath: 'inset(0% 0% 0% 0% round 18px)',
-        y: 0, autoAlpha: 1, filter: 'blur(0px)',
+        y: 0, autoAlpha: 1,
         duration: 1.05, ease: 'power4.out',
       }, 0)
-        .from(inner, { z: -90, transformPerspective: 900, y: 26, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95, ease: 'expo.out', stagger: 0.07,
+        .from(inner, { y: 26, autoAlpha: 0, duration: 0.95, ease: 'expo.out', stagger: 0.07,
         }, 0.18)
         .set(card, { clearProps: 'clipPath,filter,willChange' });
     });

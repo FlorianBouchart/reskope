@@ -18,13 +18,13 @@ export default function Planche({ scene, etape = 0, legende, titre, noms = true,
   useGSAP(() => {
     if (instant()) return;
     gsap.from(racine.current.querySelector('.pl__vol'), {
-      z: -150, transformPerspective: 900, rotateX: 8, y: 70, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+      y: 70, autoAlpha: 0,
       duration: 1.4, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 84%' },
     });
     if (legende) {
       gsap.from(racine.current.querySelector('.pl__legende'), {
-        z: -70, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', delay: 0.4,
+        y: 20, autoAlpha: 0, duration: 1.05, ease: 'expo.out', delay: 0.4,
         scrollTrigger: { trigger: racine.current, start: 'top 84%' },
       });
     }

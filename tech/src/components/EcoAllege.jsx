@@ -2,6 +2,7 @@ import { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { ScrollTrigger, useGSAP } from '../lib/gsap';
+import { scrubLisse } from '../lib/smoothScroll';
 import { largeur, cambrure, epaisseur } from '../lib/feuille';
 
 /* ============================================================
@@ -262,7 +263,7 @@ export default function EcoAllege({ t }) {
       trigger: rootRef.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: scrubLisse(1),
       snap: { snapTo: CD_SNAP, duration: { min: 0.25, max: 0.8 }, delay: 0.08, ease: 'power2.inOut' },
       invalidateOnRefresh: true,
       onUpdate: (self) => apply(self.progress),

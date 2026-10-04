@@ -73,8 +73,8 @@ function Tete() {
     if (instant()) return;
     const q = gsap.utils.selector(racine);
     gsap.timeline({ delay: 0.15 })
-      .from(q('.oh__titre'), { z: -180, transformPerspective: 900, y: 60, rotateX: -6, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.35, ease: 'expo.out' }, 0)
-      .from(q('.oh__lead'), { z: -100, transformPerspective: 900, y: 30, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, ease: 'expo.out' }, 0.25);
+      .from(q('.oh__titre'), { y: 60, autoAlpha: 0, duration: 1.35, ease: 'expo.out' }, 0)
+      .from(q('.oh__lead'), { y: 30, autoAlpha: 0, duration: 1.15, ease: 'expo.out' }, 0.25);
   }, { scope: racine });
 
   return (

@@ -21,7 +21,7 @@ export default function Booking({ c }) {
   useGSAP(() => {
     // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
     if (instant() || !REVELATIONS) return;
-    gsap.from(rootRef.current.querySelectorAll('.bk__reveal'), { z: -90, transformPerspective: 900, y: 26, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.08,
+    gsap.from(rootRef.current.querySelectorAll('.bk__reveal'), { y: 26, autoAlpha: 0, duration: 1.05, ease: 'expo.out', stagger: 0.08,
       scrollTrigger: { trigger: rootRef.current, start: 'top 74%' },
     });
 
@@ -34,7 +34,7 @@ export default function Booking({ c }) {
     tl.from(rootRef.current.querySelectorAll('.bk__point-value'), {
       yPercent: 115, duration: 0.7, ease: 'power4.out', stagger: 0.12,
     }, 0.18);
-    tl.from(rootRef.current.querySelectorAll('.bk__point-label'), { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', y: 10, duration: 0.55, ease: 'expo.out', stagger: 0.12,
+    tl.from(rootRef.current.querySelectorAll('.bk__point-label'), { autoAlpha: 0, y: 10, duration: 0.55, ease: 'expo.out', stagger: 0.12,
     }, 0.34);
   }, { scope: rootRef });
 

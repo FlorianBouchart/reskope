@@ -4,6 +4,7 @@ import { ScrollTrigger, useGSAP } from '../lib/gsap';
 import { mouvementRefuse } from '../lib/scrub';
 import { MISSION } from '../data/mission';
 import Explorateur from './Explorateur';
+import { scrubLisse } from '../lib/smoothScroll';
 import Noeuds from './Noeuds';
 
 const Sequence = lazy(() => import('./Sequence'));
@@ -95,7 +96,7 @@ export default function Frise({ data = MISSION }) {
       trigger: el.querySelector('.seq__rail'),
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 0.5,
+      scrub: scrubLisse(0.5),
       onUpdate: (self) => {
         avance.current = self.progress;
         /* Une image par mouvement : c'est le défilement qui dessine. */

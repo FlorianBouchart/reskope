@@ -4735,3 +4735,41 @@ main, .footer2, .crumb { position: relative; z-index: 1; }
   .mfl { height: 340vh; }
   .heroform { height: 150vh; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   LE CHARGEMENT D'UNE PAGE (04/10/2026)
+   Le contenu de secours (.pre-seo, écrit au build pour les moteurs) ne se
+   montre plus le temps que l'application démarre : en passant de Create à
+   Define ou à Elevate, on voyait une page de texte brut. À la place, le
+   ciel de la marque, et son R au centre si le chargement traîne. Si
+   l'application n'a toujours pas démarré au bout de 3,5 s (JavaScript
+   bloqué), le texte apparaît ; sans JavaScript, il est visible tout de
+   suite (noscript dans index.html). L'application le remplace en entier.
+   ════════════════════════════════════════════════════════════ */
+.pre-seo { opacity: 0; animation: pre-seo-voir 0.4s ease 3.5s forwards; }
+@keyframes pre-seo-voir { to { opacity: 1; } }
+body:has(#root > .pre-seo)::after {
+  content: '';
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 46px;
+  height: 56px;
+  translate: -50% -50%;
+  background: url('/logo/reskope-marque-indigo.svg') center / contain no-repeat;
+  opacity: 0;
+  animation: attente-r 3.9s ease forwards;
+  pointer-events: none;
+}
+html[data-marque='create'] body:has(#root > .pre-seo)::after { background-image: url('/logo/reskope-create-marque.svg'); }
+html[data-marque='define'] body:has(#root > .pre-seo)::after { background-image: url('/logo/reskope-define-marque.svg'); }
+html[data-marque='elevate'] body:has(#root > .pre-seo)::after { background-image: url('/logo/reskope-elevate-marque.svg'); }
+@keyframes attente-r {
+  0%, 8% { opacity: 0; }
+  18%, 85% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+/* D'une application à l'autre du site (Create d'un côté, Define et Elevate
+   de l'autre), le navigateur fond l'ancienne page dans la nouvelle. */
+@view-transition { navigation: auto; }

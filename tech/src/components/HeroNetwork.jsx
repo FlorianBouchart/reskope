@@ -362,6 +362,114 @@ function altitude() {
   };
 }
 
+/* ── La vitesse : des particules qui suivent le défilement ─────
+   Retour du 04/10/2026 : plutôt que du flou, « des particules en trois
+   dimensions, en cube ou en réseau, qui font sentir la vitesse quand on
+   descend et quand on remonte ». Invisibles au repos : elles apparaissent
+   avec la vitesse du défilement, filent dans son sens (le premier plan plus
+   vite que le fond), laissent une traînée, et s'éteignent quand la page
+   s'arrête. Des nœuds reliés entre eux et des cubes en fil de fer, aux
+   couleurs de la marque ; Define a plus de cubes (la mise en ordre), Create
+   en a moins (des graines). */
+const CUBES = { reskope: 0.3, create: 0.15, define: 0.6, elevate: 0.4 };
+const SOMMETS = [[-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1], [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]];
+const ARETES = [[0, 1], [1, 3], [3, 2], [2, 0], [4, 5], [5, 7], [7, 6], [6, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+function vitesse() {
+  const parts = [];
+  let part = 0.3;
+  let vis = 0;
+  const placer = (p, w, h, y) => Object.assign(p, {
+    x: hasard(0, w),
+    y: y ?? hasard(0, h),
+    z: 0.25 + 0.75 * Math.pow(Math.random(), 0.7),
+    cube: Math.random() < part,
+    rx: hasard(0, 6.28),
+    ry: hasard(0, 6.28),
+    sens: Math.random() < 0.5 ? -1 : 1,
+  });
+  return {
+    marque(m) {
+      part = CUBES[m] ?? 0.3;
+      parts.forEach((p) => { p.cube = Math.random() < part; });
+    },
+    taille(w, h) {
+      const n = Math.max(12, Math.min(24, Math.round((w * h) / 60000)));
+      while (parts.length < n) parts.push(placer({}, w, h));
+      parts.length = n;
+      parts.forEach((p) => { if (p.x > w || p.y > h) placer(p, w, h); });
+    },
+    /* v : vitesse du défilement, en pixels par image (positive vers le bas). */
+    dessiner(ctx, w, h, v, c) {
+      const e = Math.min(1, Math.abs(v) / 18);
+      vis += (e * e * (3 - 2 * e) - vis) * 0.14;
+      if (vis < 0.012) return;
+      const k = Math.max(-60, Math.min(60, v));
+      for (const p of parts) {
+        p.y -= k * (0.3 + 1.1 * p.z);
+        p.rx += 0.004 + Math.abs(k) * 0.0022 * p.sens;
+        p.ry += 0.006 + Math.abs(k) * 0.003;
+        if (p.y < -70) placer(p, w, h, h + hasard(10, 70));
+        else if (p.y > h + 70) placer(p, w, h, -hasard(10, 70));
+      }
+      /* Le réseau : seules les particules d'une même profondeur se relient,
+         elles filent à la même vitesse et le lien ne clignote pas. */
+      ctx.lineWidth = 0.7;
+      for (let i = 0; i < parts.length; i++) {
+        const a = parts[i];
+        for (let j = i + 1; j < parts.length; j++) {
+          const b = parts[j];
+          if (Math.abs(a.z - b.z) > 0.2) continue;
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d > 130) continue;
+          ctx.strokeStyle = rgba(c.trame, (1 - d / 130) * 0.2 * vis * Math.min(a.z, b.z));
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      for (const p of parts) {
+        /* La traînée part de la particule vers l'endroit d'où elle vient. */
+        const queue = Math.max(-150, Math.min(150, k * (0.3 + 1.1 * p.z) * 2.6));
+        if (Math.abs(queue) > 2) {
+          const g = ctx.createLinearGradient(p.x, p.y, p.x, p.y + queue);
+          g.addColorStop(0, rgba(c.vive, (0.2 + 0.4 * p.z) * vis));
+          g.addColorStop(1, rgba(c.vive, 0));
+          ctx.strokeStyle = g;
+          ctx.lineWidth = 0.6 + 1.2 * p.z;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x, p.y + queue);
+          ctx.stroke();
+        }
+        const alpha = (0.3 + 0.5 * p.z) * vis;
+        if (p.cube) {
+          const s = 3 + 6 * p.z;
+          const cx = Math.cos(p.rx), sx = Math.sin(p.rx), cy = Math.cos(p.ry), sy = Math.sin(p.ry);
+          const pts = SOMMETS.map(([x, y, z]) => {
+            const x1 = x * cy + z * sy;
+            const z1 = -x * sy + z * cy;
+            return [p.x + x1 * s, p.y + (y * cx - z1 * sx) * s];
+          });
+          ctx.strokeStyle = rgba(c.vive, alpha);
+          ctx.lineWidth = 0.8 + 0.4 * p.z;
+          ctx.beginPath();
+          for (const [a, b] of ARETES) {
+            ctx.moveTo(pts[a][0], pts[a][1]);
+            ctx.lineTo(pts[b][0], pts[b][1]);
+          }
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = rgba(c.vive, alpha);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 0.9 + 1.9 * p.z, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    },
+  };
+}
+
 const COMPORTEMENTS = { reskope: derive, create: eclosion, define: rangement, elevate: altitude };
 
 const couleurs = () => {
@@ -390,6 +498,11 @@ export default function HeroNetwork() {
     let marque = null;
     let vie = null;
     let c = couleurs();
+    const flux = vitesse();
+    /* La vitesse du défilement, mesurée à chaque image dessinée. */
+    let dernierY = window.scrollY;
+    let dernierT = performance.now();
+    let vit = 0;
 
     const resize = () => {
       w = parent.offsetWidth;
@@ -400,6 +513,7 @@ export default function HeroNetwork() {
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       vie?.taille(w, h);
+      flux.taille(w, h);
     };
 
     /* La marque change (on passe de l'accueil à Create sans recharger) :
@@ -410,13 +524,25 @@ export default function HeroNetwork() {
       if (m === marque && vie) return;
       marque = m;
       vie = (COMPORTEMENTS[m] || derive)();
+      flux.marque(m);
       vie.taille(w, h);
       if (fige) dessiner(false);
     };
 
     const dessiner = (bouger) => {
+      const t = performance.now();
       ctx.clearRect(0, 0, w, h);
-      vie?.dessiner(ctx, w, h, performance.now(), souris, bouger, c);
+      vie?.dessiner(ctx, w, h, t, souris, bouger, c);
+      if (!bouger) return;
+      const y = window.scrollY;
+      let dy = y - dernierY;
+      /* Un saut (changement de page, ancre instantanée) n'est pas une vitesse. */
+      if (Math.abs(dy) > 600) dy = 0;
+      vit += ((dy / Math.max(8, t - dernierT)) * 16.67 - vit) * 0.35;
+      if (Math.abs(vit) < 0.05) vit = 0;
+      dernierY = y;
+      dernierT = t;
+      flux.dessiner(ctx, w, h, vit, c);
     };
 
     resize();

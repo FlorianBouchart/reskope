@@ -288,9 +288,9 @@ function BilanHero({ hero }) {
 
   useGSAP(() => {
     if (reduced()) return;
-    gsap.from(rootRef.current.querySelectorAll('.bilan-hero__reveal'), { z: -90, transformPerspective: 900, y: 26, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out', stagger: 0.08, delay: 0.1,
+    gsap.from(rootRef.current.querySelectorAll('.bilan-hero__reveal'), { y: 26, autoAlpha: 0, duration: 1.05, ease: 'expo.out', stagger: 0.08, delay: 0.1,
     });
-    gsap.from(rootRef.current.querySelectorAll('.bilan-hero__chip'), { z: -90, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.55, ease: 'expo.out', stagger: 0.06, delay: 0.5,
+    gsap.from(rootRef.current.querySelectorAll('.bilan-hero__chip'), { y: 14, autoAlpha: 0, duration: 0.55, ease: 'expo.out', stagger: 0.06, delay: 0.5,
     });
   }, { scope: rootRef });
 

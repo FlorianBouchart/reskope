@@ -36,7 +36,7 @@ export default function Chemins({
     const q = gsap.utils.selector(racine);
 
     gsap.from(q('.ch__q'), {
-      z: -180, transformPerspective: 900, y: 54, rotateX: -7, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+      y: 54, autoAlpha: 0,
       duration: 1.3, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 78%' },
     });
@@ -48,7 +48,7 @@ export default function Chemins({
       const tl = gsap.timeline({
         scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reverse' },
       });
-      if (lien) tl.from(lien, { z: -60, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', y: 18, duration: 0.5, ease: 'expo.out' }, 0);
+      if (lien) tl.from(lien, { autoAlpha: 0, y: 18, duration: 0.5, ease: 'expo.out' }, 0);
       tl.from(corps, {
         z: -640 - i * 90, y: 64, x: (i % 2 ? 1 : -1) * 34, rotateX: -32, rotateZ: (i % 2 ? 1 : -1) * 4,
         autoAlpha: 0, duration: 1, ease: 'power3.out',
@@ -56,7 +56,7 @@ export default function Chemins({
     });
 
     gsap.from(q('.ch__fin'), {
-      z: -120, transformPerspective: 900, y: 44, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.2, ease: 'expo.out',
+      y: 44, autoAlpha: 0, duration: 1.2, ease: 'expo.out',
       scrollTrigger: { trigger: q('.ch__fin')[0], start: 'top 90%' },
     });
   }, { scope: racine });

@@ -22,7 +22,7 @@ export default function PageHeader({ eyebrow, title, lead, tone = 'default', act
         // aria-label interdit sur un paragraphe ou un span (le texte devient muet pour
         // un lecteur d'écran). Les lignes et les mots restent lisibles tels quels.
         split = new SplitText(restRef.current, { type: 'words', aria: 'none' });
-        gsap.from(split.words, { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+        gsap.from(split.words, { autoAlpha: 0,
           yPercent: 65,
           duration: 1.13,
           ease: 'expo.out',
@@ -30,7 +30,7 @@ export default function PageHeader({ eyebrow, title, lead, tone = 'default', act
           delay: 0.55,
         });
       } catch {
-        gsap.from(restRef.current, { z: -90, transformPerspective: 900, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+        gsap.from(restRef.current, { autoAlpha: 0,
           y: 30,
           duration: 1.15,
           ease: 'expo.out',

@@ -8,6 +8,7 @@ const prefersReduced = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 import { buildR3D, GLYPH_SHAPES, project, lerp3, easeInOut } from '../lib/net3d';
 import Net3D from './Net3D';
+import { scrubLisse } from '../lib/smoothScroll';
 import SwapLabel from './SwapLabel';
 
 /* HERO FORMATION v4.
@@ -66,7 +67,10 @@ export default function HeroFormation({ c }) {
     const nodeEls = [...svg.querySelectorAll('.hf-node')];
     const linkEls = [...svg.querySelectorAll('.hf-link')];
 
-    const charData = { els: [], vecs: [], touche: [] };
+    /* pas : le décalage d'une lettre à la suivante, calculé sur la longueur du
+       titre. Un pas fixe (0,0045) laissait les dernières lettres d'un long
+       titre en vol à la fin du tour du R : du texte restait sur la page. */
+    const charData = { els: [], vecs: [], touche: [], pas: 0.0045 };
     /* Déclarés ici, créés plus bas : render() s'en sert pour laisser le titre
        au repos avant de le défaire. */
     let intro = null;
@@ -124,11 +128,17 @@ export default function HeroFormation({ c }) {
       if (fxDesktop || fxMobile) {
         /* Texte : désassemblage lettre à lettre (le réseau se défait) */
         const fondu = 1 - clamp01((p - 0.46) / 0.16);
+        /* Tout le texte du héros part avec le titre : le surtitre et le
+           chiffre sourcé, ajoutés après coup, restaient seuls à l'écran pendant
+           le tour du R (retour du 04/10/2026). */
         gsap.set(actionsRef.current, { autoAlpha: fondu });
         if (ditRef.current) gsap.set(ditRef.current, { autoAlpha: fondu });
+        if (surRef.current) gsap.set(surRef.current, { autoAlpha: fondu });
+        if (faitRef.current) gsap.set(faitRef.current, { autoAlpha: fondu });
         const { els, vecs, touche } = charData;
         for (let i = 0; i < els.length; i++) {
-          const d = easeInOut(clamp01((p - 0.56 - i * 0.0045) / 0.3));
+          /* Toutes les lettres sont parties à 0,92 : avant la libération des glyphes. */
+          const d = easeInOut(clamp01((p - 0.56 - i * charData.pas) / 0.22));
           if (d <= 0) {
             /* Remonté avant le début du désassemblage : la lettre reprend
                exactement sa place (une seule fois, pour ne pas lutter avec
@@ -251,17 +261,18 @@ export default function HeroFormation({ c }) {
         (rnd(i, 9) - 0.5) * 44,
       ]);
       charData.touche = split.chars.map(() => false);
+      charData.pas = 0.14 / Math.max(split.chars.length - 1, 1);
     }
     if (netSplit) gsap.set(netSplit.chars, { autoAlpha: 0 });
 
     intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
     if (split) {
-      intro.from(split.chars, { z: -90, transformPerspective: 900, yPercent: 112, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.15, stagger: 0.013 }, 0.12);
+      intro.from(split.chars, { yPercent: 112, autoAlpha: 0, duration: 1.15, stagger: 0.013 }, 0.12);
     }
-    if (surRef.current) intro.from(surRef.current, { z: -70, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0);
-    if (ditRef.current) intro.from(ditRef.current, { z: -90, transformPerspective: 900, y: 20, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.5);
-    if (faitRef.current) intro.from(faitRef.current, { z: -70, transformPerspective: 900, y: 14, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.05, ease: 'expo.out' }, 0.75);
-    intro.from(actionsRef.current, { z: -90, transformPerspective: 900, y: 24, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 0.95 }, 0.6);
+    if (surRef.current) intro.from(surRef.current, { y: 14, autoAlpha: 0, duration: 1.05, ease: 'expo.out' }, 0);
+    if (ditRef.current) intro.from(ditRef.current, { y: 20, autoAlpha: 0, duration: 0.95 }, 0.5);
+    if (faitRef.current) intro.from(faitRef.current, { y: 14, autoAlpha: 0, duration: 1.05, ease: 'expo.out' }, 0.75);
+    intro.from(actionsRef.current, { y: 24, autoAlpha: 0, duration: 0.95 }, 0.6);
 
     /* Morph survol : VAGUE de bascule lettre à lettre — la lettre sans
        plonge (rotationX), la lettre réseau se relève à sa place exacte.
@@ -316,7 +327,7 @@ export default function HeroFormation({ c }) {
         trigger: rootRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.8,
+        scrub: scrubLisse(0.8),
         invalidateOnRefresh: true,
         onRefresh: computeShift,
         onUpdate: (self) => {
@@ -361,7 +372,7 @@ export default function HeroFormation({ c }) {
         trigger: rootRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.8,
+        scrub: scrubLisse(0.8),
         invalidateOnRefresh: true,
         onRefresh: mesurer,
         onUpdate: (self) => { progression = self.progress; render(progression); },

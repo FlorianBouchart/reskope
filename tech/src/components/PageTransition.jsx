@@ -172,7 +172,7 @@ export default function PageTransition() {
     return () => document.removeEventListener('click', onLinkClick, true);
   }, []);
 
-  /* Révèle la nouvelle page : logo qui grandit/s'efface + rideau qui se replie */
+  /* Révèle la nouvelle page : le logo s'efface, le rideau se replie */
   useEffect(() => {
     if (isFirst.current) { isFirst.current = false; return; }
     const overlay = overlayRef.current;
@@ -185,7 +185,9 @@ export default function PageTransition() {
     }
 
     const tl = gsap.timeline({ delay: 0.58 });
-    tl.to(stageRef.current, { scale: 1.16, y: r.monte, autoAlpha: 0, duration: 0.45, ease: 'power2.in' }, 0);
+    /* Le logo s'efface sans grossir : l'effet de zoom à l'entrée d'une page
+       a été retiré le 04/10/2026. */
+    tl.to(stageRef.current, { y: r.monte - 16, autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 0);
     tl.to(overlay, { clipPath: r.cache, duration: 0.62, ease: r.ease }, 0.08);
   }, [pathname]);
 

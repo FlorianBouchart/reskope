@@ -1,5 +1,6 @@
 import { useId, useRef, useState } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { REVELATIONS } from '../lib/mouvement';
 import { instant } from '../lib/scrub';
 
 /* ════════════════════════════════════════════════════════════
@@ -74,15 +75,16 @@ export default function Questions({ titre = 'Les questions qu’on nous pose', i
   const [ouverte, setOuverte] = useState(ouverteParDefaut);
 
   useGSAP(() => {
-    if (instant()) return;
+    // Apparitions au défilement coupées (lib/mouvement.js, REVELATIONS).
+    if (instant() || !REVELATIONS) return;
     const q = gsap.utils.selector(racine);
     gsap.from(q('.qs__titre'), {
-      z: -140, transformPerspective: 900, y: 44, rotateX: -5, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter', duration: 1.25, ease: 'expo.out',
+      y: 44, autoAlpha: 0, duration: 1.25, ease: 'expo.out',
       scrollTrigger: { trigger: racine.current, start: 'top 80%' },
     });
-    q('.qs__item').forEach((el, i) => {
+    q('.qs__item').forEach((el) => {
       gsap.from(el, {
-        z: -120 - i * 60, y: 40, rotateX: -4, autoAlpha: 0, filter: 'blur(8px)', clearProps: 'filter',
+        y: 40, autoAlpha: 0,
         duration: 1.15, ease: 'expo.out',
         scrollTrigger: { trigger: el, start: 'top 90%' },
       });

@@ -2,13 +2,15 @@ import { gsap } from './gsap';
 import { instant } from './scrub';
 
 /* ════════════════════════════════════════════════════════════
-   LE MOUVEMENT RESKOPE : LA MISE AU POINT.
+   LE MOUVEMENT RESKOPE : UNE ARRIVÉE SIMPLE.
 
-   Un élément qui arrive vient de la profondeur et se met au point, comme
-   sous un objectif : il recule à peine, il est flou puis net, et il se
-   pose. Pas de bascule spectaculaire, pas de glissement à plat : c'est la
-   profondeur de champ qui fait sentir le volume. Départ franc, arrivée très
-   douce (expo), un peu plus lent qu'un réflexe : c'est ce qui fait premium.
+   Un texte qui arrive monte de quelques pixels et apparaît : ni zoom, ni
+   profondeur, ni flou. La « mise au point » (recul en profondeur, flou puis
+   net) a été retirée le 04/10/2026 : à l'entrée d'une page, elle donnait
+   un effet de zoom que Florian n'aimait pas du tout. Le flou ne sert plus
+   que là où il a un sens (le verre de l'en-tête, la traversée de scènes de
+   l'accueil PME). Le volume et la vitesse passent par les scènes en 3D et
+   par les particules du fond, qui suivent la vitesse du défilement.
 
    Une seule grammaire pour tout le site (copie identique dans tech/). Les
    scènes en volume (réseaux, R, 3D) gardent leur propre chorégraphie.
@@ -24,15 +26,10 @@ import { instant } from './scrub';
 export const REVELATIONS = false;
 
 export const MISE_AU_POINT = {
-  z: -120,
-  y: 22,
-  scale: 0.985,
-  rotateX: -4,
-  transformPerspective: 900,
-  filter: 'blur(10px)',
+  y: 18,
   autoAlpha: 0,
-  duration: 1.25,
-  ease: 'expo.out',
+  duration: 0.9,
+  ease: 'power3.out',
 };
 
 /** Fait apparaître des éléments à la manière Reskope. `declencheur` : l'élément
@@ -42,7 +39,6 @@ export function apparaitre(cibles, { declencheur, start = 'top 86%', ...autres }
   return gsap.from(cibles, {
     ...MISE_AU_POINT,
     stagger: 0.08,
-    clearProps: 'filter',
     ...(declencheur ? { scrollTrigger: { trigger: declencheur, start, once: true } } : {}),
     ...autres,
   });

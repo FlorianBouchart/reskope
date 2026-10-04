@@ -2,6 +2,7 @@ import { useRef, useMemo, useState, useLayoutEffect, Fragment } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { usePalette3d } from '../lib/palette3d';
 import * as THREE from 'three';
+import { scrubLisse } from '../lib/smoothScroll';
 import { ScrollTrigger, useGSAP } from '../lib/gsap';
 
 /* ============================================================
@@ -210,7 +211,7 @@ export default function MethodeFlight({ jalons, film, labels }) {
       trigger: rootRef.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: scrubLisse(1),
       snap: { snapTo: SNAP, duration: { min: 0.2, max: 0.7 }, delay: 0.06, ease: 'power2.inOut' },
       onUpdate: (self) => {
         const p = self.progress;
