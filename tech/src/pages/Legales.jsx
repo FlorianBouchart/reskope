@@ -123,13 +123,13 @@ const PRIVACY = {
     eyebrow: 'Vos données',
     title: 'Politique de confidentialité.',
     lead: 'Ce que ce site collecte (très peu), pourquoi, où vont vos données, et vos droits.',
-    updated: 'Dernière mise à jour : 3 octobre 2026.',
+    updated: 'Dernière mise à jour : 4 octobre 2026.',
     sections: [
       { h: 'Responsable du traitement', p: [
         'Le responsable du traitement est Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger. Pour toute question relative à vos données : le formulaire de la page Contact, en précisant « Données personnelles ».',
       ] },
       { h: 'Données collectées', p: [
-        "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire. En dehors de la mesure d'audience, qui ne fonctionne qu'avec votre accord (voir plus bas), les seules données personnelles collectées sont celles que vous transmettez volontairement via les formulaires de contact et le questionnaire : nom, adresse e-mail et contenu de votre message.",
+        "Ce site ne demande la création d'aucun compte et n'utilise aucun outil de suivi publicitaire. En dehors de la mesure d'audience, qui ne fonctionne qu'avec votre accord (voir plus bas), les seules données personnelles collectées sont celles que vous transmettez volontairement via les formulaires de contact et le questionnaire : nom, adresse e-mail et contenu de votre message. Si vous demandez à être rappelé, le formulaire « On vous rappelle » recueille votre prénom, votre numéro de téléphone, le moment qui vous arrange et la page d’où vous écrivez : ce numéro ne sert qu’à vous rappeler.",
         "Trois éléments peuvent être enregistrés localement dans votre navigateur, et ils ne quittent jamais votre appareil : la langue que vous choisissez dans l’espace des entreprises (français ou anglais), votre réponse sur la mesure d’audience (gardée six mois, pour ne pas vous reposer la question à chaque page) et, si vous utilisez l’atelier, le schéma que vous y composez (noms des outils, niveaux d’utilisation et liaisons). Ce schéma n’est transmis nulle part tant que vous ne décidez pas de nous l’envoyer, et vous l’effacez à tout moment avec le bouton « Tout effacer » de l’atelier ou en vidant les données de site de votre navigateur.",
         'Ces enregistrements ne servent qu’au fonctionnement du site, jamais à vous suivre ni à vous identifier.',
       ] },
@@ -171,13 +171,13 @@ const PRIVACY = {
     eyebrow: 'Your data',
     title: 'Privacy policy.',
     lead: 'What this site collects (very little), why, where your data goes, and your rights.',
-    updated: 'Last updated: 3 October 2026.',
+    updated: 'Last updated: 4 October 2026.',
     sections: [
       { h: 'Data controller', p: [
         'The data controller is Florian Bouchart (Reskope), Chemin de la Clouterie, Cité Canu, 59125 Trith-Saint-Léger, France. For any question about your data: the contact form on this site, mentioning “Personal data”.',
       ] },
       { h: 'Data collected', p: [
-        'This site requires no account and uses no advertising trackers. Apart from audience measurement, which only runs with your consent (see below), the only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message.',
+        'This site requires no account and uses no advertising trackers. Apart from audience measurement, which only runs with your consent (see below), the only personal data collected is what you voluntarily submit through the contact forms and the questionnaire: name, email address and the content of your message. If you ask to be called back, the call-back form collects your first name, phone number, preferred time and the page you wrote from: that number is only used to call you back.',
         "Three things may be stored locally in your browser, and they never leave your device: the language you choose in the business space (French or English), your answer about audience measurement (kept for six months, so you are not asked again on every page) and, if you use the workshop, the diagram you build there (tool names, usage levels and links). That diagram is sent nowhere unless you decide to send it to us, and you can erase it at any time with the workshop’s “Clear everything” button or by clearing your browser’s site data.",
       ] },
       { h: 'Audience measurement (Google Analytics)', p: [

@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
 import { buildR3D } from '../lib/net3d';
 import Net3D from './Net3D';
 import SwapLabel from './SwapLabel';
-import BusinessCard from './BusinessCard';
+import CarteVivante from './CarteVivante';
 import { useT, useLang } from '../i18n';
 import { CONTACT, AILLEURS } from '../data/site';
 import { useProfil, BASE } from '../profil';
@@ -42,7 +42,6 @@ export default function Footer() {
   const marque = MARQUES[useMarque()] || null;
   const { profil } = useProfil();
   const visible = (to) => !PAGES_PROFIL[to] || PAGES_PROFIL[to] === profil;
-  const [cardOpen, setCardOpen] = useState(false);
   const rootRef = useRef(null);
   const stRef = useRef(null);
   const wordRef = useRef(null);
@@ -177,7 +176,10 @@ export default function Footer() {
         <EspacesTuiles className="espt--sombre" />
       </div>
 
-      <div className="container footer2__grid">
+      {/* La carte de visite, posée là, sans clic (demande du 04/10/2026). */}
+      <CarteVivante />
+
+      <div className="container footer2__grid footer2__grid--quatre">
         {/* Le pied de page proposait « Le constat » et « Exemple de
             bilan » en version TPE : deux pages réservées aux PME, qu'on
             avait pris soin de retirer du menu. Il suit maintenant la
@@ -205,13 +207,32 @@ export default function Footer() {
           ))}
         </nav>
 
+        {/* Les pages par intention : le maillage vers les pages locales et les
+            guides (data/intentions.js), celles de cet espace d'abord. */}
+        <nav className="footer2__col" aria-label="Près de chez vous et guides">
+          <span className="footer2__heading">Près de chez vous</span>
+          {profil === 'pme' ? (
+            <>
+              <Link to="/audit-informatique-pme">Audit des outils de votre PME</Link>
+              <Link to="/transformation-numerique-pme">Transformation numérique : par où commencer</Link>
+              <a href={`${BASE}/tpe/creation-site-internet-valenciennes/`}>Site internet à Valenciennes</a>
+            </>
+          ) : (
+            <>
+              <Link to="/creation-site-internet-valenciennes">Site internet à Valenciennes</Link>
+              <Link to="/creation-site-internet-lille">Site internet à Lille</Link>
+              <Link to="/site-internet-artisan">Site internet pour artisan</Link>
+              <Link to="/prise-de-rendez-vous-en-ligne">Rendez-vous en ligne</Link>
+            </>
+          )}
+          <a href={`${BASE}/accompagnement-creation-entreprise-valenciennes/`}>Création d’entreprise à Valenciennes</a>
+        </nav>
+
         <div className="footer2__col">
           <span className="footer2__heading">{f.contact}</span>
           {CONTACT.ouverte && <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>}
           <a href={`${BASE}/contact/?pour=${profil}`}>{f.talk}</a>
-          <button type="button" className="footer2__card-btn" onClick={() => setCardOpen(true)}>
-            {f.card} <span aria-hidden="true">→</span>
-          </button>
+          <a href={`tel:${CONTACT.telephoneLien}`}>{CONTACT.telephone}</a>
           {/* Là où on se déplace. Sans adresse à afficher, la colonne
               contact n'avait plus qu'un lien répété d'une colonne à
               l'autre : dire d'où on vient est une information. */}
@@ -244,7 +265,6 @@ export default function Footer() {
         <p>© {new Date().getFullYear()} {marque ? `Reskope ${marque.nom} · ${(marque[lang] || marque.fr).signature}` : `Reskope · ${f.rights}`}</p>
       </div>
 
-      {cardOpen && <BusinessCard onClose={() => setCardOpen(false)} />}
     </footer>
   );
 }

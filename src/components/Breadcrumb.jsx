@@ -27,7 +27,8 @@ export default function Breadcrumb() {
   if (!f) return null; // route inconnue (404) : pas de fil d'Ariane
 
   const chaine = [{ route: '/', label: 'Accueil' }];
-  if (PARENT[route]) chaine.push({ route: PARENT[route], label: fiche(PARENT[route]).fil });
+  const parent = PARENT[route] || f.parent;
+  if (parent && fiche(parent)) chaine.push({ route: parent, label: fiche(parent).fil });
   chaine.push({ route, label: f.fil });
 
   const jsonLd = {

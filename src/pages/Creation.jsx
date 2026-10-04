@@ -148,6 +148,22 @@ export default function Creation() {
 
       <Duo />
 
+      {/* Près de chez vous, et pour aller plus loin : le haut du silo
+          renvoie vers ses pages (villes, reprise, guides). */}
+      <nav className="itn-hub" aria-labelledby="itn-hub-t">
+        <div className="container">
+          <h2 className="itn-hub__titre" id="itn-hub-t">Près de chez vous, et pour aller plus loin</h2>
+          <ul className="itn-hub__liste">
+            <li><Link to="/accompagnement-creation-entreprise-valenciennes">Accompagnement à la création d’entreprise à Valenciennes</Link></li>
+            <li><Link to="/accompagnement-creation-entreprise-lille">Accompagnement à la création d’entreprise à Lille</Link></li>
+            <li><Link to="/reprise-entreprise-nord">Reprendre une entreprise dans le Nord</Link></li>
+            <li><Link to="/guides/aides-creation-entreprise">Les aides à la création d’entreprise</Link></li>
+            <li><Link to="/guides/business-plan-banque">Business plan&nbsp;: ce que la banque regarde</Link></li>
+            <li><Link to="/guides/etude-de-marche">Étude de marché auprès de vrais clients</Link></li>
+          </ul>
+        </div>
+      </nav>
+
       <Questions titre="Ce qu’on nous demande avant de se lancer." items={QUESTIONS} />
     </Page>
   );

@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import Page from '../components/Page';
+import { INTENTIONS } from '../data/intentions';
 import HeroFormation from '../components/HeroFormation';
 import Conditions from '../components/Conditions';
 import Ciblage from '../components/Ciblage';
@@ -283,6 +285,19 @@ export default function Home() {
              entreprises, dans le ton de chaque espace. Elle mène à la page
              commune du site, « Comprendre vos clients ». */}
       <Ciblage />
+
+      {/* Le haut du silo : les pages de cet espace qui répondent à une
+          recherche précise (data/intentions.js). */}
+      <nav className="itn-hub" aria-labelledby="itn-hub-t">
+        <div className="container">
+          <h2 className="itn-hub__titre" id="itn-hub-t">{lang === 'en' ? 'Near you, and to go further' : 'Près de chez vous, et pour aller plus loin'}</h2>
+          <ul className="itn-hub__liste">
+            {INTENTIONS.filter((p) => p.profil === profil).map((p) => (
+              <li key={p.route}><Link to={p.route}>{p.h1}</Link></li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       {/* 4 — Traversée caméra 3D : constat → réponse → bascule → offres →
              signature. FIN de la home : le footer (scène de clôture) suit. */}

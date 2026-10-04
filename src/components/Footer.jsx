@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { gsap, SplitText, useGSAP } from '../lib/gsap';
 import { instant } from '../lib/scrub';
 import { buildR3D } from '../lib/net3d';
 import Net3D from './Net3D';
 import SwapLabel from './SwapLabel';
-import BusinessCard from './BusinessCard';
+import CarteVivante from './CarteVivante';
 import { useT } from '../i18n';
 import { CONTACT } from '../data/site';
 import { PORTES_CREATION } from '../data/offres';
@@ -42,7 +42,6 @@ export default function Footer() {
   const { pathname } = useLocation();
   const route = pathname !== '/' ? pathname.replace(/\/+$/, '') : '/';
   const espace = fiche(route)?.espace || null;
-  const [cardOpen, setCardOpen] = useState(false);
   const rootRef = useRef(null);
   const stRef = useRef(null);
   const wordRef = useRef(null);
@@ -177,7 +176,10 @@ export default function Footer() {
         <EspacesTuiles actif={espace} className="espt--sombre" label="Les trois espaces du site" />
       </div>
 
-      <div className="container footer2__grid">
+      {/* La carte de visite, posée là, sans clic (demande du 04/10/2026). */}
+      <CarteVivante />
+
+      <div className="container footer2__grid footer2__grid--quatre">
         <nav className="footer2__col" aria-label="Créer ou reprendre une entreprise">
           <span className="footer2__heading">Créer ou reprendre</span>
           <Link to="/creation">L’espace « en projet »</Link>
@@ -193,13 +195,22 @@ export default function Footer() {
           <Link to="/qui-on-est">Qui on est</Link>
         </nav>
 
+        {/* Les pages par intention : le maillage vers les pages locales et
+            les guides, sur toutes les pages du site. */}
+        <nav className="footer2__col" aria-label="Près de chez vous et guides">
+          <span className="footer2__heading">Près de chez vous</span>
+          <Link to="/accompagnement-creation-entreprise-valenciennes">Création d’entreprise à Valenciennes</Link>
+          <Link to="/accompagnement-creation-entreprise-lille">Création d’entreprise à Lille</Link>
+          <Link to="/reprise-entreprise-nord">Reprise d’entreprise</Link>
+          <a href="/tpe/creation-site-internet-valenciennes/">Site internet à Valenciennes</a>
+          <Link to="/guides">Les guides gratuits</Link>
+        </nav>
+
         <div className="footer2__col">
           <span className="footer2__heading">Nous joindre</span>
           {CONTACT.ouverte && <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>}
           <Link to="/contact">Nous écrire</Link>
-          <button type="button" className="footer2__card-btn" onClick={() => setCardOpen(true)}>
-            {f.card} <span aria-hidden="true">→</span>
-          </button>
+          <a href={`tel:${CONTACT.telephoneLien}`}>{CONTACT.telephone}</a>
           {/* D'où on part : sans adresse à afficher, dire la zone est une
               information. */}
           <span className="footer2__zone">Valenciennes et Lille</span>
@@ -231,7 +242,6 @@ export default function Footer() {
         <p>© {new Date().getFullYear()} {marque ? `Reskope ${marque.nom} · ${marque.fr.signature}` : 'Reskope · On vous aide à décider, et on construit la suite.'}</p>
       </div>
 
-      {cardOpen && <BusinessCard onClose={() => setCardOpen(false)} />}
     </footer>
   );
 }

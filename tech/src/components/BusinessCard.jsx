@@ -1,11 +1,10 @@
 import { useState, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { R_NODES, R_LINKS } from './Logo';
 import CroixReseau from './CroixReseau';
-import { MOT_LOGO, MOT_BOITE, R_BOITE, CORPS_MOT, BASE_MOT } from '../data/logoMot';
 import { useT, useLang } from '../i18n';
 import { ADRESSE_AFFICHEE } from '../data/site';
 import { CARTE, recto, verso } from '../lib/carteVisite';
+import { GEO, dec, policesEmbarquees, PERSONNES } from '../lib/carteDonnees';
 
 /* ════════════════════════════════════════════════════════════
    LES CARTES DE VISITE — celle de Florian, ou celle de Thomy.
@@ -25,47 +24,6 @@ import { CARTE, recto, verso } from '../lib/carteVisite';
    ════════════════════════════════════════════════════════════ */
 
 const { W, H } = CARTE;
-/* Le R et le mot du logo, aux proportions de l'en-tête (Logo.jsx, scripts/logo.py). */
-const GEO = { rNodes: R_NODES, rLinks: R_LINKS, trait: 3, noeud: 5.5, jonction: 7, motD: MOT_LOGO, rBoite: R_BOITE, motBoite: MOT_BOITE, corpsMot: CORPS_MOT, baseMot: BASE_MOT };
-
-const dec = (s) => (typeof atob !== 'undefined' ? atob(s) : '');
-
-/* La police de la marque, embarquée dans le fichier téléchargé. */
-const POLICES = [['ReskopeSans-Regular.woff2', 400], ['ReskopeSans-Medium.woff2', 500], ['ReskopeSans-SemiBold.woff2', 600]];
-const enBase64 = (buf) => {
-  const octets = new Uint8Array(buf);
-  let bin = '';
-  for (let i = 0; i < octets.length; i += 0x8000) bin += String.fromCharCode(...octets.subarray(i, i + 0x8000));
-  return btoa(bin);
-};
-async function policesEmbarquees() {
-  const regles = await Promise.all(POLICES.map(async ([fichier, poids]) => {
-    const rep = await fetch(`${import.meta.env.BASE_URL}fonts/${fichier}`);
-    if (!rep.ok) throw new Error(fichier);
-    const b64 = enBase64(await rep.arrayBuffer());
-    return `@font-face{font-family:'Reskope Sans';src:url(data:font/woff2;base64,${b64}) format('woff2');font-weight:${poids};}`;
-  }));
-  return regles.join('');
-}
-
-const PERSONNES = {
-  florian: {
-    prenom: 'Florian',
-    nomFamille: 'Bouchart',
-    tel: 'KzMzIDYgMjAgMjMgNTUgMjA=',
-    mail: 'Zmxvcmlhbi5ib3VjaGFydEBob3RtYWlsLmZy',
-    fr: { titre: 'Cofondateur', domaine: ['Discovery, sites et outils'] },
-    en: { titre: 'Co-founder', domaine: ['Discovery, websites and tools'] },
-  },
-  thomy: {
-    prenom: 'Thomy',
-    nomFamille: 'Phanzu',
-    tel: 'KzMzIDcgNjEgMjUgNDQgNjU=',
-    mail: 'dGhvbXlwaGFuenVAaWNsb3VkLmNvbQ==',
-    fr: { titre: 'Cofondatrice', domaine: ['Business plan, marque', 'et financement'] },
-    en: { titre: 'Co-founder', domaine: ['Business plan, brand', 'and funding'] },
-  },
-};
 
 const MOTS = {
   fr: { qui: 'La carte de', recto: 'Carte de visite de', verso: 'Reskope : on vous aide à décider, et on construit la suite' },
@@ -73,7 +31,7 @@ const MOTS = {
 };
 
 /* Une face : le dessin partagé, dans une carte aux coins arrondis. */
-function Face({ corps, clip, label, svgRef }) {
+export function Face({ corps, clip, label, svgRef }) {
   return (
     <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" className="bcard__svg" role="img" aria-label={label}>
       <defs>

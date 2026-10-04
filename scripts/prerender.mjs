@@ -4,7 +4,8 @@ import { SITE, PAGES, url, fiche, VERS_ENTREPRISES } from '../src/data/seo.js';
 import { OFFRES, OFFRE } from '../src/data/offres.js';
 import { MARQUES, MERE, marqueDeLaRouteDuSite, nomComplet } from '../src/data/marques.js';
 import { DOMAINE, BASE, URL_SITE } from '../site.config.mjs';
-import { CABINET, SITE_WEB, ID_SITE, service as serviceDe, typeDePage } from './entreprise.mjs';
+import { CABINET, SITE_WEB, ID_SITE, ZONE, personne, service as serviceDe, typeDePage } from './entreprise.mjs';
+import { intention } from '../src/data/intentions.js';
 
 /* ════════════════════════════════════════════════════════════
    LE PRÉ-RENDU — écrire un vrai fichier par adresse.
@@ -67,7 +68,8 @@ const service = (o) => serviceDe(o.nom, o.accroche, o.slug ? url(o.slug) : undef
 function schemaDe(route, f) {
   const adresse = url(route);
   const fil = [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: url('/') }];
-  if (PARENT[route]) fil.push({ '@type': 'ListItem', position: 2, name: fiche(PARENT[route]).fil, item: url(PARENT[route]) });
+  const parent = PARENT[route] || f.parent;
+  if (parent && fiche(parent)) fil.push({ '@type': 'ListItem', position: 2, name: fiche(parent).fil, item: url(parent) });
   if (route !== '/') fil.push({ '@type': 'ListItem', position: fil.length + 1, name: f.fil, item: adresse });
 
   const blocs = [
@@ -87,6 +89,25 @@ function schemaDe(route, f) {
   if (route === '/') blocs.push(SITE_WEB);
   if (route === '/' || route === '/creation') blocs.push(CABINET);
   if (f.porte) blocs.push(service(OFFRE[f.porte]));
+  /* Une page locale déclare le service, dans sa ville ; un guide est un
+     article signé, publié par le cabinet. */
+  if (f.intention === 'local') {
+    const ville = ZONE.find((z) => z.name === f.ville);
+    blocs.push({ ...serviceDe(f.h1, f.description, adresse), ...(ville ? { areaServed: ville } : {}) });
+  }
+  if (f.intention === 'guide') {
+    blocs.push({
+      '@type': 'Article',
+      headline: f.h1,
+      description: f.description,
+      inLanguage: 'fr',
+      mainEntityOfPage: { '@id': `${adresse}#page` },
+      author: [personne('Thomy Phanzu', 'Cofondatrice de Reskope'), personne('Florian Bouchart', 'Cofondateur de Reskope')],
+      publisher: { '@id': CABINET['@id'] },
+      datePublished: '2026-10-04',
+      dateModified: new Date().toISOString().slice(0, 10),
+    });
+  }
   if (route === '/nos-offres') {
     blocs.push({
       '@type': 'ItemList',
@@ -111,6 +132,22 @@ function corps(route, f) {
     .join('');
 
   let detail = '';
+  /* Une page par intention : tout son texte, pour les robots des IA qui ne
+     lisent pas le JavaScript. */
+  const it = intention(route);
+  if (it && it.type === 'hub') {
+    detail = `
+      <p>${ech(it.accroche)}</p>
+      <ul>${it.liens.map((r) => { const g = fiche(r); return `<li><a href="${url(r)}">${ech(g.h1)}</a> : ${ech(g.resume)}</li>`; }).join('')}</ul>`;
+  }
+  if (it && it.type !== 'hub') {
+    detail = `
+      <p>${ech(it.accroche)}</p>${it.points ? `<ul>${it.points.map((t) => `<li>${ech(t)}</li>`).join('')}</ul>` : ''}
+      ${it.sections.map((s) => `<h2>${ech(s.titre)}</h2>${(s.texte || []).map((t) => `<p>${ech(t)}</p>`).join('')}${s.liste ? `<ul>${s.liste.map((t) => `<li>${ech(t)}</li>`).join('')}</ul>` : ''}${s.lien ? `<p><a href="${url(s.lien.vers)}">${ech(s.lien.texte)}</a></p>` : ''}`).join('')}
+      ${it.missions ? `<h2>Les missions qui répondent à cette situation</h2><ul>${it.missions.map((id) => `<li><a href="${url(OFFRE[id].slug)}">${ech(OFFRE[id].nom)}</a> : ${ech(OFFRE[id].faits.duree)}, ${ech(OFFRE[id].faits.temps)}</li>`).join('')}</ul>` : ''}
+      ${it.faq ? `<h2>Les questions qu’on nous pose</h2>${it.faq.map((q) => `<h3>${ech(q.q)}</h3><p>${ech(q.r)}</p>`).join('')}` : ''}
+      <p>Réserver 30 minutes offertes ou être rappelé : <a href="${url('/contact')}">nous contacter</a>, ou appeler le 06 20 23 55 20.</p>`;
+  }
   if (f.porte) {
     const o = OFFRE[f.porte];
     detail = `
@@ -234,7 +271,9 @@ ${PAGES.map((p) => `  <url><loc>${url(p.route)}</loc><lastmod>${jour}</lastmod><
 /* llms.txt : la carte du site pour les moteurs de réponse. Google l'ignore,
    mais il coûte trois lignes et les autres commencent à le lire. */
 const portes = PAGES.filter((p) => p.porte);
-const autres = PAGES.filter((p) => !p.porte && parseFloat(p.priorite) >= 0.5);
+const locales = PAGES.filter((p) => p.intention === 'local');
+const guides = PAGES.filter((p) => p.intention === 'guide' || p.intention === 'hub');
+const autres = PAGES.filter((p) => !p.porte && !p.intention && parseFloat(p.priorite) >= 0.5);
 ecrire('llms.txt', `# Reskope
 
 > On vous aide à décider, et on construit la suite. Reskope accompagne trois
@@ -246,6 +285,12 @@ ecrire('llms.txt', `# Reskope
 
 ## Pour créer ou reprendre une entreprise
 ${portes.map((p) => `- [${p.titre}](${url(p.route)}) : ${p.description}`).join('\n')}
+
+## Près de chez vous : Valenciennes, Lille et le Nord
+${locales.map((p) => `- [${p.titre}](${url(p.route)}) : ${p.description}`).join('\n')}
+
+## Guides gratuits
+${guides.map((p) => `- [${p.titre}](${url(p.route)}) : ${p.description}`).join('\n')}
 
 ## Le site
 ${autres.map((p) => `- [${p.titre}](${url(p.route)}) : ${p.description}`).join('\n')}

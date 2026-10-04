@@ -8,12 +8,14 @@ import ScrollToTop from './components/ScrollToTop';
 import Cursor from './components/Cursor';
 import HeroNetwork from './components/HeroNetwork';
 import Sillage from './components/Sillage';
+import BarreContact from './components/BarreContact';
 import PageTransition from './components/PageTransition';
 import Interactions from './components/Interactions';
 import Nav from './components/Nav';
 import Breadcrumb from './components/Breadcrumb';
 import Footer from './components/Footer';
 import VersMaison from './components/VersMaison';
+import { INTENTIONS } from './data/intentions';
 import Home from './pages/Home';
 
 /* L'accueil part avec le paquet principal ; les autres pages ne sont
@@ -26,6 +28,7 @@ const Offres = lazy(() => import('./pages/Offres'));
 const Exemple = lazy(() => import('./pages/Exemple'));
 const Atelier = lazy(() => import('./pages/Atelier'));
 const Ecologie = lazy(() => import('./pages/Ecologie'));
+const Intention = lazy(() => import('./pages/Intention'));
 const NotFound = lazy(() => import('./pages/Etats').then((m) => ({ default: m.NotFound })));
 const Merci = lazy(() => import('./pages/Etats').then((m) => ({ default: m.Merci })));
 
@@ -69,6 +72,10 @@ export default function App() {
         <Route path="/exemple" element={<Exemple />} />
         <Route path="/atelier" element={<Atelier />} />
         <Route path="/numerique-responsable" element={<Ecologie />} />
+        {/* Les pages par intention (data/intentions.js), chacune dans son espace. */}
+        {INTENTIONS.map((p) => (
+          <Route key={p.route} path={p.route} element={<Intention key={p.route} route={p.route} />} />
+        ))}
         {/* Les pages de la maison vivent sur le site principal (une seule fois). */}
         <Route path="/a-propos" element={<VersMaison vers="/qui-on-est/" />} />
         <Route path="/contact" element={<VersMaison vers={(p) => `/contact/?pour=${p}`} />} />
@@ -86,6 +93,7 @@ export default function App() {
           de héros plein écran, un bandeau en haut passerait sous le logo. */}
       <Breadcrumb />
       <Footer />
+      <BarreContact />
     </MotionConfig>
   );
 }

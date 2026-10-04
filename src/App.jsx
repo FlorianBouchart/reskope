@@ -8,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Cursor from './components/Cursor';
 import HeroNetwork from './components/HeroNetwork';
 import Sillage from './components/Sillage';
+import BarreContact from './components/BarreContact';
 import PageTransition from './components/PageTransition';
 import Interactions from './components/Interactions';
 import Nav from './components/Nav';
@@ -15,6 +16,7 @@ import Breadcrumb from './components/Breadcrumb';
 import Footer from './components/Footer';
 import Aiguillage from './pages/Aiguillage';
 import { poserMarque } from './data/marques';
+import { INTENTIONS } from './data/intentions';
 import { marqueDeLaRoute } from './lib/marqueRoute';
 
 /* L'aiguillage part avec le paquet principal ; toutes les autres pages ne
@@ -27,6 +29,7 @@ const CommentCaSePasse = lazy(() => import('./pages/CommentCaSePasse'));
 const Exemple = lazy(() => import('./pages/Exemple'));
 const QuiOnEst = lazy(() => import('./pages/QuiOnEst'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Intention = lazy(() => import('./pages/Intention'));
 const MentionsLegales = lazy(() => import('./pages/Legales').then((m) => ({ default: m.MentionsLegales })));
 const Confidentialite = lazy(() => import('./pages/Legales').then((m) => ({ default: m.Confidentialite })));
 const CGU = lazy(() => import('./pages/Legales').then((m) => ({ default: m.CGU })));
@@ -103,6 +106,10 @@ export default function App() {
           <Route path="/exemple" element={<Exemple />} />
           <Route path="/qui-on-est" element={<QuiOnEst />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Les pages par intention : pages locales et guides (data/intentions.js). */}
+          {INTENTIONS.map((p) => (
+            <Route key={p.route} path={p.route} element={<Intention key={p.route} route={p.route} />} />
+          ))}
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/cgu" element={<CGU />} />
@@ -128,6 +135,7 @@ export default function App() {
           le logo. */}
       <Breadcrumb />
       <Footer />
+      <BarreContact />
     </>
   );
 }

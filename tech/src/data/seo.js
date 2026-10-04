@@ -1,4 +1,5 @@
 import { ORIGINE, BASE } from '../../../site.config.mjs';
+import { INTENTIONS } from './intentions.js';
 /* ════════════════════════════════════════════════════════════
    LE RÉFÉRENCEMENT — une seule source pour tout ce qui se lit sans JS.
 
@@ -218,6 +219,17 @@ const TPE = {
 };
 
 export const META = { pme: PME, tpe: TPE };
+
+/* Les pages par intention (data/intentions.js) : chacune dans son espace,
+   rangées avant les renvois vers la maison. */
+for (const p of INTENTIONS) {
+  META[p.profil][p.route] = {
+    titre: p.titre, description: p.description, h1: p.h1, resume: p.resume, intention: p.type, ville: p.ville, fil: p.fil,
+  };
+}
+PAGES.splice(PAGES.findIndex((x) => x.route === '/a-propos'), 0, ...INTENTIONS.map((p) => ({
+  route: p.route, priorite: p.priorite, freq: 'monthly', profils: [p.profil], intention: p.type,
+})));
 
 /* La fiche d'une page, quelle que soit la version. Les pages légales ne sont
    décrites que côté PME : elles sont identiques, et les dupliquer dans les

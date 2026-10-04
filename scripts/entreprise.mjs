@@ -71,7 +71,7 @@ const CATALOGUE = {
   ],
 };
 
-const personne = (name, jobTitle) => ({ '@type': 'Person', name, jobTitle, worksFor: { '@id': ID_CABINET }, url: `${RACINE}qui-on-est/` });
+export const personne = (name, jobTitle) => ({ '@type': 'Person', name, jobTitle, worksFor: { '@id': ID_CABINET }, url: `${RACINE}qui-on-est/` });
 
 export const CABINET = {
   '@type': 'ProfessionalService',

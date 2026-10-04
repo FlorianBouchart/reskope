@@ -1,4 +1,5 @@
 import { ORIGINE, BASE } from '../../site.config.mjs';
+import { INTENTIONS } from './intentions.js';
 /* ════════════════════════════════════════════════════════════
    LE RÉFÉRENCEMENT — une seule source pour tout ce qui se lit sans JS.
 
@@ -127,6 +128,24 @@ export const PAGES = [
   { route: '/cgu', priorite: '0.2', freq: 'yearly', fil: 'CGU', titre: 'Conditions générales d’utilisation', description: 'Conditions générales d’utilisation du site Reskope : accès au site, usage autorisé, propriété du contenu publié et droit applicable.', h1: 'Conditions générales d’utilisation.', resume: 'Les règles d’accès et d’usage du site, la propriété du contenu publié et le droit applicable.' },
   { route: '/cgv', priorite: '0.2', freq: 'yearly', fil: 'CGV', titre: 'Conditions générales de vente', description: 'Conditions générales de vente Reskope : proposition écrite, prix fixe, facturation, délais, propriété des livrables et données de vos clients.', h1: 'Conditions générales de vente.', resume: 'Les conditions de vente des missions : proposition écrite, prix fixe, acompte, facturation, délais, propriété des livrables, traitement des données de vos clients et recours en cas de litige.' },
 ];
+
+/* Les pages par intention (src/data/intentions.js) : les pages locales et
+   les guides, là où arrivent ceux qui cherchent. Elles se rangent avant les
+   pages légales ; parent dit d'où elles descendent (fil d'Ariane, schema). */
+PAGES.splice(PAGES.findIndex((p) => p.route === '/mentions-legales'), 0, ...INTENTIONS.map((p) => ({
+  route: p.route,
+  espace: p.espace,
+  parent: p.parent,
+  intention: p.type,
+  ville: p.ville,
+  priorite: p.priorite,
+  freq: 'monthly',
+  fil: p.fil,
+  titre: p.titre,
+  description: p.description,
+  h1: p.h1,
+  resume: p.resume,
+})));
 
 /* Les pages qui existent pour le visiteur mais qu'on ne propose pas aux
    moteurs : elles n'ont de sens qu'au bout d'un parcours. */
