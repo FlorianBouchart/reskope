@@ -13,6 +13,18 @@
 - [Relecture de business plan avant la banque](https://reskope.fr/relire-votre-dossier/) : On relit votre business plan avec les yeux du financeur : retours classés par priorité, questions à préparer, preuves à trouver. En une à deux semaines.
 - [Discovery client : pourquoi vos clients achètent](https://reskope.fr/comprendre-vos-clients/) : Vous signez moins de devis, ou vous reprenez une entreprise ? On interroge ses clients gagnés, perdus et partis pour trouver ce qui décide d’une vente.
 
+## Près de chez vous : Valenciennes, Lille et le Nord
+- [Accompagnement création d’entreprise, Valenciennes](https://reskope.fr/accompagnement-creation-entreprise-valenciennes/) : Créer ou reprendre une entreprise à Valenciennes : on rencontre vos futurs clients, on construit votre business plan avec vous et on prépare la banque.
+- [Accompagnement création d’entreprise à Lille](https://reskope.fr/accompagnement-creation-entreprise-lille/) : Créer ou reprendre une entreprise à Lille : entretiens avec vos futurs clients, business plan construit avec vous, dossier prêt pour la banque.
+- [Reprise d’entreprise à Valenciennes et Lille](https://reskope.fr/reprise-entreprise-nord/) : Reprendre une entreprise dans le Nord : vérifier que ses clients resteront, construire le dossier de reprise avec vous et le préparer pour la banque.
+
+## Guides gratuits
+- [Guides pour créer ou reprendre une entreprise](https://reskope.fr/guides/) : Les guides de Reskope pour créer ou reprendre une entreprise : aides, étude de marché, business plan, banque, et les questions à poser à vos clients.
+- [Aides création d’entreprise, Valenciennes, Lille](https://reskope.fr/guides/aides-creation-entreprise/) : Les aides pour créer ou reprendre une entreprise à Valenciennes et Lille : exonérations, allocations, prêts d’honneur, microcrédit, accompagnement gratuit.
+- [Business plan : ce que la banque regarde vraiment](https://reskope.fr/guides/business-plan-banque/) : Ce qu’un banquier lit en premier dans un business plan, les erreurs qui font refuser un prêt, et comment préparer le rendez-vous. Le guide de Reskope.
+- [Étude de marché : la faire auprès de vrais clients](https://reskope.fr/guides/etude-de-marche/) : Comment faire une étude de marché utile pour créer votre entreprise : les entretiens avec de vrais clients, les questions à poser, ce qu’on en tire.
+- [Les 12 questions à poser à vos futurs clients](https://reskope.fr/guides/questions-futurs-clients/) : Le guide gratuit de Reskope : les 12 questions à poser à vos futurs clients avant de créer votre entreprise, les 3 règles et les 3 questions à éviter.
+
 ## Le site
 - [Cabinet de conseil à Valenciennes et Lille](https://reskope.fr/) : Reskope, cabinet de conseil : création et reprise d’entreprise, business plan, étude terrain, site internet et outils numériques des TPE et PME.
 - [Conseil création d’entreprise, Valenciennes, Lille](https://reskope.fr/creation/) : Création ou reprise d’entreprise à Valenciennes et Lille : Reskope rencontre vos futurs clients, nourrit votre business plan et vous prépare à la banque.
@@ -27,6 +39,10 @@
 - [Ce que le désordre numérique vous coûte](https://reskope.fr/tpe/pourquoi/) : Rappeler les clients, retrouver un devis, ressaisir la même information : le temps que ça prend chez une petite entreprise, et ce qu’il représente.
 - [Comment on travaille, étape par étape](https://reskope.fr/tpe/methode/) : Cadrage, devis écrit, construction par petites étapes, mise en ligne, remise des clés. Rien n’est engagé avant d’être chiffré, et vous gardez tout.
 - [Site, boutique, rendez-vous en ligne, marque](https://reskope.fr/tpe/offres/) : Quatre chantiers courts pour TPE : site et boutique, prise de rendez-vous en ligne, identité de marque, aide au lancement. Prix écrit avant de commencer.
+- [Création de site internet à Valenciennes](https://reskope.fr/tpe/creation-site-internet-valenciennes/) : Création de site internet à Valenciennes pour TPE, artisans et commerçants : vitrine ou boutique, prise de rendez-vous, code et accès à votre nom.
+- [Création de site internet à Lille](https://reskope.fr/tpe/creation-site-internet-lille/) : Création de site internet à Lille pour commerces, artisans et indépendants : un site clair qui fait choisir, une boutique si vous vendez, tout à votre nom.
+- [Site internet pour artisan, Valenciennes et Lille](https://reskope.fr/tpe/site-internet-artisan/) : Un site internet pour artisan qui montre vos chantiers, votre zone d’intervention et fait demander un devis en deux clics. À Valenciennes, Lille et alentour.
+- [Prise de rendez-vous en ligne pour votre activité](https://reskope.fr/tpe/prise-de-rendez-vous-en-ligne/) : Prise de rendez-vous en ligne pour salons, instituts, artisans et indépendants : créneaux, confirmation, rappel la veille, relié à votre agenda.
 
 ## Pour les PME, de 10 à 250 personnes
 - [Audit numérique de PME, Valenciennes et Lille](https://reskope.fr/pme/) : Audit et cartographie des outils numériques de votre PME, poste par poste, à Valenciennes et Lille. On relie ce qui ne se parle pas.
@@ -36,6 +52,8 @@
 - [Cartographier votre système d’information](https://reskope.fr/pme/atelier/) : Posez vos outils sur un plan en 3D, reliez ceux qui se parlent, voyez ce que vous payez sans l’utiliser. Gratuit, sans compte, et le schéma se télécharge.
 - [Exemple de bilan d’audit numérique](https://reskope.fr/pme/exemple/) : À quoi ressemble un bilan Reskope : outils recensés, doublons, coûts cachés, recommandations chiffrées. Un cas d’école complet, librement consultable.
 - [Numérique responsable : simplifier, c’est réduire](https://reskope.fr/pme/numerique-responsable/) : Moins d’outils superflus, c’est moins de serveurs, moins de stockage et moins de matériel à remplacer. Notre position sur la sobriété numérique en entreprise.
+- [Audit informatique de PME, Valenciennes et Lille](https://reskope.fr/pme/audit-informatique-pme/) : Audit des outils numériques de votre PME à Valenciennes et Lille : deux à cinq jours avec vos équipes, doublons et coûts cachés, un bilan que vous gardez.
+- [Transformation numérique PME : par où commencer](https://reskope.fr/pme/transformation-numerique-pme/) : Transformation numérique d’une PME : partir de l’existant, mesurer le temps perdu, relier avant de remplacer, avancer par petites étapes. Le guide de Reskope.
 
 ## Contact
 Formulaire : https://reskope.fr/contact/
