@@ -17,6 +17,10 @@
 - [Accompagnement création d’entreprise, Valenciennes](https://reskope.fr/accompagnement-creation-entreprise-valenciennes/) : Créer ou reprendre une entreprise à Valenciennes : on rencontre vos futurs clients, on construit votre business plan avec vous et on prépare la banque.
 - [Accompagnement création d’entreprise à Lille](https://reskope.fr/accompagnement-creation-entreprise-lille/) : Créer ou reprendre une entreprise à Lille : entretiens avec vos futurs clients, business plan construit avec vous, dossier prêt pour la banque.
 - [Reprise d’entreprise à Valenciennes et Lille](https://reskope.fr/reprise-entreprise-nord/) : Reprendre une entreprise dans le Nord : vérifier que ses clients resteront, construire le dossier de reprise avec vous et le préparer pour la banque.
+- [Cabinet de conseil numérique à Valenciennes](https://reskope.fr/cabinet-conseil-numerique-valenciennes/) : Cabinet de conseil numérique à Valenciennes : site internet, outils qui se parlent, automatisation et audit, pour les TPE et PME du Valenciennois.
+- [Cabinet de conseil numérique à Lille](https://reskope.fr/cabinet-conseil-numerique-lille/) : Cabinet de conseil numérique à Lille pour TPE et PME : on regarde vos outils sur place, on vous dit quoi garder et quoi relier, puis on le construit.
+- [Étude de marché à Lille et Valenciennes](https://reskope.fr/etude-de-marche-lille-valenciennes/) : Étude de marché à Lille et à Valenciennes, faite sur le terrain : dix à douze entretiens avec vos futurs clients, votre client idéal, un prix testé.
+- [Zone d’intervention : Valenciennes, Lille, Nord](https://reskope.fr/zone-intervention/) : Où intervient Reskope : Valenciennes et le Valenciennois, Lille et sa métropole, Douai, Cambrai, Maubeuge et le reste du Nord. Sur place ou en visio.
 
 ## Guides gratuits
 - [Guides pour créer ou reprendre une entreprise](https://reskope.fr/guides/) : Les guides de Reskope pour créer ou reprendre une entreprise : aides, étude de marché, business plan, banque, et les questions à poser à vos clients.
@@ -24,6 +28,9 @@
 - [Business plan : ce que la banque regarde vraiment](https://reskope.fr/guides/business-plan-banque/) : Ce qu’un banquier lit en premier dans un business plan, les erreurs qui font refuser un prêt, et comment préparer le rendez-vous. Le guide de Reskope.
 - [Étude de marché : la faire auprès de vrais clients](https://reskope.fr/guides/etude-de-marche/) : Comment faire une étude de marché utile pour créer votre entreprise : les entretiens avec de vrais clients, les questions à poser, ce qu’on en tire.
 - [Les 12 questions à poser à vos futurs clients](https://reskope.fr/guides/questions-futurs-clients/) : Le guide gratuit de Reskope : les 12 questions à poser à vos futurs clients avant de créer votre entreprise, les 3 règles et les 3 questions à éviter.
+- [Reprendre une entreprise : les étapes](https://reskope.fr/guides/reprendre-une-entreprise/) : Comment reprendre une entreprise : où la trouver, comment l’évaluer, quoi vérifier, comment la financer avec peu d’apport, et la question oubliée.
+- [Prévisionnel financier sur 3 ans : le contenu](https://reskope.fr/guides/previsionnel-financier/) : Le prévisionnel financier sur 3 ans : les quatre tableaux, dans quel ordre les remplir, d’où sortir vos chiffres, et les erreurs que la banque repère.
+- [Faire son business plan avec l’IA (ChatGPT)](https://reskope.fr/guides/business-plan-avec-ia/) : Faire son business plan ou son étude de marché avec ChatGPT ou une autre IA : ce qu’elle fait bien, ce qu’elle invente, et la méthode pour s’en servir.
 
 ## Le site
 - [Cabinet de conseil à Valenciennes et Lille](https://reskope.fr/) : Reskope, cabinet de conseil : création et reprise d’entreprise, business plan, étude terrain, site internet et outils numériques des TPE et PME.
@@ -43,6 +50,14 @@
 - [Création de site internet à Lille](https://reskope.fr/tpe/creation-site-internet-lille/) : Création de site internet à Lille pour commerces, artisans et indépendants : un site clair qui fait choisir, une boutique si vous vendez, tout à votre nom.
 - [Site internet pour artisan, Valenciennes et Lille](https://reskope.fr/tpe/site-internet-artisan/) : Un site internet pour artisan qui montre vos chantiers, votre zone d’intervention et fait demander un devis en deux clics. À Valenciennes, Lille et alentour.
 - [Prise de rendez-vous en ligne pour votre activité](https://reskope.fr/tpe/prise-de-rendez-vous-en-ligne/) : Prise de rendez-vous en ligne pour salons, instituts, artisans et indépendants : créneaux, confirmation, rappel la veille, relié à votre agenda.
+- [Agence web, freelance ou cabinet : qui choisir](https://reskope.fr/tpe/agence-web-ou-freelance/) : Agence web, développeur freelance ou cabinet de conseil, à Valenciennes ou à Lille : ce que chacun fait bien, et les six questions à poser avant de signer.
+- [Création de boutique en ligne, Lille, Valenciennes](https://reskope.fr/tpe/creation-boutique-en-ligne/) : Création de boutique en ligne à Lille et à Valenciennes pour artisans et commerçants : catalogue, paiement, livraison, stock, et les clés à votre nom.
+- [Identité visuelle et logo, Lille et Valenciennes](https://reskope.fr/tpe/identite-visuelle-logo/) : Identité visuelle et logo pour une petite entreprise, à Lille et à Valenciennes : on part de vos clients, on écrit les règles, le logo vient en dernier.
+- [Site vitrine : contenu, prix, délais](https://reskope.fr/tpe/site-vitrine/) : Ce qu’un site vitrine doit contenir, ce qui fait varier son prix, combien de temps il faut, et les erreurs qui font partir un visiteur en dix secondes.
+- [Refonte de site internet, Lille et Valenciennes](https://reskope.fr/tpe/refonte-site-internet/) : Refonte de site internet à Lille et à Valenciennes : on garde ce qui marche, on refait ce qui fait fuir, sans perdre votre place sur Google.
+- [Fiche Google entreprise : la créer, la remplir](https://reskope.fr/tpe/fiche-google-entreprise/) : Créer et remplir la fiche Google de votre entreprise, étape par étape, pour être trouvé près de chez vous : catégorie, zone, photos, avis, cohérence.
+- [Aides au numérique, Hauts-de-France : le point](https://reskope.fr/tpe/aides-numerique-hauts-de-france/) : Les aides à la numérisation des petites entreprises dans les Hauts-de-France : Région, CCI, France Num, Bpifrance. Qui fait quoi, et où vérifier.
+- [L’IA pour une petite entreprise : les usages](https://reskope.fr/tpe/ia-petite-entreprise/) : Artisan, commerçant, TPE : les usages de l’IA qui font gagner du temps, ce qu’il ne faut pas lui confier, et comment commencer en une heure, sans risque.
 
 ## Pour les PME, de 10 à 250 personnes
 - [Audit numérique de PME, Valenciennes et Lille](https://reskope.fr/pme/) : Audit et cartographie des outils numériques de votre PME, poste par poste, à Valenciennes et Lille. On relie ce qui ne se parle pas.
@@ -54,6 +69,9 @@
 - [Numérique responsable : simplifier, c’est réduire](https://reskope.fr/pme/numerique-responsable/) : Moins d’outils superflus, c’est moins de serveurs, moins de stockage et moins de matériel à remplacer. Notre position sur la sobriété numérique en entreprise.
 - [Audit informatique de PME, Valenciennes et Lille](https://reskope.fr/pme/audit-informatique-pme/) : Audit des outils numériques de votre PME à Valenciennes et Lille : deux à cinq jours avec vos équipes, doublons et coûts cachés, un bilan que vous gardez.
 - [Transformation numérique PME : par où commencer](https://reskope.fr/pme/transformation-numerique-pme/) : Transformation numérique d’une PME : partir de l’existant, mesurer le temps perdu, relier avant de remplacer, avancer par petites étapes. Le guide de Reskope.
+- [Automatisation des tâches pour PME](https://reskope.fr/pme/automatisation-pme/) : Automatisation sur mesure pour PME, à Lille et à Valenciennes : ressaisies, relances, rapports. On mesure le temps perdu, puis on automatise ce qui le mérite.
+- [Logiciel et application métier sur mesure, PME](https://reskope.fr/pme/logiciel-sur-mesure-pme/) : Logiciel sur mesure et application métier pour PME, à Lille et à Valenciennes : quand le standard ne suffit plus, on construit l’outil qu’il vous faut.
+- [Intelligence artificielle en PME, par où commencer](https://reskope.fr/pme/intelligence-artificielle-pme/) : L’IA dans une PME, sans effet de mode : les usages qui marchent, ce qu’il faut ranger avant, les règles de confidentialité, et par quoi commencer.
 
 ## Contact
 Formulaire : https://reskope.fr/contact/
