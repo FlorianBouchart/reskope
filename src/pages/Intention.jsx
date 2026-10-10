@@ -74,7 +74,7 @@ function Tete({ p, reserver }) {
             </ul>
           )}
           {p.type === 'guide' && (
-            <p className="itn__auteurs">Par Thomy Phanzu et Florian Bouchart · mis à jour le 4 octobre 2026</p>
+            <p className="itn__auteurs">Par Thomy Phanzu et Florian Bouchart · mis à jour le {p.maj || '4 octobre 2026'}</p>
           )}
         </div>
         <div className="itn__visuel" aria-hidden="true">
@@ -107,6 +107,29 @@ function Missions({ ids }) {
         <p className="itn-mis__note">Prix fixe, écrit avant de commencer. Le premier échange de 30 minutes est offert.</p>
       </div>
     </section>
+  );
+}
+
+/* Des pages qui vivent dans l'espace des entreprises (/tpe, /pme), servi par
+   l'autre application : de vrais liens, qui rechargent la page. */
+function Ailleurs({ cartes, titre = 'À voir aussi' }) {
+  return (
+    <nav className="itn-liens itn-liens--ailleurs" aria-label={titre}>
+      <div className="container">
+        <h2 className="itn-liens__titre">{titre}</h2>
+        <ul className="itn-liens__liste">
+          {cartes.map((c) => (
+            <li key={c.href}>
+              <a href={`${BASE}${c.href.slice(1)}`} className="itn-liens__carte">
+                <span className="itn-liens__nom">{c.nom}</span>
+                <span className="itn-liens__dit">{c.dit}</span>
+                <span className="lien-fleche" aria-hidden="true">Voir <span>→</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
 }
 
@@ -180,7 +203,7 @@ export default function Intention({ route }) {
           {s.liste && <Noeuds items={s.liste} />}
           {s.source && (
             <p className="itn__source">
-              Source officielle :{' '}
+              Source :{' '}
               <a href={s.source.url} target="_blank" rel="noopener noreferrer">{s.source.texte}</a>
             </p>
           )}
@@ -191,6 +214,8 @@ export default function Intention({ route }) {
           )}
         </Amorce>
       ))}
+
+      {p.ailleurs && <Ailleurs cartes={p.ailleurs} titre={p.ailleursTitre} />}
 
       {p.missions && <Missions ids={p.missions} />}
 

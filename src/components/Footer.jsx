@@ -199,10 +199,13 @@ export default function Footer() {
             les guides, sur toutes les pages du site. */}
         <nav className="footer2__col" aria-label="Près de chez vous et guides">
           <span className="footer2__heading">Près de chez vous</span>
+          <Link to="/cabinet-conseil-numerique-valenciennes">Conseil numérique à Valenciennes</Link>
+          <Link to="/cabinet-conseil-numerique-lille">Conseil numérique à Lille</Link>
           <Link to="/accompagnement-creation-entreprise-valenciennes">Création d’entreprise à Valenciennes</Link>
           <Link to="/accompagnement-creation-entreprise-lille">Création d’entreprise à Lille</Link>
           <Link to="/reprise-entreprise-nord">Reprise d’entreprise</Link>
           <a href="/tpe/creation-site-internet-valenciennes/">Site internet à Valenciennes</a>
+          <Link to="/zone-intervention">Où nous intervenons</Link>
           <Link to="/guides">Les guides gratuits</Link>
         </nav>
 

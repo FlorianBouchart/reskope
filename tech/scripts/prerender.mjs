@@ -96,7 +96,7 @@ function schemaDe(profil, route, f) {
       mainEntityOfPage: { '@id': `${adresse}#page` },
       author: [personne('Thomy Phanzu', 'Cofondatrice de Reskope'), personne('Florian Bouchart', 'Cofondateur de Reskope')],
       publisher: { '@id': CABINET['@id'] },
-      datePublished: '2026-10-04',
+      datePublished: f.publie || '2026-10-04',
       dateModified: new Date().toISOString().slice(0, 10),
     });
   }
@@ -142,7 +142,8 @@ function corps(profil, route, f) {
   const it = intention(route);
   const detail = it && it.profil === profil ? `
       <p>${ech(it.accroche)}</p>${it.points ? `<ul>${it.points.map((t) => `<li>${ech(t)}</li>`).join('')}</ul>` : ''}
-      ${it.sections.map((s) => `<h2>${ech(s.titre)}</h2>${(s.texte || []).map((t) => `<p>${ech(t)}</p>`).join('')}${s.liste ? `<ul>${s.liste.map((t) => `<li>${ech(t)}</li>`).join('')}</ul>` : ''}`).join('')}
+      ${it.sections.map((s) => `<h2>${ech(s.titre)}</h2>${(s.texte || []).map((t) => `<p>${ech(t)}</p>`).join('')}${s.liste ? `<ul>${s.liste.map((t) => `<li>${ech(t)}</li>`).join('')}</ul>` : ''}${s.source ? `<p>Source : <a href="${ech(s.source.url)}">${ech(s.source.texte)}</a></p>` : ''}${s.lien && fiche(profil, s.lien.vers) ? `<p><a href="${url(profil, s.lien.vers)}">${ech(s.lien.texte)}</a></p>` : ''}`).join('')}
+      ${it.ailleurs ? `<h2>À voir aussi</h2><ul>${it.ailleurs.map((c) => `<li><a href="${SITE.origine}${SITE.base}${c.href}">${ech(c.nom)}</a> : ${ech(c.dit)}</li>`).join('')}</ul>` : ''}
       ${it.faq ? `<h2>Les questions qu’on nous pose</h2>${it.faq.map((q) => `<h3>${ech(q.q)}</h3><p>${ech(q.r)}</p>`).join('')}` : ''}
       <p>Réserver 30 minutes offertes ou être rappelé : <a href="${SITE.origine}${SITE.base}/contact/?pour=${profil}">nous contacter</a>, ou appeler le 06 20 23 55 20.</p>` : '';
 

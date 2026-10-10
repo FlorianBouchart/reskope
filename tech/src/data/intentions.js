@@ -1,3 +1,4 @@
+import { SUITE } from './intentions-suite.js';
 /* ════════════════════════════════════════════════════════════
    LES PAGES PAR INTENTION DE L'ESPACE DES ENTREPRISES (04/10/2026)
 
@@ -356,6 +357,9 @@ export const INTENTIONS = [
     liens: ['/audit-informatique-pme', '/pourquoi', '/methode', '/offres'],
     resume: 'Guide pour les dirigeants de PME : par où commencer une transformation numérique. Partir de l’existant (inventaire des outils et des usages), mesurer le temps perdu (près de la moitié de la semaine part dans les e-mails et la recherche d’information selon McKinsey), relier avant de remplacer, classer par impact et avancer par petites étapes, former les équipes. Et comment Reskope accompagne, en commençant par l’audit.',
   },
+
+  /* Les pages ajoutées le 10/10/2026 : data/intentions-suite.js. */
+  ...SUITE,
 ];
 
 const PAR_ROUTE = Object.fromEntries(INTENTIONS.map((p) => [p.route, p]));

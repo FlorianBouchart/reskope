@@ -160,6 +160,10 @@ export default function Creation() {
             <li><Link to="/guides/aides-creation-entreprise">Les aides à la création d’entreprise</Link></li>
             <li><Link to="/guides/business-plan-banque">Business plan&nbsp;: ce que la banque regarde</Link></li>
             <li><Link to="/guides/etude-de-marche">Étude de marché auprès de vrais clients</Link></li>
+            <li><Link to="/etude-de-marche-lille-valenciennes">Étude de marché à Lille et à Valenciennes</Link></li>
+            <li><Link to="/guides/previsionnel-financier">Prévisionnel financier sur 3 ans</Link></li>
+            <li><Link to="/guides/business-plan-avec-ia">Faire son business plan avec l’IA</Link></li>
+            <li><Link to="/guides/reprendre-une-entreprise">Reprendre une entreprise, étape par étape</Link></li>
           </ul>
         </div>
       </nav>

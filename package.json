@@ -6,7 +6,7 @@
   "homepage": "https://floops10.github.io/reskope",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs && npm run build:tech && node scripts/assembler.mjs",
+    "build": "vite build && node scripts/prerender.mjs && npm run build:tech && node scripts/assembler.mjs && node scripts/instantane.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist",

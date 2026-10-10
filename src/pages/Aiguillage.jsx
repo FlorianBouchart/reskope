@@ -180,6 +180,22 @@ export default function Aiguillage() {
         </section>
       </div>
 
+      {/* Le haut des silos : les pages qui répondent à une recherche locale.
+          De vrais liens depuis l'accueil, la page la plus forte du site. */}
+      <nav className="itn-hub" aria-labelledby="aig-pres">
+        <div className="container">
+          <h2 className="itn-hub__titre" id="aig-pres">Près de chez vous</h2>
+          <ul className="itn-hub__liste">
+            <li><Link to="/cabinet-conseil-numerique-valenciennes">Conseil numérique à Valenciennes</Link></li>
+            <li><Link to="/cabinet-conseil-numerique-lille">Conseil numérique à Lille</Link></li>
+            <li><Link to="/accompagnement-creation-entreprise-valenciennes">Création d’entreprise à Valenciennes</Link></li>
+            <li><Link to="/accompagnement-creation-entreprise-lille">Création d’entreprise à Lille</Link></li>
+            <li><a href={`${BASE}tpe/creation-site-internet-valenciennes/`}>Site internet à Valenciennes</a></li>
+            <li><a href={`${BASE}tpe/creation-site-internet-lille/`}>Site internet à Lille</a></li>
+          </ul>
+        </div>
+      </nav>
+
       <Duo titre="Deux personnes sur votre dossier, du premier échange à la fin." />
       <Booking c={RENDEZ_VOUS} />
     </Page>

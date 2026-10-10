@@ -13707,3 +13707,7 @@ main:has(> [data-nav-dark]:last-child) + .crumb {
 .itn-faq__relance p { margin: 0; }
 
 @media (min-width: 900px) { .footer2__grid--quatre { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Les cartes vers l'autre espace : deux par rangée, pour qu'aucune ne reste
+   seule sur sa ligne (elles vont par deux ou par quatre). */
+@media (min-width: 720px) { .itn-liens--ailleurs .itn-liens__liste { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

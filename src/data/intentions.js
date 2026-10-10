@@ -1,3 +1,4 @@
+import { SUITE } from './intentions-suite.js';
 /* ════════════════════════════════════════════════════════════
    LES PAGES PAR INTENTION — là où arrivent ceux qui cherchent.
 
@@ -203,7 +204,7 @@ export const INTENTIONS = [
     h1: 'Les guides pour créer ou reprendre une entreprise',
     surtitre: 'Guides · gratuits, sans adresse e-mail à donner',
     accroche: 'Ce qu’on explique à chaque premier rendez-vous, écrit une fois pour toutes. Lisez-les, servez-vous-en, et appelez-nous quand vous voulez aller plus loin.',
-    liens: ['/guides/aides-creation-entreprise', '/guides/etude-de-marche', '/guides/questions-futurs-clients', '/guides/business-plan-banque'],
+    liens: ['/guides/aides-creation-entreprise', '/guides/etude-de-marche', '/guides/questions-futurs-clients', '/guides/business-plan-banque', '/guides/previsionnel-financier', '/guides/business-plan-avec-ia', '/guides/reprendre-une-entreprise'],
     resume: 'Les guides gratuits de Reskope pour créer ou reprendre une entreprise à Valenciennes et à Lille : les aides à la création, l’étude de marché auprès de vrais clients, les 12 questions à poser à vos futurs clients, et ce que la banque regarde dans un business plan.',
   },
 
@@ -456,6 +457,10 @@ export const INTENTIONS = [
     liens: ['/guides/etude-de-marche', '/tester-une-idee', '/comprendre-vos-clients', '/guides/business-plan-banque'],
     resume: 'Le guide gratuit de Reskope pour interroger ses futurs clients avant de créer une entreprise : trois règles d’entretien, douze questions en quatre blocs (le problème est-il réel, comment ils font aujourd’hui, comment ils décident d’acheter, où les trouver), trois questions à ne jamais poser, et quoi faire après l’entretien. Disponible aussi en PDF, sans adresse e-mail.',
   },
+
+  /* Les pages ajoutées le 10/10/2026 (conseil numérique, étude de marché,
+     reprise, prévisionnel, zone d'intervention) : data/intentions-suite.js. */
+  ...SUITE,
 ];
 
 const PAR_ROUTE = Object.fromEntries(INTENTIONS.map((p) => [p.route, p]));

@@ -293,7 +293,7 @@ export default function Home() {
           <h2 className="itn-hub__titre" id="itn-hub-t">{lang === 'en' ? 'Near you, and to go further' : 'Près de chez vous, et pour aller plus loin'}</h2>
           <ul className="itn-hub__liste">
             {INTENTIONS.filter((p) => p.profil === profil).map((p) => (
-              <li key={p.route}><Link to={p.route}>{p.h1}</Link></li>
+              <li key={p.route}><Link to={p.route}>{p.titre}</Link></li>
             ))}
           </ul>
         </div>

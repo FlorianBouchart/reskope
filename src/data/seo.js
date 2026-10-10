@@ -137,6 +137,7 @@ PAGES.splice(PAGES.findIndex((p) => p.route === '/mentions-legales'), 0, ...INTE
   espace: p.espace,
   parent: p.parent,
   intention: p.type,
+  publie: p.publie,
   ville: p.ville,
   priorite: p.priorite,
   freq: 'monthly',

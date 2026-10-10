@@ -224,7 +224,7 @@ export const META = { pme: PME, tpe: TPE };
    rangées avant les renvois vers la maison. */
 for (const p of INTENTIONS) {
   META[p.profil][p.route] = {
-    titre: p.titre, description: p.description, h1: p.h1, resume: p.resume, intention: p.type, ville: p.ville, fil: p.fil,
+    titre: p.titre, description: p.description, h1: p.h1, resume: p.resume, intention: p.type, ville: p.ville, fil: p.fil, publie: p.publie,
   };
 }
 PAGES.splice(PAGES.findIndex((x) => x.route === '/a-propos'), 0, ...INTENTIONS.map((p) => ({

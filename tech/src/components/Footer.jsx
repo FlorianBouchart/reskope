@@ -213,16 +213,24 @@ export default function Footer() {
           <span className="footer2__heading">Près de chez vous</span>
           {profil === 'pme' ? (
             <>
+              <a href={`${BASE}/cabinet-conseil-numerique-valenciennes/`}>Conseil numérique à Valenciennes</a>
+              <a href={`${BASE}/cabinet-conseil-numerique-lille/`}>Conseil numérique à Lille</a>
               <Link to="/audit-informatique-pme">Audit des outils de votre PME</Link>
-              <Link to="/transformation-numerique-pme">Transformation numérique : par où commencer</Link>
-              <a href={`${BASE}/tpe/creation-site-internet-valenciennes/`}>Site internet à Valenciennes</a>
+              <Link to="/automatisation-pme">Automatisation</Link>
+              <Link to="/logiciel-sur-mesure-pme">Logiciel sur mesure</Link>
+              <Link to="/intelligence-artificielle-pme">IA en PME</Link>
+              <Link to="/transformation-numerique-pme">Transformation numérique</Link>
             </>
           ) : (
             <>
               <Link to="/creation-site-internet-valenciennes">Site internet à Valenciennes</Link>
               <Link to="/creation-site-internet-lille">Site internet à Lille</Link>
+              <Link to="/creation-boutique-en-ligne">Boutique en ligne</Link>
               <Link to="/site-internet-artisan">Site internet pour artisan</Link>
               <Link to="/prise-de-rendez-vous-en-ligne">Rendez-vous en ligne</Link>
+              <Link to="/agence-web-ou-freelance">Agence web ou freelance ?</Link>
+              <Link to="/ia-petite-entreprise">L’IA pour une petite entreprise</Link>
+              <Link to="/aides-numerique-hauts-de-france">Aides au numérique</Link>
             </>
           )}
           <a href={`${BASE}/accompagnement-creation-entreprise-valenciennes/`}>Création d’entreprise à Valenciennes</a>

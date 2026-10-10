@@ -89,6 +89,28 @@ function Liens({ routes, profil }) {
   );
 }
 
+/* Des pages de l'autre espace ou du site principal : de vrais liens. */
+function Ailleurs({ cartes }) {
+  return (
+    <nav className="itn-liens itn-liens--ailleurs" aria-label="À voir aussi">
+      <div className="container">
+        <h2 className="itn-liens__titre">À voir aussi</h2>
+        <ul className="itn-liens__liste">
+          {cartes.map((c) => (
+            <li key={c.href}>
+              <a href={`${BASE}${c.href}`} className="itn-liens__carte">
+                <span className="itn-liens__nom">{c.nom}</span>
+                <span className="itn-liens__dit">{c.dit}</span>
+                <span className="lien-fleche" aria-hidden="true">Voir <span>→</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
+
 export default function Intention({ route }) {
   const p = intention(route);
   const { profil } = useProfil();
@@ -139,7 +161,7 @@ export default function Intention({ route }) {
                 </ul>
               )}
               {p.type === 'guide' && (
-                <p className="itn__auteurs">Par Thomy Phanzu et Florian Bouchart · mis à jour le 4 octobre 2026</p>
+                <p className="itn__auteurs">Par Thomy Phanzu et Florian Bouchart · mis à jour le {p.maj || '4 octobre 2026'}</p>
               )}
             </div>
             <div className="itn__visuel" aria-hidden="true">
@@ -203,6 +225,8 @@ export default function Intention({ route }) {
         )}
 
         {p.liens && <Liens routes={p.liens} profil={p.profil} />}
+
+        {p.ailleurs && <Ailleurs cartes={p.ailleurs} />}
 
         <Booking c={RDV} />
       </div>
