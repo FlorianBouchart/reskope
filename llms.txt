@@ -24,7 +24,7 @@
 
 ## Guides gratuits
 - [Guides pour créer ou reprendre une entreprise](https://reskope.fr/guides/) : Les guides de Reskope pour créer ou reprendre une entreprise : aides, étude de marché, business plan, banque, et les questions à poser à vos clients.
-- [Aides création d’entreprise, Valenciennes, Lille](https://reskope.fr/guides/aides-creation-entreprise/) : Les aides pour créer ou reprendre une entreprise à Valenciennes et Lille : exonérations, allocations, prêts d’honneur, microcrédit, accompagnement gratuit.
+- [Aides création d’entreprise, Valenciennes, Lille](https://reskope.fr/guides/aides-creation-entreprise/) : Aides à la création d’entreprise à Valenciennes et Lille : ACRE, prêts d’honneur (Initiative, Réseau Entreprendre), microcrédit Adie, accompagnement.
 - [Business plan : ce que la banque regarde vraiment](https://reskope.fr/guides/business-plan-banque/) : Ce qu’un banquier lit en premier dans un business plan, les erreurs qui font refuser un prêt, et comment préparer le rendez-vous. Le guide de Reskope.
 - [Étude de marché : la faire auprès de vrais clients](https://reskope.fr/guides/etude-de-marche/) : Comment faire une étude de marché utile pour créer votre entreprise : les entretiens avec de vrais clients, les questions à poser, ce qu’on en tire.
 - [Les 12 questions à poser à vos futurs clients](https://reskope.fr/guides/questions-futurs-clients/) : Le guide gratuit de Reskope : les 12 questions à poser à vos futurs clients avant de créer votre entreprise, les 3 règles et les 3 questions à éviter.
@@ -72,6 +72,7 @@
 - [Automatisation des tâches pour PME](https://reskope.fr/pme/automatisation-pme/) : Automatisation sur mesure pour PME, à Lille et à Valenciennes : ressaisies, relances, rapports. On mesure le temps perdu, puis on automatise ce qui le mérite.
 - [Logiciel et application métier sur mesure, PME](https://reskope.fr/pme/logiciel-sur-mesure-pme/) : Logiciel sur mesure et application métier pour PME, à Lille et à Valenciennes : quand le standard ne suffit plus, on construit l’outil qu’il vous faut.
 - [Intelligence artificielle en PME, par où commencer](https://reskope.fr/pme/intelligence-artificielle-pme/) : L’IA dans une PME, sans effet de mode : les usages qui marchent, ce qu’il faut ranger avant, les règles de confidentialité, et par quoi commencer.
+- [Organiser SharePoint, Teams et OneDrive en PME](https://reskope.fr/pme/organiser-sharepoint-teams-onedrive/) : Fichiers en double, dossiers introuvables : comment ranger SharePoint, Teams et OneDrive dans une PME, étape par étape, sans rien supprimer.
 
 ## Contact
 Formulaire : https://reskope.fr/contact/
