@@ -848,7 +848,91 @@ export const SUITE = [
       { q: 'Quelle différence entre automatisation et intelligence artificielle ?', r: 'Une automatisation applique toujours la même règle : quand un devis est signé, créer la facture. Une IA traite ce qui n’est pas régulier : lire un e-mail écrit librement et comprendre ce qu’on y demande. Beaucoup de besoins relèvent de la première, plus simple et plus sûre.' },
       { q: 'Faites-vous du conseil en IA à Lille et à Valenciennes ?', r: 'Oui, dans le cadre de nos missions pour les PME : on repère les usages qui valent le coup chez vous, on les met en place et on forme vos équipes. On ne développe pas de modèle d’IA : on vous aide à adopter, dans de bonnes conditions, celles qui existent déjà.' },
     ],
-    liens: ['/automatisation-pme', '/audit-informatique-pme', '/transformation-numerique-pme', '/logiciel-sur-mesure-pme'],
+    liens: ['/automatisation-pme', '/audit-informatique-pme', '/organiser-sharepoint-teams-onedrive', '/transformation-numerique-pme', '/logiciel-sur-mesure-pme'],
     resume: 'Guide de Reskope sur l’intelligence artificielle dans une PME, à Lille, à Valenciennes et dans le Nord. Les usages qui tiennent : rédiger un premier jet, résumer, extraire les données d’une facture, trier les demandes, retrouver une information dans ses propres documents. Avant : ranger ses outils et ses fichiers, et fixer trois règles de confidentialité (outils autorisés, données interdites, relecture), le RGPD s’appliquant aux données personnelles. Premier pas : une seule tâche, mesurée avant et après un mois d’essai. Une automatisation simple fait souvent mieux qu’une IA.',
+  },
+
+  {
+    profil: 'pme',
+    route: '/organiser-sharepoint-teams-onedrive',
+    type: 'guide',
+    publie: '2026-10-15',
+    maj: '15 octobre 2026',
+    priorite: '0.8',
+    fil: 'Ranger SharePoint et Teams',
+    titre: 'Organiser SharePoint, Teams et OneDrive en PME',
+    description: 'Fichiers en double, dossiers introuvables : comment ranger SharePoint, Teams et OneDrive dans une PME, étape par étape, sans rien supprimer.',
+    h1: 'Ranger SharePoint, Teams et OneDrive : la méthode pour une PME',
+    surtitre: 'Guide · PME de Lille et de Valenciennes',
+    accroche: 'Un fichier existe en quatre versions, personne ne sait laquelle est la bonne, et chacun a son propre rangement. Avant de déplacer quoi que ce soit, il faut comprendre comment vos équipes cherchent vraiment. Voici l’ordre qu’on suit, et ce qu’on évite de faire.',
+    sections: [
+      {
+        titre: 'Où vont vraiment vos fichiers',
+        texte: [
+          'Dans Microsoft 365, trois outils se mélangent. SharePoint est l’espace de l’entreprise et des équipes. OneDrive est l’espace personnel de chacun. Teams s’appuie sur les deux.',
+          'Chaque équipe Teams est reliée à un site SharePoint : un fichier déposé dans un canal est rangé dans le dossier de ce canal. En revanche, un fichier envoyé dans une conversation privée, à une personne ou à un groupe, est rangé dans le OneDrive de celui qui l’a envoyé. Les canaux privés et les canaux partagés ont chacun leur propre site SharePoint.',
+          'C’est la première source de désordre : un même document peut se trouver dans un canal, dans une conversation et sur le poste de quelqu’un, sans que personne le sache.',
+        ],
+        source: { texte: 'Microsoft Learn : Teams avec SharePoint et OneDrive', url: 'https://learn.microsoft.com/fr-fr/training/modules/explore-teams/7-sharepoint-onedrive' },
+      },
+      {
+        titre: 'Quand quelqu’un part, son OneDrive ne reste pas',
+        texte: [
+          'Le OneDrive d’une personne est lié à son compte. Quand ce compte est supprimé, son contenu n’est conservé que pour une durée limitée : 30 jours par défaut, que l’administrateur peut modifier. Par défaut, son responsable reçoit l’accès pour récupérer ce qui doit rester.',
+          'Un document dont l’équipe a besoin n’a donc pas sa place dans un espace personnel.',
+        ],
+        source: { texte: 'Microsoft Learn : rétention et suppression sur OneDrive', url: 'https://learn.microsoft.com/fr-fr/sharepoint/retention-and-deletion' },
+      },
+      {
+        titre: 'Pourquoi les fichiers deviennent introuvables',
+        texte: ['Ce n’est la faute de personne : ce sont des habitudes qui s’accumulent. Les mêmes causes reviennent souvent.'],
+        liste: [
+          'Les copies : chacun enregistre sa version, sur son poste, dans son OneDrive, dans un e-mail',
+          'Les noms libres : « final », « final 2 », « final corrigé »',
+          'Les dossiers rangés par personne plutôt que par usage : on cherche « chez un collègue » plutôt que « les devis 2026 »',
+          'Les droits qui s’empilent : plus personne ne sait qui voit quoi',
+          'Les espaces créés un jour pour un projet, jamais refermés',
+        ],
+      },
+      {
+        titre: 'La méthode, en six temps',
+        liste: [
+          'Inventorier par niveaux : les sites, leurs bibliothèques, puis les dossiers de premier niveau. On ne liste pas des dizaines de milliers de fichiers : on relève ce que contient chaque espace, sa dernière utilisation et le nombre de personnes qui y ont accès',
+          'Regarder faire : on demande à quelques personnes de retrouver trois fichiers, chronomètre en main, sans les ouvrir. On voit le chemin réel, pas celui qu’on raconte',
+          'Dessiner les parcours : pour les cinq à huit tâches les plus courantes, le chemin d’aujourd’hui, le temps qu’il prend et l’endroit où ça coince',
+          'Concevoir la structure cible : trois niveaux au plus, des noms par usage plutôt que par personne, une règle de nommage simple (date, objet, version)',
+          'Migrer par un espace pilote : on déplace un premier espace, on garde l’ancien accessible, on laisse des liens. On archive seulement ce que son propriétaire a validé',
+          'Mesurer avant et après : la même tâche, la même personne, le même chronomètre. Puis un guide d’une page, « où trouver quoi », présenté à l’équipe',
+        ],
+      },
+      {
+        titre: 'On travaille sur la structure, pas sur le contenu',
+        texte: [
+          'Pour ranger, il n’est pas nécessaire de lire vos documents. On regarde les noms des espaces et des dossiers, leurs droits d’accès, leurs dates et leur usage. Si un espace contient des informations sensibles (ressources humaines, contrats, données clients), on s’arrête à son étiquette : on le classe, on ne l’ouvre pas.',
+          'Et on ne supprime rien sans l’accord du propriétaire du fichier et du dirigeant : on archive d’abord, et l’ancien rangement reste accessible le temps de la transition.',
+        ],
+      },
+      {
+        titre: 'Combien de temps, et à quel prix',
+        texte: [
+          'Cela dépend du nombre d’espaces et de personnes, et de la place que les fichiers tiennent dans le travail de chacun. Après un premier échange, vous recevez une estimation écrite avant de commencer, comme pour chaque mission. Le rangement se fait par étapes : vous pouvez vous arrêter à la fin de n’importe laquelle.',
+        ],
+        lien: { vers: '/audit-informatique-pme', texte: 'L’audit des outils numériques de votre PME' },
+      },
+    ],
+    offres: ['audit', 'audit-plus', 'suivi'],
+    ailleurs: [
+      { href: '/cabinet-conseil-numerique-lille/', nom: 'Cabinet de conseil numérique à Lille', dit: 'Le conseil avant le devis : on regarde vos outils sur place, puis on construit.' },
+      { href: '/cabinet-conseil-numerique-valenciennes/', nom: 'Cabinet de conseil numérique à Valenciennes', dit: 'Pour les TPE et PME du Valenciennois : audit, liaisons entre outils, automatisation.' },
+    ],
+    faq: [
+      { q: 'Où sont stockés les fichiers de Teams ?', r: 'Les fichiers d’un canal sont dans le dossier de ce canal, dans la bibliothèque du site SharePoint de l’équipe. Les fichiers envoyés dans une conversation privée sont dans le OneDrive de la personne qui les a envoyés, dans un dossier nommé Microsoft Teams Chat Files.' },
+      { q: 'Faut-il tout migrer d’un coup ?', r: 'Non. On commence par un espace pilote, on vérifie que les gens retrouvent leurs fichiers, puis on continue. Une migration d’un seul bloc risque de laisser tout le monde sans repère du jour au lendemain.' },
+      { q: 'Faut-il supprimer les vieux fichiers ?', r: 'Pas dans un premier temps. On les archive dans un espace à part, avec l’accord de leur propriétaire, et on décide plus tard de ce qui doit être conservé. Certains documents doivent l’être pour des raisons légales ou contractuelles : on ne les touche pas.' },
+      { q: 'Avez-vous besoin d’accéder à tous nos documents ?', r: 'Non. Il suffit de voir la structure : les espaces, les dossiers de premier niveau, les droits et les dates. Vous gardez la main sur les accès, et on ne lit pas le contenu.' },
+      { q: 'Et si nous utilisons Google Drive ou un serveur de fichiers ?', r: 'La méthode ne dépend pas de l’outil : inventorier, regarder faire, dessiner les parcours, construire la structure cible. Seuls les noms des écrans changent.' },
+    ],
+    liens: ['/audit-informatique-pme', '/transformation-numerique-pme', '/methode', '/exemple'],
+    resume: 'Guide de Reskope pour ranger SharePoint, Teams et OneDrive dans une PME de Lille ou de Valenciennes. Où vont vraiment les fichiers de Teams (les canaux dans SharePoint, les conversations privées dans OneDrive), ce que devient le OneDrive d’une personne qui part, pourquoi les fichiers deviennent introuvables, et la méthode en six temps : inventorier par niveaux sans tout lire, regarder faire, dessiner les parcours, concevoir la structure cible, migrer par un espace pilote, mesurer avant et après. On travaille sur la structure, pas sur le contenu, et rien n’est supprimé sans accord. Estimation écrite avant de commencer.',
   },
 ];

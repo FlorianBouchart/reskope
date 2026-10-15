@@ -216,10 +216,11 @@ export const INTENTIONS = [
     priorite: '0.8',
     fil: 'Aides à la création',
     titre: 'Aides création d’entreprise, Valenciennes, Lille',
-    description: 'Les aides pour créer ou reprendre une entreprise à Valenciennes et Lille : exonérations, allocations, prêts d’honneur, microcrédit, accompagnement gratuit.',
+    description: 'Aides à la création d’entreprise à Valenciennes et Lille : ACRE, prêts d’honneur (Initiative, Réseau Entreprendre), microcrédit Adie, accompagnement.',
     h1: 'Les aides à la création d’entreprise, à Valenciennes et à Lille',
     surtitre: 'Guide · créer ou reprendre une entreprise',
-    accroche: 'Exonérations, allocations, prêts, accompagnement : ce qui existe, à qui s’adresser, et ce que ces aides ne font pas à votre place. Les montants et les conditions changent souvent ; on vous renvoie aux sources officielles.',
+    accroche: 'Exonérations, allocations, prêts, accompagnement : ce qui existe, à qui s’adresser, et ce que ces aides ne font pas à votre place. Les montants et les conditions changent souvent ; on vous renvoie aux sources officielles. Les organismes de Valenciennes cités ont été relus sur leurs sites le 15 octobre 2026.',
+    maj: '15 octobre 2026',
     sections: [
       {
         titre: 'Vos cotisations sociales : l’ACRE',
@@ -232,13 +233,32 @@ export const INTENTIONS = [
         source: { texte: 'francetravail.fr', url: 'https://www.francetravail.fr/' },
       },
       {
-        titre: 'Les prêts d’honneur',
-        texte: ['Des réseaux d’accompagnement accordent des prêts personnels à taux zéro, sans garantie, après présentation de votre projet. Ils renforcent votre apport, ce qui aide ensuite à obtenir un prêt bancaire. Il en existe dans le Valenciennois comme dans la métropole lilloise.'],
+        titre: 'Les prêts d’honneur, à Valenciennes et dans le Hainaut',
+        texte: [
+          'Un prêt d’honneur est un prêt personnel, à taux zéro et sans garantie, accordé au créateur après un passage devant un comité. Il renforce votre apport, ce qui aide ensuite à obtenir le prêt de la banque. Dans le Valenciennois, deux réseaux en accordent.',
+        ],
       },
       {
-        titre: 'Le microcrédit',
-        texte: ['Si la banque ne vous suit pas, l’Adie finance de petits projets par microcrédit, avec un accompagnement avant et après le lancement. Elle a des agences dans le Nord, dont une à Valenciennes.'],
-        source: { texte: 'adie.org', url: 'https://www.adie.org/' },
+        titre: 'Initiative Valenciennes Hainaut',
+        texte: [
+          'Association du réseau Initiative France, elle intervient sur 82 communes du territoire. L’accueil est gratuit : elle vous aide à finaliser votre business plan, accorde un prêt d’honneur à taux zéro après un comité d’agrément, puis vous suit par un parrainage une fois l’entreprise lancée. Son siège est à Aulnoy-lez-Valenciennes.',
+        ],
+        source: { texte: 'initiativevalencienneshainaut.fr', url: 'https://www.initiativevalencienneshainaut.fr/' },
+      },
+      {
+        titre: 'Réseau Entreprendre Hainaut',
+        texte: [
+          'Ce réseau de chefs d’entreprise accorde des prêts d’honneur sans intérêt et sans garantie personnelle aux projets de création d’entreprise, et propose un mentorat. Vous passez devant un comité d’engagement, qui juge la viabilité du projet et votre capacité à vous faire accompagner. Il intervient sur le Hainaut : les arrondissements de Valenciennes, Cambrai, Douai et Avesnes-sur-Helpe.',
+        ],
+        source: { texte: 'reseau-entreprendre.org/hainaut', url: 'https://www.reseau-entreprendre.org/hainaut/aide-a-la-creation-entreprise/' },
+      },
+      {
+        titre: 'Le microcrédit : l’agence Adie de Valenciennes',
+        texte: [
+          'L’Adie accorde des microcrédits à toute personne majeure qui porte un projet professionnel, qu’elle soit sans emploi, salariée, allocataire ou déjà micro-entrepreneuse. Chaque porteur de projet a un accompagnement gratuit avant, pendant et après le lancement.',
+          'L’agence de Valenciennes, au 19 rue Derrière la Tour, reçoit du lundi au vendredi sur rendez-vous, à prendre par téléphone ou par le formulaire de son site.',
+        ],
+        source: { texte: 'agences.adie.org : agence de Valenciennes', url: 'https://agences.adie.org/hauts-de-france/nord/valenciennes/agence-adie-valenciennes-66' },
       },
       {
         titre: 'Les garanties de Bpifrance',
@@ -247,7 +267,10 @@ export const INTENTIONS = [
       },
       {
         titre: 'L’accompagnement gratuit ou peu cher',
-        texte: ['La CCI, la chambre de métiers et de l’artisanat, les boutiques de gestion (BGE) et les agglomérations proposent des rendez-vous, des formations à la création et de l’aide aux démarches. Valenciennes Métropole a un service dédié aux créateurs ; dans la métropole lilloise, la CCI Grand Lille est un bon point de départ.'],
+        texte: [
+          'La CCI, la chambre de métiers et de l’artisanat (CMA Hauts-de-France), les BGE et les agglomérations proposent des rendez-vous, des formations à la création et de l’aide aux démarches.',
+          'Valenciennes Métropole a un service de développement économique qui accompagne les créateurs, et renvoie vers ses partenaires : la CCI Grand Hainaut, la CMA Hauts-de-France, BGE, Réseau Entreprendre Hainaut et CIGALES Hauts-de-France. Dans la métropole lilloise, la BGE Hauts-de-France a son siège à Lille et la CCI Grand Lille est un bon point de départ.',
+        ],
         source: { texte: 'valenciennes-metropole.fr', url: 'https://www.valenciennes-metropole.fr/investir-entreprendre/services-aux-entreprises/je-cree-mon-entreprise/' },
       },
       {
@@ -257,12 +280,14 @@ export const INTENTIONS = [
     ],
     missions: ['idee', 'bp', 'dossier'],
     faq: [
+      { q: 'Où demander un prêt d’honneur à Valenciennes ?', r: 'Deux réseaux en accordent dans le Valenciennois : Initiative Valenciennes Hainaut et Réseau Entreprendre Hainaut. Chacun décide en comité, sur présentation de votre projet : prenez contact avant de figer votre plan de financement.' },
+      { q: 'Où demander un microcrédit à Valenciennes ?', r: 'À l’agence Adie de Valenciennes, sur rendez-vous. Elle s’adresse à toute personne majeure qui porte un projet professionnel, sans condition de statut.' },
       { q: 'Peut-on cumuler plusieurs aides ?', r: 'Souvent, oui : une exonération de cotisations, un prêt d’honneur et un prêt bancaire garanti se combinent régulièrement. Les règles de cumul dépendent de votre situation ; vérifiez-les auprès de chaque organisme avant de les inscrire dans votre prévisionnel.' },
       { q: 'Les aides suffisent-elles à financer un projet ?', r: 'Rarement à elles seules. Elles complètent votre apport et un prêt bancaire. C’est pour ça que le dossier doit convaincre : une aide accordée ne remplace pas un client qui achète.' },
       { q: 'Vous montez les demandes d’aides à ma place ?', r: 'Non : les organismes qui les accordent vous accompagnent sur ces démarches. On s’occupe de ce qu’ils ne font pas : prouver que votre projet a des clients, et construire avec vous le business plan qui le montre.' },
     ],
     liens: ['/guides/business-plan-banque', '/accompagnement-creation-entreprise-valenciennes', '/accompagnement-creation-entreprise-lille', '/relire-votre-dossier'],
-    resume: 'Guide des aides à la création et à la reprise d’entreprise, à Valenciennes et à Lille : l’ACRE (Urssaf), le maintien des allocations ou l’ARCE (France Travail), les prêts d’honneur, le microcrédit de l’Adie, les garanties de Bpifrance, l’accompagnement de la CCI, de la chambre de métiers, des BGE et de Valenciennes Métropole. Et ce que ces aides ne font pas : prouver que des clients achèteront.',
+    resume: 'Guide des aides à la création et à la reprise d’entreprise, à Valenciennes et à Lille : l’ACRE (Urssaf), le maintien des allocations ou l’ARCE (France Travail), les prêts d’honneur d’Initiative Valenciennes Hainaut et de Réseau Entreprendre Hainaut, le microcrédit de l’agence Adie de Valenciennes, les garanties de Bpifrance, l’accompagnement de la CCI, de la chambre de métiers, des BGE et de Valenciennes Métropole. Organismes de Valenciennes relus sur leurs sites le 15 octobre 2026. Et ce que ces aides ne font pas : prouver que des clients achèteront.',
   },
 
   {

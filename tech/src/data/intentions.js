@@ -292,7 +292,7 @@ export const INTENTIONS = [
       { q: 'Combien coûte un audit ?', r: 'Le prix dépend du nombre d’équipes ou de sites à couvrir, de la complexité de vos outils et du format du bilan. Il est écrit avant de commencer.' },
       { q: 'Sommes-nous obligés de continuer avec vous ?', r: 'Non. Le bilan vous appartient, quelle que soit la suite : vous pouvez le mettre en œuvre seuls, avec nous ou avec quelqu’un d’autre.' },
     ],
-    liens: ['/transformation-numerique-pme', '/offres', '/methode', '/exemple'],
+    liens: ['/organiser-sharepoint-teams-onedrive', '/transformation-numerique-pme', '/offres', '/methode', '/exemple'],
     resume: 'Audit des outils numériques des PME de 10 à 250 personnes à Valenciennes et à Lille : deux à cinq jours sur le terrain, entretiens individuels avec les équipes, cartographie des outils et des usages, doublons, ressaisies et coûts cachés, puis un bilan priorisé par impact que vous gardez, sans obligation de continuer. Ce n’est pas un audit de sécurité ou de réseau.',
   },
 
@@ -354,7 +354,7 @@ export const INTENTIONS = [
       { q: 'Par quel outil commencer ?', r: 'Par aucun. Commencez par l’inventaire de ce que vous avez et le temps que ça vous coûte ; l’outil vient après, et souvent c’est une liaison entre deux outils existants.' },
       { q: 'Combien de temps prend une transformation numérique ?', r: 'Elle ne se termine jamais vraiment, mais les premiers gains arrivent vite si on avance par petites étapes : quelques semaines par chantier, chacun mesuré avant et après.' },
     ],
-    liens: ['/audit-informatique-pme', '/pourquoi', '/methode', '/offres'],
+    liens: ['/audit-informatique-pme', '/organiser-sharepoint-teams-onedrive', '/pourquoi', '/methode', '/offres'],
     resume: 'Guide pour les dirigeants de PME : par où commencer une transformation numérique. Partir de l’existant (inventaire des outils et des usages), mesurer le temps perdu (près de la moitié de la semaine part dans les e-mails et la recherche d’information selon McKinsey), relier avant de remplacer, classer par impact et avancer par petites étapes, former les équipes. Et comment Reskope accompagne, en commençant par l’audit.',
   },
 
