@@ -114,7 +114,7 @@ export const PAGES = [
     titre: 'Qui on est : Thomy Phanzu et Florian Bouchart',
     description: 'Thomy mène le business plan et le financement, Florian la discovery et la technique. Deux personnes, à Valenciennes et à Lille, sur chaque dossier.',
     h1: 'Bonjour, nous c’est Thomy et Florian.',
-    resume: 'Reskope, ce sont deux personnes. Thomy mène le business plan, la stratégie et le passage devant les financeurs ; elle a accompagné pendant deux ans des créateurs d’entreprise jusqu’à ce rendez-vous. Florian mène les entretiens avec vos clients et la partie technique : les sites, les outils, et ce qu’on relie entre eux. Aucun des deux ne reste dans son couloir. Reskope démarre : on n’a pas encore de clients à citer, alors on montre la méthode en entier.',
+    resume: 'Reskope, ce sont deux personnes. Thomy mène le business plan, la stratégie et le passage devant les financeurs ; elle a accompagné pendant deux ans des créateurs d’entreprise jusqu’à ce rendez-vous. Florian mène les entretiens avec vos clients et la partie technique : les sites, les outils, et ce qu’on relie entre eux. Aucun des deux ne reste dans son couloir.',
   },
   {
     route: '/contact', priorite: '0.9', freq: 'yearly', fil: 'Contact',
